@@ -1,0 +1,56 @@
+// General breakpoints
+// $breaks: ("sm":320px, "md":768px, "lg":1140px);
+$breaks: ("sm":320px, "lg":1440px);
+
+// NAV Menu
+$nav-height: 4.5rem;
+
+@mixin media($min-max, $media) {
+  @each $size, $resolution in $breaks {
+    @if $media == $size {
+      @media only screen and (#{$min-max}-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+// Main screen
+@mixin general-width {
+  @include media('min', 'sm') { width: 320px; }
+  @include media('min', 'lg') { width: 1440px; }
+}
+// Main container
+@mixin container-width {
+  @include media('min', 'sm') { width: 300px; }
+  @include media('min', 'lg') { width: 1400px; }
+}
+@mixin container-paddings {
+  @include media('min', 'sm') { padding: 0 10px; }
+  @include media('min', 'lg') { padding: 0 20px; }
+}
+
+
+// Top menu strip
+@mixin display-mode {
+  @include media('min', 'sm') { display: none; }
+  @include media('min', 'lg') { display: block; }
+}
+@mixin order-button-txt-shift {
+  @include media('min', 'sm') { padding: 0 0 0 .3rem; }
+  @include media('min', 'lg') { padding: .15rem 0 0 .1rem; }
+}
+@mixin order-button {
+  @include media('min', 'sm') { width: 120px; }
+  @include media('min', 'lg') { width: 191px; }
+}
+// Header
+@mixin header {
+  @include media('min', 'sm') { 
+    height: 226px; 
+    border-radius: 1.1875rem;
+  }
+  @include media('min', 'lg') { 
+    height: 348px;
+    border-radius: 1.9375rem;
+  }
+}

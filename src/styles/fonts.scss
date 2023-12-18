@@ -1,0 +1,129 @@
+@font-face {
+  font-family: 'Intro Demo';
+  src: url('@/assets/fonts/IntroDemo/IntroDemo-BlackCAPS.eot?#iefix') format('embedded-opentype'),
+      url('@/assets/fonts/IntroDemo/IntroDemo-BlackCAPS.woff2') format('woff2'),
+      url('@/assets/fonts/IntroDemo/IntroDemo-BlackCAPS.woff') format('woff'),
+      url('@/assets/fonts/IntroDemo/IntroDemo-BlackCAPS.otf') format('otf');
+  font-display: swap
+}
+@font-face {
+  font-family: 'FuturaPTHeavyOblique';
+  src: url('@/assets/fonts/Futura PT Heavy Italic/FuturaPTHeavyOblique.eot');
+  src: url('@/assets/fonts/Futura PT Heavy Italic/FuturaPTHeavyOblique.eot?#iefix') format('embedded-opentype'),
+  url('@/assets/fonts/Futura PT Heavy Italic/FuturaPTHeavyOblique.woff') format('woff'),
+  url('@/assets/fonts/Futura PT Heavy Italic/FuturaPTHeavyOblique.woff2') format('woff2'),
+  url('@/assets/fonts/Futura PT Heavy Italic/FuturaPTHeavyOblique.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Inter 500';
+  src: url('@/assets/fonts/Inter 500/Inter-Medium.eot');
+  src: url('@/assets/fonts/Inter 500/Inter-Medium.eot?#iefix')format("embedded-opentype"),
+  url('@/assets/fonts/Inter 500/Inter-Medium.woff2')format("woff2"),
+  url('@/assets/fonts/Inter 500/Inter-Medium.woff')format("woff"),
+  url('@/assets/fonts/Inter 500/Inter-Medium.otf') format('otf');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Inter 700';
+  src: url('@/assets/fonts/Inter 700/Inter-Bold.eot');
+  src: url('@/assets/fonts/Inter 700/Inter-Bold.eot?#iefix')format("embedded-opentype"),
+  url('@/assets/fonts/Inter 700/Inter-Bold.woff2')format("woff2"),
+  url('@/assets/fonts/Inter 700/Inter-Bold.woff')format("woff"),
+  url('@/assets/fonts/Inter 700/Inter-Bold.otf') format('otf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura PT 400';
+  src: url('@/assets/fonts/Futura PT 400/FuturaCyrillicBook.eot');
+  src: url('@/assets/fonts/Futura PT 400/FuturaCyrillicBook.eot?#iefix')format("embedded-opentype"),
+  url('@/assets/fonts/Futura PT 400/FuturaCyrillicBook.woff2')format("woff2"),
+  url('@/assets/fonts/Futura PT 400/FuturaCyrillicBook.woff')format("woff"),
+  url('@/assets/fonts/Futura PT 400/FuturaCyrillicBook.otf') format('otf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Futura PT 450';
+  src: url('@/assets/fonts/Futura PT 450/FuturaCyrillicMedium.eot');
+  src: url('@/assets/fonts/Futura PT 450/FuturaCyrillicMedium.eot?#iefix')format("embedded-opentype"),
+  url('@/assets/fonts/Futura PT 450/FuturaCyrillicMedium.woff2')format("woff2"),
+  url('@/assets/fonts/Futura PT 450/FuturaCyrillicMedium.woff')format("woff"),
+  url('@/assets/fonts/Futura PT 450/FuturaCyrillicMedium.otf') format('otf');
+  font-weight: 450;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Futura PT 600';
+  src: url('@/assets/fonts/Futura PT 600/FuturaCyrillicHeavy.eot');
+  src: url('@/assets/fonts/Futura PT 600/FuturaCyrillicHeavy.eot?#iefix')format("embedded-opentype"),
+  url('@/assets/fonts/Futura PT 600/FuturaCyrillicHeavy.woff2')format("woff2"),
+  url('@/assets/fonts/Futura PT 600/FuturaCyrillicHeavy.woff')format("woff"),
+  url('@/assets/fonts/Futura PT 600/FuturaCyrillicHeavy.otf') format('otf');
+  font-weight: 600;
+  font-style: normal;
+}
+:root {
+  font-size: 16px;
+}
+body { font-family: 'Futura PT 400', Helvetica, sans-serif; }
+menu { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', sans-serif; }
+header { font-family: 'FuturaPTHeavyOblique', 'Futura PT 400', 'Inter 700', sans-serif; }
+main { font-family: 'Futura PT 400', 'Futura PT 450', 'Futura PT 600', sans-serif; }
+footer { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', 'Futura PT 400', sans-serif; }
+
+@mixin site-title {
+  font-family: 'Intro Demo';
+  font-size: 2rem;
+  line-height: normal;
+  @include media('min', 'sm') {
+    font-size: 1.3125rem;
+    line-height: 1.24;
+  }
+  @include media('min', 'lg') { font-size: 2rem; }
+}
+@mixin contact {
+  color: #000;
+  font-family: 'Inter 700';
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.25;
+}
+@mixin button-txt {
+  color: #fff;
+  font-family: 'Inter 500';
+  font-style: normal;
+  line-height: 1.2;
+  font-weight: 500;
+  @include media('min', 'sm') { font-size: 0.75rem; }
+  @include media('min', 'lg') { font-size: 0.875rem; }
+}
+@mixin header-title {
+  color: #fff;
+  font-family: 'FuturaPTHeavyOblique';
+  line-height: 1.3;
+  text-transform: uppercase;
+  @include media('min', 'sm') { font-size: 1.25rem; }
+  @include media('min', 'lg') { font-size: 3.0625rem; }
+}
+@mixin header-sub-title {
+  color: #fff;
+  font-family: 'Futura PT 400';
+  line-height: 1.1;
+  @include media('min', 'sm') { font-size: 1.125rem; }
+  @include media('min', 'lg') { font-size: 1.8125rem; }
+}
+@mixin card-txt {
+  color: #fff;
+  font-family: 'Inter 700';
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+

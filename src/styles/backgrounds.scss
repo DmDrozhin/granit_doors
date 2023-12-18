@@ -1,0 +1,32 @@
+$bg-image-sm-jpg: url('@/assets/images/768/header_bg_768.jpg');
+$bg-image-sm-webp: url('@/assets/images/768/header_bg_768.webp');
+
+$bg-image-lg-jpg: url('@/assets/images/1440/header_bg_1400.jpg');
+$bg-image-lg-webp: url('@/assets//images/1440/header_bg_1400.webp');
+
+@mixin header-bg {
+  @include media('min', 'sm') { 
+    background-image: 
+    linear-gradient(90deg, #585858 0%, rgba(0, 0, 0, 0.00) 95.46%),
+    $bg-image-sm-jpg;
+    background-image: image-set(
+      $bg-image-sm-jpg
+      $bg-image-sm-webp
+    );
+  }
+  @include media('min', 'lg') {
+    background-image:
+    linear-gradient(90deg, #585858 0%, rgba(0, 0, 0, 0.00) 95.46%),
+    $bg-image-lg-jpg;
+    background-image: image-set(
+      $bg-image-lg-jpg
+      $bg-image-lg-webp
+    );
+  }
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+// background: linear-gradient(270deg, #585858 0%, rgba(0, 0, 0, 0.00) 95.46%), url(<path-to-image>), lightgray 50% / cover no-repeat, #C3C3C3;
+

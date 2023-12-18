@@ -1,0 +1,55 @@
+@import './colors.scss';
+@import './fonts.scss';
+@import './layouts.scss';
+@import './resets.scss';
+@import './backgrounds.scss';
+
+* {
+  font-family: 'Futura PT 400', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: inherit;
+  width: inherit;
+  // mobile viewport bug fix */
+  min-height: -webkit-fill-available;
+  scroll-behavior: smooth;
+}
+
+
+
+// Flexes
+@mixin flex-jcsb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+@mixin flex-jcs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@mixin flex-clmn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+}
+@mixin flex-title {
+  @include media('min', 'sm') { @include flex-clmn }
+  @include media('min', 'lg') { @include flex-jcsb }
+}
