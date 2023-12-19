@@ -1,0 +1,105 @@
+<template>
+  <div class="ui-emblem-quality emblem">
+    <div class="emblem__wrapper">
+      <div class="emblem__svg">
+        <svg viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_126_52)">
+            <path
+              d="M42.6994 14.477C41.8202 13.4637 40.7335 12.6512 39.513 12.0945C38.2924 11.5378 36.9665 11.2498 35.625 11.2501H28.1456L28.7756 7.42322C28.9985 6.07559 28.7296 4.69273 28.0179 3.52686C27.3061 2.36099 26.199 1.48981 24.8985 1.07221C23.5979 0.654605 22.1906 0.718412 20.9332 1.25199C19.6758 1.78557 18.6521 2.75336 18.0488 3.97885L15 10.157V39.3751H34.3125C36.569 39.3659 38.7472 38.5469 40.4509 37.0673C42.1545 35.5876 43.2705 33.5456 43.5956 31.3126L44.9175 21.9376C45.1044 20.6077 45.0031 19.2532 44.6203 17.9659C44.2376 16.6786 43.5825 15.4887 42.6994 14.477Z"
+              fill="white" />
+            <path
+              d="M0 20.625V30C0.00297723 32.4855 0.991654 34.8683 2.74916 36.6258C4.50667 38.3833 6.88951 39.372 9.375 39.375H11.25V11.25H9.375C6.88951 11.253 4.50667 12.2417 2.74916 13.9992C0.991654 15.7567 0.00297723 18.1395 0 20.625Z"
+              fill="white" />
+          </g>
+          <!-- <defs>
+            <clipPath id="clip0_126_52">
+              <rect width="45" height="45" fill="white" />
+            </clipPath>
+          </defs> -->
+        </svg>
+      </div>
+
+      <p class="emblem__txt">Качество сборки</p>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ui-emblem-quality',
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
+  },
+  computed: {
+
+  }
+
+}
+</script>
+
+<style lang="scss" scoped>
+.ui-emblem-quality,
+.emblem {
+  @include media('min', 'sm') {
+    height: 61.53px;
+    width: 59.26px;
+  }
+  @include media('min', 'lg') {
+    height: 124px;
+    width: 119px;
+  }
+
+  background-color: $green-75;
+  border-radius: 22%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__wrapper {
+    // border: 1px solid hotpink;
+    padding: 5%;
+  }
+
+  &__svg {
+    margin: 0 auto;
+    height: auto;
+    width: 42%;
+    @include media('min', 'sm') {
+      margin-bottom: -3%;
+    }
+    @include media('min', 'lg') {
+      margin-bottom: 0%;
+      width: 42%;
+    }
+  }
+
+  &__txt {
+    text-align: center;
+    color: #fff;
+    font-family: 'Inter 700';
+    font-size: 86%;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25;
+
+    @include media('min', 'sm') {
+      font-size: 40%;
+    }
+
+    @include media('min', 'lg') {
+      font-size: 86%;
+    }
+  }
+}
+</style>
+@include media('min', 'sm') {
+
+}
+@include media('min', 'lg') {
+
+}

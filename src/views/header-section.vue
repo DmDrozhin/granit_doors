@@ -7,51 +7,21 @@
           <h2 class="title-block__title">{{ title }}</h2>
           <p class="title-block__sub-title">{{ title2 }}</p>
         </div>
-
-          <div class="header__nav-btn-block nav-btn-block">
-            <ui-button-nav
-              :setts="{ isRight: false }"
-            ></ui-button-nav>
-            <ui-button-nav
-              :setts="{ isRight: true }"
-            ></ui-button-nav>
-          </div>
+        <div class="header__nav-buttons">
+          <ui-nav-buttons></ui-nav-buttons>
+        </div>
       </div>
       <div class="header__right-side">
         <div class="header__signs-block sign">
-
-          <ui-sign-benefits>
-            <template #icon>
-              <ui-icon-thumb-up
-                class="sign__icon"
-              ></ui-icon-thumb-up>
-            </template>
-            <template #txt>
-              <span class="sign__txt">{{ signTxt1 }}</span>
-            </template>
-          </ui-sign-benefits>
-
-          <ui-sign-benefits>
-            <template #icon>
-              <ui-icon-shield
-                class="sign__icon"
-              ></ui-icon-shield>
-            </template>
-            <template #txt>
-              <span class="sign__txt">{{ signTxt2 }}</span>
-            </template>
-          </ui-sign-benefits>
-
-          <ui-sign-benefits>
-            <template #icon>
-              <ui-icon-trust
-                class="sign__icon"
-              ></ui-icon-trust>
-            </template>
-            <template #txt>
-              <span class="sign__txt">{{ signTxt3 }}</span>
-            </template>
-          </ui-sign-benefits>
+          <div>
+            <ui-emblem-quality></ui-emblem-quality>
+          </div>
+          <div>
+            <ui-emblem-guarantee></ui-emblem-guarantee>
+          </div>
+          <div>
+            <ui-emblem-trust></ui-emblem-trust>
+          </div>
         </div>
 
       </div>
@@ -64,11 +34,10 @@
 
 <script>
 import menuSection from '../components/comp-menu.vue'
-import UiIconThumbUp from '../components/UI/svg-icons/ui-icon-thumb-up.vue'
 
 export default {
   name: 'header-section',
-  components: { menuSection, UiIconThumbUp },
+  components: { menuSection },
   data() {
     return {
       title: 'лучшие предложения на рынке дверей',
@@ -82,59 +51,97 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .header {
-    // @include general-width;
-    margin: 0.875rem 0;
-    @include header-bg;
-    @include header;
-    background-color: #C3C3C3;
-    &__wrapper {
-      height: inherit;
-      display: flex;
-      justify-content: space-between;
+.header {
+  // @include general-width;
+  margin: 0.875rem 0;
+  @include header-bg;
+  @include header;
+  background-color: #C3C3C3;
 
+  &__wrapper {
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  &__left-side {
+    @include media('min', 'sm') {
+      margin-top: 26px;
+      margin-left: 15px;
     }
-    &__left-side {
+
+    @include media('min', 'lg') {
       margin-top: 49px;
       margin-left: 92px;
-      // display: flex;
-      // flex-direction: column;
-      // justify-content: space-between;
     }
-    &__title-block, 
-    .title-block {
+  }
 
-      width: 585px;
-      &__title {
-        @include header-title;
-      }
-      &__sub-title {
-        @include header-sub-title;
-        margin-bottom: 60px;
-      }
-    }
-    &__nav-btn-block, 
-    .nav-btn-block {
-      display: flex;
-    }
-    &__right-side {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+  &__title-block,
+  .title-block {
+    &__title {
+      @include header-title;
 
+      @include media('min', 'sm') {
+        width: 85%;
+        margin-bottom: 8px;
+      }
+
+      @include media('min', 'lg') {
+        width: 70%;
+      }
     }
-    &__signs-block, .sign {
-      display: flex;
-      gap: 2.1rem;
-      margin-bottom: .75rem;
-      margin-right: .75rem;
-      &__icon {}
-      &__txt {
-        @include card-txt;
-        text-align: center;
-        text-wrap: wrap;
+
+    &__sub-title {
+      @include header-sub-title;
+
+      @include media('min', 'sm') {
+        margin-bottom: 23px;
+        line-height: 1.3;
+      }
+
+      @include media('min', 'lg') {
+        margin-bottom: 68px;
+        line-height: .5;
       }
     }
   }
+
+  &__right-side {
+    @include media('min', 'sm') {}
+    @include media('min', 'lg') {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  &__signs-block,
+  .sign {
+
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-end;
+    @include media('min', 'sm') {
+      display: flex;
+      flex-direction: column;
+      gap: 5.7px;
+      margin-top: 10px;
+      margin-right: 14px;
+    }
+
+    @include media('min', 'lg') {
+      display: flex;
+      flex-direction: row;
+      gap: 2.1rem;
+      margin-bottom: .75rem;
+      margin-right: .75rem;
+    }
+  }
+}
 </style>
+@include media('min', 'sm') {
+
+}
+@include media('min', 'lg') {
+
+}

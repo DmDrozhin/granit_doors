@@ -45,8 +45,15 @@ export default {
 <style lang="scss" scoped>
 .ui-button-nav, 
 .nav-btn {
-  width: 51px;
-  height: 48px;
+
+  @include media('min', 'sm') {
+    width: 31px;
+    height: 29px;
+  }
+  @include media('min', 'lg') {
+    width: 51px;
+    height: 48px;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
