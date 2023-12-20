@@ -197,7 +197,6 @@ export default {
         flex: 1 1 248px;
         margin-bottom: 0px;
       }
-      
       // gap: 35px;
       & li {
         margin-bottom: 10px;
@@ -212,7 +211,6 @@ export default {
       .l {
         @include media('min', 'sm') { flex: 0 0 52%; }
         @include media('min', 'lg') { flex: 0 0 170px; }
-        
       }
       &__r, 
       .r {
@@ -245,9 +243,9 @@ export default {
         position: relative;
         top: 1px;
         width: 191px;
+        font-size: 14px;
       }
     }
-
     &__socials,
     .socials {
       @include media('min', 'sm') { }
@@ -255,11 +253,10 @@ export default {
         display: flex;
         gap: 26px;
       }
-
       & li > a {
         @include footer-txt;
       }
     }
   }
-
-}</style>
+}
+</style>

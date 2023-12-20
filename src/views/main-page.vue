@@ -18,7 +18,16 @@ export default {
     return {
       title: 'main page'
     }
-  }
+  },
+  mounted() {
+    window.addEventListener('resize', (e) => {
+      // console.log(e.target.innerWidth)
+      this.$store.dispatch('common/SET_W', e.target.innerWidth)
+    })
+  },
+  onBeforeUnmount() {
+    removeEventListener('resize')
+  },
 }
 </script>
 

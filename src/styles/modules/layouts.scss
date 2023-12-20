@@ -39,7 +39,7 @@ $nav-height: 4.5rem;
   @include media('min', 'sm') { display: none; }
   @include media('min', 'lg') { display: block; }
 }
-
+// Order button in menu
 @mixin order-button {
   @include media('min', 'sm') { width: 120px; }
   @include media('min', 'lg') { width: 191px; }

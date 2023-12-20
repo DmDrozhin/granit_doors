@@ -6,12 +6,12 @@
           <div class="name-block__logo">
             <ui-icon-logo :setts="logo"></ui-icon-logo>
           </div>
-          <h1 class="name-block__site-title title">
+          <div class="name-block__site-title title">
             <span class="title__wrapper">
               <span class="title__part-1">{{ title.p1 }}</span>
               <span class="title__part-2">{{ title.p2 }}</span>
             </span>
-          </h1>
+          </div>
         </div>
       </div>
       <div class="menu__contacts contacts">

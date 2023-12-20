@@ -100,13 +100,14 @@ footer { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', 'Futura PT 400', s
   font-weight: 700;
   line-height: 1.25;
 }
+// Main button
 @mixin button-txt {
-  color: #fff;
   font-family: 'Inter 500';
-  font-style: normal;
   line-height: 1.3;
   font-weight: 500;
+  color: #a21414;
 }
+// h1 header
 @mixin header-title {
   color: #fff;
   font-family: 'FuturaPTHeavyOblique';
@@ -122,6 +123,7 @@ footer { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', 'Futura PT 400', s
   @include media('min', 'sm') { font-size: 1.125rem; }
   @include media('min', 'lg') { font-size: 1.8125rem; }
 }
+// benefit cards
 @mixin card-txt {
   color: #fff;
   font-family: 'Inter 700';
@@ -130,6 +132,7 @@ footer { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', 'Futura PT 400', s
   font-weight: 700;
   line-height: 1.25;
 }
+// Input select
 select {
   font-family: 'Futura PT 600';
   font-size: 18px;
