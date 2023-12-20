@@ -59,9 +59,9 @@ export default {
   &__svg {
     margin: 0 auto;
     height: auto;
-    width: 42%;
     @include media('min', 'sm') {
       margin-bottom: -3%;
+      width: 42%;
     }
     @include media('min', 'lg') {
       margin-bottom: 0%;
@@ -77,6 +77,8 @@ export default {
     font-style: normal;
     font-weight: 700;
     line-height: 1.25;
+    letter-spacing: 0.3px;
+
     @include media('min', 'sm') {
       font-size: 40%;
     }

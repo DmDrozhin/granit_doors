@@ -28,8 +28,6 @@ body {
   scroll-behavior: smooth;
 }
 
-
-
 // Flexes
 @mixin flex-jcsb {
   display: flex;
@@ -40,6 +38,11 @@ body {
 @mixin flex-jcs {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+@mixin flex-jcr {
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 @mixin flex-clmn {
@@ -53,3 +56,6 @@ body {
   @include media('min', 'sm') { @include flex-clmn }
   @include media('min', 'lg') { @include flex-jcsb }
 }
+
+// @include media('min', 'sm') { }
+// @include media('min', 'lg') { }

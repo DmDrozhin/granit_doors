@@ -75,7 +75,7 @@ export default {
   &__L {
     width: 50%;
     height: inherit;
-    border-radius: 25% 0 0 25%;
+    border-radius: 28% 0 0 28%;
     background-color: #137039;
     position: relative;
   }
@@ -87,13 +87,15 @@ export default {
     @include media('min', 'sm') {
       top: 3%;
     }
-    @include media('min', 'lg') {}
+    @include media('min', 'lg') {
+      top: 0%;
+    }
   }
 
   &__R {
     width: 50%;
     height: inherit;
-    border-radius: 0 25% 25% 0;
+    border-radius: 0 28% 28% 0;
     background-color: #12AB51;
     position: relative;
   }
@@ -105,7 +107,9 @@ export default {
     @include media('min', 'sm') {
       top: 3%;
     }
-    @include media('min', 'lg') {}
+    @include media('min', 'lg') {
+      top: 0%;
+    }
   }
 
   @include media('min', 'sm') {}

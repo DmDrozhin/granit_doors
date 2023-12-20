@@ -28,17 +28,10 @@
 export default {
   name: 'ui-emblem-quality',
   data() {
-    return {
-
-    }
+    return { }
   },
-  methods: {
-
-  },
-  computed: {
-
-  }
-
+  methods: { },
+  computed: { }
 }
 </script>
 
@@ -62,19 +55,19 @@ export default {
 
   &__wrapper {
     // border: 1px solid hotpink;
-    padding: 5%;
+    padding: 0 10%;
   }
 
   &__svg {
     margin: 0 auto;
     height: auto;
-    width: 42%;
     @include media('min', 'sm') {
       margin-bottom: -3%;
+      width: 47%;
     }
     @include media('min', 'lg') {
       margin-bottom: 0%;
-      width: 42%;
+      width: 47%;
     }
   }
 
@@ -86,6 +79,7 @@ export default {
     font-style: normal;
     font-weight: 700;
     line-height: 1.25;
+    letter-spacing: 0.3px;
 
     @include media('min', 'sm') {
       font-size: 40%;

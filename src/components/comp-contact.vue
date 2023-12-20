@@ -3,14 +3,8 @@
     <ui-icon-phone
       v-if="icon === 'phone'"
       :setts="{
-        width: 30, 
-        height: 30, 
-        cx: 15, 
-        cy: 15,
-        r: 15,
-        viewBox: '0 0 30 30', 
-        color1: '#137039',
-        color2: '#FFFFFF',
+        bg: '#137039',
+        icn: '#FFFFFF',
       }"
     ></ui-icon-phone>
     <ui-icon-email

@@ -1,6 +1,6 @@
 // General breakpoints
 // $breaks: ("sm":320px, "md":768px, "lg":1140px);
-$breaks: ("sm":320px, "lg":1440px);
+$breaks: ("sm":0px, "lg":1440px);
 
 // NAV Menu
 $nav-height: 4.5rem;
@@ -24,6 +24,10 @@ $nav-height: 4.5rem;
   @include media('min', 'sm') { width: 300px; }
   @include media('min', 'lg') { width: 1400px; }
 }
+@mixin container-footer {
+  @include media('min', 'sm') { width: 300px; }
+  @include media('min', 'lg') { width: 1396px; }
+}
 @mixin container-paddings {
   @include media('min', 'sm') { padding: 0 10px; }
   @include media('min', 'lg') { padding: 0 20px; }
@@ -35,10 +39,7 @@ $nav-height: 4.5rem;
   @include media('min', 'sm') { display: none; }
   @include media('min', 'lg') { display: block; }
 }
-@mixin order-button-txt-shift {
-  @include media('min', 'sm') { padding: 0 0 0 .3rem; }
-  @include media('min', 'lg') { padding: .15rem 0 0 .1rem; }
-}
+
 @mixin order-button {
   @include media('min', 'sm') { width: 120px; }
   @include media('min', 'lg') { width: 191px; }
@@ -52,5 +53,22 @@ $nav-height: 4.5rem;
   @include media('min', 'lg') { 
     height: 348px;
     border-radius: 1.9375rem;
+  }
+}
+// Footer
+@mixin footer {
+  $r: 1.6875rem;
+  border-radius: $r $r 0 0;
+  @include media('min', 'sm') { 
+    height: 568px;
+    width: 320px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  @include media('min', 'lg') {
+    height: 146px;
+    width: 1440px;
+    margin-left: -20px;
+    margin-right: -20px;
   }
 }

@@ -3,37 +3,43 @@
     <div class="menu__container">
       <div class="menu__name-block name-block">
         <div class="name-block__wrapper">
-          <div class="name-block__icon">
-            <!-- <img src="../assets/svg/main-logo.svg" alt="Site logo"> -->
-            <ui-icon-logo
-              :setts="logo"
-            ></ui-icon-logo>
+          <div class="name-block__logo">
+            <ui-icon-logo :setts="logo"></ui-icon-logo>
           </div>
           <h1 class="name-block__site-title title">
             <span class="title__wrapper">
-              <span class="title__part-1">{{ part1 }}</span>
-              <span class="title__part-2">{{ part2 }}</span>
+              <span class="title__part-1">{{ title.p1 }}</span>
+              <span class="title__part-2">{{ title.p2 }}</span>
             </span>
           </h1>
         </div>
       </div>
-      <div class="menu__contact-block contact-block">
-        <div class="contact-block__phone phone">
-          <comp-contact
-            class="phone__comp"
-            :contact="'+38 (097) 555-88-77'"
-            :icon="'phone'"
-          ></comp-contact>
-        </div>
-        <div class="contact-block__email email">
-          <comp-contact
-            class="email__comp"
-            :contact="'info@corp.com'"
-            :icon="'email'"
-          ></comp-contact>
-        </div>
-        <div class="contact-block__order-btn">
-          <ui-button-main></ui-button-main>
+      <div class="menu__contacts contacts">
+        <ui-comp-info
+          class="contacts__tel"
+          :setts="{ 
+            txt: '+38 (097) 555-88-77',
+            txtCl: '#000',
+            icn: 'phone',
+            icnCl: '#fff',
+            icnBg: '#137039'
+          }"
+        ></ui-comp-info>
+        <ui-comp-info
+          class="contacts__email"
+          :setts="{ 
+            txt: 'info@corp.com',
+            txtCl: '#000',
+            icn: 'email',
+            icnCl: '#fff',
+            icnBg: '#137039'
+          }"
+        ></ui-comp-info>
+
+        <div class="contacts__order-btn">
+          <ui-button-main
+            :setts="btnSetts"
+          ></ui-button-main>
         </div>
       </div>
     </div>
@@ -41,23 +47,13 @@
 </template>
 
 <script>
-
 export default {
   name: 'menu-section',
   data() {
     return {
-      logo: {
-        width: 21,
-        height: 52, 
-        width2: 21,
-        height2: 47, 
-        viewBox: '0 -2 21 47',
-        color1: '#333333',
-        color2: '#12AB51',
-        color3: '#333333'
-      },
-      part1: 'двери',
-      part2: 'гранит'
+      logo: { col1: '#333333', col2: '#12AB51', col3: '#333333' },
+      title: { p1: 'двери', p2: 'гранит' },
+      btnSetts: { txt:'Оставить заявку', txtCl:'#fff', bg:'#12AB51', icn:'phone', icnCl:'#fff', icnBg:'#137039' }
     }
   }
 }
@@ -75,11 +71,14 @@ export default {
       height: inherit;
       &__wrapper {
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
         // gap: .5rem;
       }
-      &__icon {
+      &__logo {
+        width: 21px;
+        position: relative;
+        top: 2px;
         margin-right: .55rem;
       }
       &__site-title, 
@@ -100,28 +99,22 @@ export default {
           color: $green-dk;
         }
       }
-
     }
-    &__contact-block,
-    .contact-block {
+    &__contacts,
+    .contacts {
       @include flex-jcsb;
-      &__phone, 
-      .phone {
+      &__tel {
         margin-right: 61px;
         @include display-mode;
       }
-      &__email,
-      .email {
+      &__email {
         margin-right: 46px;
         @include display-mode;
       }
       &__order-btn {
-        // background-color: #f1bfbf;
-        display: flex;
         position: relative;
-        top: 0px;
+        top: 1px;
         @include order-button;
-
       }
     }
   }
