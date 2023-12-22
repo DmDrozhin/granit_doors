@@ -4,10 +4,12 @@ import router from './router'
 import store from './store'
 import uIs from '@/components/UI'
 import comps from '@/components'
+import drs from '@/directives'
 
 const app = createApp(App)
 
 const uComps = [...uIs, ...comps]
 uComps.forEach(comp => app.component(comp.name, comp))
+drs.forEach(dr => app.directive(dr.name, dr))
 
 app.use(store).use(router).mount('#app')

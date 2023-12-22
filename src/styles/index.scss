@@ -35,6 +35,12 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+@mixin fr-sb-c {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 @mixin flex-jcs {
   display: flex;
   justify-content: space-between;

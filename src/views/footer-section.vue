@@ -12,62 +12,62 @@
 
               <h2 class="name-block__site-title title">
                 <span class="title__wrapper">
-                  <span class="title__part-1">{{ title.p1 }}</span>
-                  <span class="title__part-2">{{ title.p2 }}</span>
+                  <span class="title__part-1">{{ title.logo[0] }}</span>
+                  <span class="title__part-2">{{ title.logo[1] }}</span>
                 </span>
               </h2>
 
             </div>
-            <p class="name-block__txt">Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.</p>
+            <p class="name-block__txt">{{ title.txt }}</p>
 
           </div>
           <div class="side-l__links links">
             <ul class="links__l l">
-              <li><a href="#">Квартирные двери</a></li>
-              <li><a href="#">Двери для дачи</a></li>
-              <li><a href="#">Двери для дачи</a></li>
+              <li><a :href=links.l1.link>{{ links.l1.txt }}</a></li>
+              <li><a :href=links.l2.link>{{ links.l2.txt }}</a></li>
+              <li><a :href=links.l3.link>{{ links.l3.txt }}</a></li>
             </ul>
             <ul class="links__r r">
-              <li><a href="#">Квартирные двери</a></li>
-              <li><a href="#">Двери для дачи</a></li>
-              <li><a href="#">Двери для дачи</a></li>
+              <li><a :href=links.l4.link>{{ links.l4.txt }}</a></li>
+              <li><a :href=links.l5.link>{{ links.l5.txt }}</a></li>
+              <li><a :href=links.l6.link>{{ links.l6.txt }}</a></li>
             </ul>
           </div>
 
         </div>
         <div class="footer__side-r side-r">
           <div class="side-r__contacts contacts">
-        <ui-comp-info
-          class="contacts__tel"
-          :setts="{ 
-            txt: '+38 (097) 555-88-77',
-            txtCl: '#fff',
-            icn: 'phone',
-            icnCl: '#fff',
-            icnBg: '#137039'
-          }"
-        ></ui-comp-info>
-        <ui-comp-info
-          class="contacts__email"
-          :setts="{ 
-            txt: 'info@corp.com',
-            txtCl: '#fff',
-            icn: 'email',
-            icnCl: '#fff',
-            icnBg: '#137039'
-          }"
-        ></ui-comp-info>
+            <a :href="`tel:${contacts.tel}`">
+              <ui-comp-info class="contacts__tel" 
+              :setts="{
+                  txt: contacts.tel,
+                  txtCl: '#fff',
+                  icn: 'tel',
+                  icnCl: '#fff',
+                  icnBg: '#137039'
+                }"
+              ></ui-comp-info>
+            </a>
+            <a :href="`mailto:${contacts.email}`">
+              <ui-comp-info class="contacts__email" 
+                :setts="{
+                  txt: 'info@corp.com',
+                  txtCl: '#fff',
+                  icn: 'email',
+                  icnCl: '#fff',
+                  icnBg: '#137039'
+                }"
+              ></ui-comp-info>
+            </a>
 
-        <div class="contacts__order-btn">
-          <ui-button-main
-            :setts="this.btnSetts"
-          ></ui-button-main>
-        </div>
-      </div>
+            <div class="contacts__order-btn">
+              <ui-button-main :setts="this.btnSetts"></ui-button-main>
+            </div>
+          </div>
           <ul class="side-r__socials socials">
-            <li class="socials__1"><a href="#">Lorem ipsum dolor sit amet consectetur.</a></li>
-            <li class="socials__2"><a href="#">Lorem ipsum dolor sit amet consectetur.</a></li>
-            <li class="socials__3"><a href="#">Lorem ipsum dolor sit amet consectetur.</a></li>
+            <li class="socials__1"><a href="#">{{ socials.fb }}</a></li>
+            <li class="socials__2"><a href="#">{{ socials.tg }}</a></li>
+            <li class="socials__3"><a href="#">{{ socials.vb }}</a></li>
           </ul>
         </div>
       </div>
@@ -77,28 +77,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'footer-section',
   data() {
     return {
       logo: { col1: '#fff', col2: '#fff', col3: '#fff' },
-      title: { p1: 'двери', p2: 'гранит' },
       btnSetts: { txt: 'Оставить заявку', txtCl: '#000', bg: '#fff', icn: 'phone', icnCl: '#137039', icnBg: '#D9D9D9' }
     }
   },
-  methods: {
-
-  },
+  methods: { },
   computed: {
-
+    ...mapGetters('company', ['title', 'contacts', 'links', 'socials']),
   }
-
 }
 </script>
 
 <style lang="scss" scoped>
-.footer-section,
-.footer {
+.footer-section, .footer {
   @include footer;
   background-color: $green-lt;
 
@@ -108,11 +104,9 @@ export default {
     margin: 0 auto;
     // border: 1px solid yellow;
   }
+
   &__wrapper {
-
-    @include media('min', 'sm') {
-
-    }
+    @include media('min', 'sm') {}
     @include media('min', 'lg') {
       height: inherit;
       display: flex;
@@ -121,23 +115,20 @@ export default {
     }
   }
 
-  &__side-l,
-  .side-l {
-    @include media('min', 'sm') { 
-      padding-top: 42px;
-    }
-    @include media('min', 'lg') { 
+  &__side-l, .side-l {
+    @include media('min', 'sm') { padding-top: 42px; }
+    @include media('min', 'lg') {
       padding-top: 0px;
       flex: 1;
       display: flex;
       gap: 75px;
     }
 
-    &__name-block,
-    .name-block {
+    &__name-block, .name-block {
       height: inherit;
+
       @include media('min', 'sm') { margin-bottom: 33px; }
-      @include media('min', 'lg') { margin-bottom: 0px;  }
+      @include media('min', 'lg') { margin-bottom: 0px; }
 
       &__wrapper {
         @include media('min', 'sm') { margin-bottom: 27px; }
@@ -147,20 +138,16 @@ export default {
         display: flex;
         align-items: center;
         // gap: .5rem;
-        
       }
 
       &__logo {
         @include media('min', 'sm') { width: 15.5px; margin-right: .3rem; }
         @include media('min', 'lg') { width: 21px; margin-right: .5rem; }
-
         position: relative;
         top: 2px;
-        
       }
 
-      &__site-title,
-      .title {
+      &__site-title, .title {
         &__wrapper {
           height: inherit;
           // @include flex-title;
@@ -181,54 +168,45 @@ export default {
         width: 277px;
       }
     }
-    &__links, 
+
+    &__links,
     .links {
       // border: 1px solid indianred;
       display: flex;
       align-items: center;
-      @include media('min', 'sm') { 
+
+      @include media('min', 'sm') {
         position: static;
         flex: 1 1 100%;
         margin-bottom: 48px;
       }
-      @include media('min', 'lg') { 
+      @include media('min', 'lg') {
         position: relative;
         top: 2px;
         flex: 1 1 248px;
         margin-bottom: 0px;
       }
       // gap: 35px;
-      & li {
-        margin-bottom: 10px;
-      }
-      & li:last-child {
-        margin-bottom: 0;
-      }
-      & li > a {
-        @include links;
-      }
-      &__l, 
-      .l {
+      & li { margin-bottom: 10px; }
+      & li:last-child { margin-bottom: 0; }
+      & li> a { @include links; }
+
+      &__l, .l {
         @include media('min', 'sm') { flex: 0 0 52%; }
         @include media('min', 'lg') { flex: 0 0 170px; }
       }
-      &__r, 
-      .r {
-        flex: 1;
-      }
+      &__r, .r { flex: 1; }
     }
   }
 
-  &__side-r,
-  .side-r {
-    &__contacts,
-    .contacts {
+  &__side-r, .side-r {
+
+    &__contacts, .contacts {
       @include media('min', 'sm') { display: block; margin-bottom: 13px; }
       @include media('min', 'lg') { display: flex; margin-bottom: 17px; }
       position: relative;
       top: -6px;
-      @include flex-jcr;
-
+      @include fr-sb-c;
       &__tel {
         margin-right: 61px;
         @include media('min', 'sm') { margin-bottom: 20px; }
@@ -246,16 +224,12 @@ export default {
         font-size: 14px;
       }
     }
+
     &__socials,
     .socials {
-      @include media('min', 'sm') { }
-      @include media('min', 'lg') {
-        display: flex;
-        gap: 26px;
-      }
-      & li > a {
-        @include footer-txt;
-      }
+      @include media('min', 'sm') {}
+      @include media('min', 'lg') { display: flex; gap: 26px; }
+      & li> a { @include footer-txt; }
     }
   }
 }

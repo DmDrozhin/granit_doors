@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import common from './modules/common.js'
 import slider from './modules/slider.js'
+import company from './modules/company.js'
 
 export default createStore({
   // state: {
@@ -13,6 +14,7 @@ export default createStore({
   // },
   modules: {
     common,
-    slider
+    slider,
+    company
   }
 })

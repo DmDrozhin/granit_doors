@@ -1,8 +1,8 @@
 const common = {
   namespaced: true,
   state: {
-    scrw: '',
-    bpns: { sm: 0, lg: 1440 }
+    scrw: '', // current screen size
+    bpns: { sm: 0, lg: 1440 } // breakpoints
   },
   getters: {
     scrw: (state) => state.scrw,

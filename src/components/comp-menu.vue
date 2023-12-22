@@ -8,34 +8,37 @@
           </div>
           <div class="name-block__title title">
             <span class="title__wrapper">
-              <span class="title__t1">{{ title.p1 }}</span>
-              <span class="title__t2">{{ title.p2 }}</span>
+              <span class="title__t1">{{ title.logo[0] }}</span>
+              <span class="title__t2">{{ title.logo[1] }}</span>
             </span>
           </div>
         </div>
       </div>
       <div class="menu__contacts contacts">
-        <ui-comp-info
-          class="contacts__tel"
-          :setts="{ 
-            txt: '+38 (097) 555-88-77',
-            txtCl: '#000',
-            icn: 'phone',
-            icnCl: '#fff',
-            icnBg: '#137039'
-          }"
-        ></ui-comp-info>
-        <ui-comp-info
-          class="contacts__email"
-          :setts="{ 
-            txt: 'info@corp.com',
-            txtCl: '#000',
-            icn: 'email',
-            icnCl: '#fff',
-            icnBg: '#137039'
-          }"
-        ></ui-comp-info>
-
+        <a :href="`tel:${contacts.tel}`">
+          <ui-comp-info
+            class="contacts__tel"
+            :setts="{ 
+              txt: contacts.tel,
+              txtCl: '#000',
+              icn: 'tel',
+              icnCl: '#fff',
+              icnBg: '#137039'
+            }"
+          ></ui-comp-info>
+        </a>
+        <a :href="`mailto:${contacts.email}`">
+          <ui-comp-info
+            class="contacts__email"
+            :setts="{ 
+              txt: contacts.email,
+              txtCl: '#000',
+              icn: 'email',
+              icnCl: '#fff',
+              icnBg: '#137039'
+            }"
+          ></ui-comp-info>
+        </a>
         <div class="contacts__order-btn">
           <ui-button-main
             :setts="btnSetts"
@@ -47,15 +50,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'menu-section',
   data() {
     return {
       logo: { col1: '#333333', col2: '#12AB51', col3: '#333333' },
-      title: { p1: 'двери', p2: 'гранит' },
       btnSetts: { txt:'Оставить заявку', txtCl:'#fff', bg:'#12AB51', icn:'phone', icnCl:'#fff', icnBg:'#137039' }
     }
-  }
+  },
+  computed: {
+    ...mapGetters('company', ['title', 'contacts']),
+  },
 }
 </script>
 
