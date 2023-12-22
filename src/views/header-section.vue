@@ -38,7 +38,7 @@
 
 <script>
 import menuSection from '@/components/comp-menu.vue'
-import compCarousel from '@/components/comp-carousel.vue'
+import compCarousel from '../components/comp-slider-header.vue'
 export default {
   name: 'header-section',
   components: { menuSection, compCarousel },
@@ -49,9 +49,9 @@ export default {
       sliderGo: {},
     }
   },
-  watch: {
-    sliderGo(d) { console.log('watcher', d) }
-  },
+  // watch: {
+  //   sliderGo(d) { console.log('watcher', d) }
+  // },
   methods: {
     handleSlider(ev) { this.sliderGo = { go: ev, idx: Date.now() } }
   },

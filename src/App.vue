@@ -1,8 +1,16 @@
 <template>
   <div class="app">
+    <comp-modal></comp-modal>
     <router-view/>
   </div>
 </template>
+
+<script>
+import compModal from '@/components/comp-modal.vue'
+export default {
+  components: { compModal },
+}
+</script>
 
 <style lang="scss" scoped>
 .app {

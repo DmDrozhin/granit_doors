@@ -50,7 +50,7 @@ export default {
     handleClick(ev) { 
       this.inFocus = ev 
       this.$emit('sliderEv', ev)
-      console.log(ev)
+      // console.log(ev)
     }
   },
   computed: {}

@@ -83,6 +83,10 @@ footer { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', 'Futura PT 400', s
   font-size: 2rem;
   line-height: normal;
   text-transform: uppercase;
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
   @include media('min', 'sm') {
     font-size: 1.3125rem;
     line-height: 1.24;

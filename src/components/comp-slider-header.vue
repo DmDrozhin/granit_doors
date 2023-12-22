@@ -1,5 +1,5 @@
 <template>
-    <div class="comp-carousel carousel">
+    <div class="comp-slider-header slider">
       <swiper-container
         ref="swp"
         effect="coverflow"
@@ -20,8 +20,9 @@
 import { register } from 'swiper/element/bundle'
 register()
 import { mapGetters } from 'vuex'
+
 export default {
-  name: 'comp-carousel',
+  name: 'comp-slider-header',
   props: { go: { type: Object, default: () => {} } },
   data() {
     return{ }
