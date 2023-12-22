@@ -1,10 +1,12 @@
 const common = {
   namespaced: true,
   state: {
-    scrw: ''
+    scrw: '',
+    bpns: { sm: 0, lg: 1440 }
   },
   getters: {
-    scrw: (state) => state.scrw
+    scrw: (state) => state.scrw,
+    bpns: (state) => state.bpns,
   },
   mutations: {
     SET_W: (state, w) => state.scrw = w

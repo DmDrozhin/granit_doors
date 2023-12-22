@@ -1,18 +1,25 @@
 <template>
   <menuSection></menuSection>
   <header class="header">
-    <div class="header__wrapper">
-      <div class="header__left-side">
-        <div class="header__title-block title-block">
-          <h2 class="title-block__title">{{ title }}</h2>
-          <p class="title-block__sub-title">{{ title2 }}</p>
+    <div class="header__slider slider">
+      <comp-carousel :go="sliderGo"></comp-carousel>
+    </div>
+    <div class="header__wrap">
+      <div class="header__l l">
+        <div class="l__titles titles">
+          <h1 class="titles__t1">лучшие предложения <br/> на рынке дверей</h1>
+          <p class="titles__t2">от известных производителей</p>
         </div>
-        <div class="header__nav-buttons">
-          <ui-nav-buttons></ui-nav-buttons>
+        <div class="l__nav nav">
+          <ui-nav-buttons
+            class="nav__ui-comp"
+            @sliderEv="handleSlider($event)"
+          ></ui-nav-buttons>
         </div>
       </div>
-      <div class="header__right-side">
-        <div class="header__signs-block sign">
+
+      <div class="header__r r">
+        <div class="r__signs signs">
           <div>
             <ui-emblem-quality></ui-emblem-quality>
           </div>
@@ -26,111 +33,101 @@
 
       </div>
     </div>
-
-
-
   </header>
 </template>
 
 <script>
-import menuSection from '../components/comp-menu.vue'
-
+import menuSection from '@/components/comp-menu.vue'
+import compCarousel from '@/components/comp-carousel.vue'
 export default {
   name: 'header-section',
-  components: { menuSection },
+  components: { menuSection, compCarousel },
   data() {
     return {
-      title: 'лучшие предложения на рынке дверей',
+      title1: 'лучшие предложения на рынке дверей',
       title2: 'от известных производителей',
-      signTxt1: 'Качество сборки',
-      signTxt2: 'Гарантия товара',
-      signTxt3: 'Доверие клиентов',
+      sliderGo: {},
     }
-  }
+  },
+  watch: {
+    sliderGo(d) { console.log('watcher', d) }
+  },
+  methods: {
+    handleSlider(ev) { this.sliderGo = { go: ev, idx: Date.now() } }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .header {
-  // @include general-width;
-  margin: 0.875rem 0;
-  @include header-bg;
+  margin: 14px 0 34px 0;
   @include header;
-  background-color: #C3C3C3;
-
-  &__wrapper {
+  overflow: hidden;
+  position: relative;
+  &__slider, .slider {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  &__wrap {
+    // border: 1px dotted lawngreen;
     height: inherit;
+    position: relative;
     display: flex;
     justify-content: space-between;
-
+    background-image: linear-gradient(90deg, #585858 0%, rgba(0, 0, 0, 0.00) 95.46%);
+    pointer-events: none;
+    z-index: 1;
   }
 
-  &__left-side {
-    @include media('min', 'sm') {
-      margin-top: 26px;
-      margin-left: 15px;
-    }
-
-    @include media('min', 'lg') {
-      margin-top: 49px;
-      margin-left: 92px;
-    }
-  }
-
-  &__title-block,
-  .title-block {
-    &__title {
-      @include header-title;
-
-      @include media('min', 'sm') {
-        width: 85%;
-        margin-bottom: 8px;
+  &__l, .l {
+    // border: 1px solid orange;
+    position: relative;
+    @include fc-sb;
+    width: 100%;
+    @include media('min', 'sm') { margin: 26px 0 15px 15px; }
+    @include media('min', 'lg') { margin: 49px 0 30px 92px; }
+  
+    &__titles, .titles {
+      &__t1 {
+        @include header-title;
+        @include media('min', 'sm') { margin-bottom: 8px; }
+        @include media('min', 'lg') { margin-bottom: 6px; }
       }
-
-      @include media('min', 'lg') {
-        width: 70%;
+      &__t2 {
+        @include header-sub-title;
+        @include media('min', 'sm') { margin-bottom: 23px; line-height: 1.3; }
+        @include media('min', 'lg') { margin-bottom: 0; line-height: 0.5; }
       }
     }
-
-    &__sub-title {
-      @include header-sub-title;
-
-      @include media('min', 'sm') {
-        margin-bottom: 23px;
-        line-height: 1.3;
-      }
-
-      @include media('min', 'lg') {
-        margin-bottom: 68px;
-        line-height: .5;
-      }
+    &__nav, .nav {
+      display: inline-block;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      pointer-events: all;
+      // outline: 1px solid indianred;
     }
   }
 
-  &__right-side {
+  &__r, .r {
+    // border: 1px solid orange;
     @include media('min', 'sm') {}
-    @include media('min', 'lg') {
-      display: flex;
-      align-items: flex-end;
-    }
+    @include media('min', 'lg') { display: flex; align-items: flex-end; }
   }
-
-  &__signs-block,
-  .sign {
-
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-end;
+  &__signs,
+  .signs {
+    // border: 1px solid orange;
+    display: flex;
     @include media('min', 'sm') {
-      display: flex;
       flex-direction: column;
       gap: 5.7px;
       margin-top: 10px;
       margin-right: 14px;
     }
-
     @include media('min', 'lg') {
-      display: flex;
       flex-direction: row;
       gap: 2.1rem;
       margin-bottom: .75rem;
@@ -139,9 +136,6 @@ export default {
   }
 }
 </style>
-@include media('min', 'sm') {
 
-}
-@include media('min', 'lg') {
-
-}
+@include media('min', 'sm') {}
+@include media('min', 'lg') {}

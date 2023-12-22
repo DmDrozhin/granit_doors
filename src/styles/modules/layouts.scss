@@ -34,7 +34,7 @@ $nav-height: 4.5rem;
 }
 
 
-// Top menu strip
+// Top menu info-blocks
 @mixin display-mode {
   @include media('min', 'sm') { display: none; }
   @include media('min', 'lg') { display: block; }
@@ -44,6 +44,7 @@ $nav-height: 4.5rem;
   @include media('min', 'sm') { width: 120px; }
   @include media('min', 'lg') { width: 191px; }
 }
+
 // Header
 @mixin header {
   @include media('min', 'sm') { 

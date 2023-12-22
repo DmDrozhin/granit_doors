@@ -6,10 +6,10 @@
           <div class="name-block__logo">
             <ui-icon-logo :setts="logo"></ui-icon-logo>
           </div>
-          <div class="name-block__site-title title">
+          <div class="name-block__title title">
             <span class="title__wrapper">
-              <span class="title__part-1">{{ title.p1 }}</span>
-              <span class="title__part-2">{{ title.p2 }}</span>
+              <span class="title__t1">{{ title.p1 }}</span>
+              <span class="title__t2">{{ title.p2 }}</span>
             </span>
           </div>
         </div>
@@ -81,22 +81,25 @@ export default {
         top: 2px;
         margin-right: .55rem;
       }
-      &__site-title, 
-      .title {
+      &__title, .title {
         height: $nav-height;
         &__wrapper {
           height: inherit;
           height: $nav-height;
           @include flex-title;
         }
-        &__part-1 {
-        @include site-title;
+        &__t1 {
+          @include site-title;
           color: $green-lt;
           margin-right: 0.5rem;
+          @include media('min', 'sm') { letter-spacing: 0.3px; }
+          @include media('min', 'lg') { letter-spacing: 0px; }
         }
-        &__part-2 {
+        &__t2 {
           @include site-title;
           color: $green-dk;
+          @include media('min', 'sm') { letter-spacing: 0.3px; }
+          @include media('min', 'lg') { letter-spacing: 0px; }
         }
       }
     }
@@ -118,7 +121,4 @@ export default {
       }
     }
   }
-  
-
-  
 </style>

@@ -47,7 +47,11 @@ export default {
     }
   },
   methods: {
-    handleClick(ev) { this.inFocus = ev }
+    handleClick(ev) { 
+      this.inFocus = ev 
+      this.$emit('sliderEv', ev)
+      console.log(ev)
+    }
   },
   computed: {}
 }
@@ -60,18 +64,9 @@ export default {
     // background-color: #efb6b6;
     display: flex;
 
-    @include media('min', 'sm') {
-      height: 29.18px;
-      width: 62px;
-    }
-
-    @include media('min', 'lg') {
-      height: 48px;
-      width: 102px;
-    }
-
+    @include media('min', 'sm') { height: 29.18px; width: 62px; }
+    @include media('min', 'lg') { height: 48px; width: 102px; }
   }
-
   &__L {
     width: 50%;
     height: inherit;
@@ -84,12 +79,8 @@ export default {
     position: relative;
     width: 53%;
     left: 15%;
-    @include media('min', 'sm') {
-      top: 3%;
-    }
-    @include media('min', 'lg') {
-      top: 0%;
-    }
+    @include media('min', 'sm') { top: 3%; }
+    @include media('min', 'lg') { top: 0%; }
   }
 
   &__R {
@@ -104,12 +95,8 @@ export default {
     position: relative;
     width: 53%;
     right: -15%;
-    @include media('min', 'sm') {
-      top: 3%;
-    }
-    @include media('min', 'lg') {
-      top: 0%;
-    }
+    @include media('min', 'sm') { top: 3%; }
+    @include media('min', 'lg') { top: 0%; }
   }
 
   @include media('min', 'sm') {}
