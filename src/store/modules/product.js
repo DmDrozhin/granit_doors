@@ -207,7 +207,7 @@ const product = {
 
   },
   getters: {
-
+    prods: (state) => state.prods
   }
 }
 export default product

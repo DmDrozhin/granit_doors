@@ -159,6 +159,11 @@ option {
   font-size: 0.875rem; // 14 
   color: $light;
 }
+@mixin art {
+  font-family: 'Futura PT 400';
+  font-size: 1rem; // 16
+  color: $light;
+}
 
 // @include media('min', 'sm') { }
 // @include media('min', 'lg') { }

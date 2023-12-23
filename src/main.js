@@ -6,6 +6,9 @@ import uIs from '@/components/UI'
 import comps from '@/components'
 import drs from '@/directives'
 
+import { register } from 'swiper/element'
+register()
+
 const app = createApp(App)
 
 const uComps = [...uIs, ...comps]

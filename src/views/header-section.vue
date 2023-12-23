@@ -38,7 +38,7 @@
 
 <script>
 import menuSection from '@/components/comp-menu.vue'
-import compCarousel from '../components/comp-slider-header.vue'
+import compCarousel from '@/components/comp-slider-header.vue'
 export default {
   name: 'header-section',
   components: { menuSection, compCarousel },
@@ -102,8 +102,9 @@ export default {
         @include media('min', 'lg') { margin-bottom: 0; line-height: 0.5; }
       }
     }
-    &__nav, .nav {
+    &__nav, .nav {      
       display: inline-block;
+      width: fit-content;
       position: relative;
       z-index: 2;
       cursor: pointer;

@@ -1,12 +1,12 @@
 <template>
-  <div class="comp-slider-modal slider">
+  <div class="comp-slider-modal-2 slider">
     <div class="slider__wrap">
-
+      <!-- thumbs-swiper=".door-thumbs" -->
       <swiper-container
         class="door-show"
-        thumbs-swiper=".door-thumbs"
-        slides-per-view="1"
-        navigation=true
+
+        ref="main"
+        init="false"
       >
         <swiper-slide
           class="door-show__slide slide"
@@ -23,7 +23,7 @@
       <swiper-container
         class="door-thumbs"
         ref="thumbs"
-        slides-per-view="4"
+        init="false"
       >
         <swiper-slide
           class="door-thumbs__slide"
@@ -46,13 +46,13 @@
 </template>
 
 <script>
-// import { register } from 'swiper/element/bundle'
-// register()
+
+import { Thumbs } from 'swiper/modules'
 
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'comp-slider-modal',
+  name: 'comp-slider-modal-2',
   data() {
     return{
       currProd: 0
@@ -76,16 +76,28 @@ export default {
       }
       return arr
     },
-    setThumbs() {
-      const swp = this.$refs.thumbs
-      swp.breakpoints = { 100: { spaceBetween: 12 }, 1440: { spaceBetween: 20 } }
-      // const setts = { breakpoints: { 100: { spaceBetween: 12 }, 1440: { spaceBetween: 20 } } }
-      // Object.assign(swp, setts)
+    setSlider() {
+      const main = this.$refs.main
+      const thumbs = this.$refs.thumbs
+      const mSetts = { 
+        modules: [Thumbs],
+        slidesPerView: 1, 
+        thumbs: { swiper: thumbs },
+        grabCursor: true,
+      }
+      const tSetts = {
+        breakpoints: { 100: { spaceBetween: 12 }, 1440: { spaceBetween: 20 } },
+        slidesPerView: 4,
+        grabCursor: true,
+      }
+      Object.assign(main, mSetts)
+      main.initialize()
+      Object.assign(thumbs, tSetts)
+      thumbs.initialize()
     }
   },
   mounted() {
-    this.setThumbs()
-    // console.log(this.$refs.thumbs.swiper.params.spaceBetween)
+    this.setSlider()
   },
 }
 </script>

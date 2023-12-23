@@ -1,24 +1,27 @@
 <template>
     <div class="comp-slider-header slider">
       <swiper-container
-        ref="swp"
-        effect="coverflow"
-        grabCursor="true"
-        slides-per-view="1"
-        loop="true"
-        events-prefix="swiper-"
+        class="slider__container"
+        init="false"
+        ref="slider"
       >
-        <swiper-slide v-for="(img, idx) in slides" :key="idx">
-          <img :src="img.src" :srcset="img.srcset.join(', ')">
+        <swiper-slide 
+          class="slider__slide"
+          v-for="(img, idx) in slides" :key="idx"
+        >
+          <img 
+            class="slider__pic"
+            :src="img.src" 
+            :srcset="img.srcset.join(', ')"
+          >
         </swiper-slide>
       </swiper-container>
     </div>
 </template>
 
 <script>
-// Events: 'swiper-progress', 'swiper-slidechange'
-import { register } from 'swiper/element/bundle'
-register()
+import { EffectCoverflow } from 'swiper/modules'
+
 import { mapGetters } from 'vuex'
 
 export default {
@@ -34,26 +37,37 @@ export default {
     }
   },
   methods: {
-    goL(){ this.$refs.swp.swiper.slidePrev() },
-    goR(){ this.$refs.swp.swiper.slideNext() },
+    goL(){ this.$refs.slider.swiper.slidePrev() },
+    goR(){ this.$refs.slider.swiper.slideNext() },
+    setSlider() {
+      const slider = this.$refs.slider
+      const setts = {
+        modules: [EffectCoverflow],
+        effect: 'coverflow',
+        grabCursor: true,
+        slidesPerView: 'auto',
+        loop: true
+      }
+      Object.assign(slider, setts)
+      slider.initialize()
+    }
   },
   computed: {
     ...mapGetters('slider', ['sm', 'lg']),
     ...mapGetters('common', ['scrw', 'bpns']),
     slides() { return this.scrw >= this.bpns.lg ? this.lg : this.sm }
   },
-  // mounted() { this.$refs.swp.addEventListener('swiper-slidechange', (e) => {
-  //   console.log(e)
-  // })}
-
+  mounted() {
+    this.setSlider()
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-swiper-container {
-}
-swiper-slide {
-  img {
+.comp-slider-header, .slider {
+  // &__container { }
+  // &__slide { }
+  &__pic {
     width: 100%;
     display: flex;
   }

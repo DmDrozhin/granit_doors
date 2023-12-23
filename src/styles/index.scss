@@ -41,6 +41,18 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+@mixin fr-c-c {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+@mixin fc-sb-c {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 @mixin flex-jcs {
   display: flex;
   justify-content: space-between;

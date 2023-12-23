@@ -4,10 +4,15 @@
       <compFilter></compFilter>
     </div>
     <div>
-      <button 
-        @click="doBtn" 
-        style="{border: 2px solid blue; background-color: orange; padding: 8px 25px; border-radius: 10px; }"
-      >Modal</button>
+      <button @click="doBtn" 
+        style="{border: 2px solid blue; background-color: orange; padding: 8px 25px; border-radius: 10px; }">Open modal
+      </button>
+    </div>
+    <!-- <div>
+      <tmp-c></tmp-c>
+    </div> -->
+    <div>
+      <slider></slider>
     </div>
 
 
@@ -17,10 +22,13 @@
 
 <script>
 import compFilter from '../components/comp-filter-select.vue'
+import slider from '../components/comp-slider-modal-2.vue'
 import { mapActions } from 'vuex'
+
 export default {
   name: 'main-section',
-  components: { compFilter },
+  // components: { compFilter },
+  components: { compFilter, slider },
   data() {
     return{ }
   },
