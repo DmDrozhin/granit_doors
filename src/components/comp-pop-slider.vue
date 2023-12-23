@@ -1,39 +1,48 @@
 <template>
-  <div class="comp-slider-modal-2 slider">
-    <div class="slider__wrap">
-      <!-- thumbs-swiper=".door-thumbs" -->
-      <swiper-container
-        class="door-show"
+  <div class="comp-pop-slider slider">
+    <div class="slider__container">
+      <div class="slider__nav mav">
+        <button class="nav__l" ref="btnL">
+          <ui-icon-nav-arrow :setts="{ col: '#fff', rot: 180 }"/>
+        </button>
+        <button class="nav__r" ref="btnR" >
+          <ui-icon-nav-arrow :setts="{ col: '#fff', rot: 0 }"/>
+        </button>
+      </div>
+      <div class="slider__wrap">
+        <button class="slider__close" @click="close"><ui-icon-close/></button>
 
-        ref="main"
-        init="false"
-      >
-        <swiper-slide
-          class="door-show__slide slide"
-          v-for="(it, idx) in doors"
-          :key="idx"
+        <swiper-container
+          class="door-show"
+          ref="main"
+          init="false"
         >
-          <div class="slide__content content">
-            <ui-art :setts="it.art" class="content__art"></ui-art>
-            <img class="content__pic" :src="it.src">
-          </div>
-        </swiper-slide>
-      </swiper-container>
-
-      <swiper-container
-        class="door-thumbs"
-        ref="thumbs"
-        init="false"
-      >
-        <swiper-slide
-          class="door-thumbs__slide"
-          v-for="(it, idx) in doors"
-          :key="idx"
+          <swiper-slide
+            class="door-show__slide slide"
+            v-for="(it, idx) in doors"
+            :key="idx"
+          >
+            <div class="slide__content content">
+              <ui-art :setts="it.art" class="content__art"></ui-art>
+              <img class="content__pic" :src="it.src">
+            </div>
+          </swiper-slide>
+        </swiper-container>
+  
+        <swiper-container
+          class="door-thumbs"
+          ref="thumbs"
+          init="false"
         >
-          <img class="door-thumbs__pic" :src="it.src">
-        </swiper-slide>
-      </swiper-container>
-
+          <swiper-slide
+            class="door-thumbs__slide"
+            v-for="(it, idx) in doors"
+            :key="idx"
+          >
+            <img class="door-thumbs__pic" :src="it.src">
+          </swiper-slide>
+        </swiper-container>
+      </div>
     </div>
 
       <!-- <button
@@ -47,12 +56,11 @@
 
 <script>
 
-import { Thumbs } from 'swiper/modules'
-
-import { mapGetters } from 'vuex'
+import { Thumbs, Navigation } from 'swiper/modules'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'comp-slider-modal-2',
+  name: 'comp-pop-slider',
   data() {
     return{
       currProd: 0
@@ -65,6 +73,9 @@ export default {
   },
 
   methods: {
+    ...mapActions('common', ['SET_MDW']),
+    close() { this.SET_MDW(false) },
+  
     imgArr() {
       const arts = this.prods[0].arts
       let arr = []
@@ -80,10 +91,14 @@ export default {
       const main = this.$refs.main
       const thumbs = this.$refs.thumbs
       const mSetts = { 
-        modules: [Thumbs],
+        modules: [Thumbs, Navigation],
         slidesPerView: 1, 
         thumbs: { swiper: thumbs },
         grabCursor: true,
+        navigation: {
+          prevEl: this.$refs.btnL,
+          nextEl: this.$refs.btnR
+        }
       }
       const tSetts = {
         breakpoints: { 100: { spaceBetween: 12 }, 1440: { spaceBetween: 20 } },
@@ -106,13 +121,26 @@ export default {
 $w-lg: 486px;
 $w-sm: 320px;
 .slider {
-  border: 1px dotted rgb(219, 7, 78);
-  &__wrap {    
+  // border: 1px dotted rgb(18, 219, 7); // tech
+  height: 100vh; // that's ok
+
+  @include gpc;
+  &__container {
+    // border: 1px dotted rgb(41, 19, 26);  // tech
+    @include media('min', 'sm') { width: $w-sm; }
+    @include media('min', 'lg') { width: 950px; }
+    @include gpc;
+    position: relative;
+  }
+  &__wrap {
+    // border: 1px dotted rgb(219, 39, 7); // tech
+    @include media('min', 'sm') { width: $w-sm; }
+    @include media('min', 'lg') { width: $w-lg; }
     position: relative;
     @include fc-sb-c;
     .door-show {
       flex: 1;
-      background-color: #c2d5db;;
+      // background-color: #c2d5db; // tech
       @include media('min', 'sm') { width: $w-sm; height: 630px; margin-bottom: auto; }
       @include media('min', 'lg') { width: $w-lg; height: 607px; margin-bottom: 22px; }
       &__slide, .slide {
@@ -156,6 +184,26 @@ $w-sm: 320px;
       }
     }
   }
+  &__nav, .nav{
+    $nw: 35px;
+    position: absolute;
+    @include media('min', 'sm') { display: none; }
+    @include media('min', 'lg') { @include fr-sb-c; }
+    top: calc(50% - 15px);
+    // border: 1px dotted rgb(7, 120, 219); // tech
+    // background-color: #a8a3a3;  // tech
+    width: inherit;
+    &__l { width: $nw; }
+    &__r { width: $nw; }
+  }
+  &__close {
+    position: absolute;
+    // background-color: rgb(207, 207, 207); // tech
+    width: 25px;
+    z-index: 10;
+    @include media('min', 'sm') { right: 10px; top: 24px; }
+    @include media('min', 'lg') { right: 0; top: -36px; }
+  }
 }
 .swiper-slide-visible {
   opacity: 0.8;
@@ -164,10 +212,7 @@ $w-sm: 320px;
   opacity: 1;
   // outline: 3px solid $green-lt;
 }
-swiper-container::part(button-next) {
-  color: #fff;
-}
-swiper-container::part(button-prev) {
-  color: #fff;
+.swiper-button-disabled {
+  opacity: 0.5;
 }
 </style>

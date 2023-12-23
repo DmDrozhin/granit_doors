@@ -11,8 +11,11 @@
     <!-- <div>
       <tmp-c></tmp-c>
     </div> -->
-    <div>
+    <!-- <div>
       <slider></slider>
+    </div> -->
+    <div>
+      <comp-prod-preview></comp-prod-preview>
     </div>
 
 
@@ -22,13 +25,14 @@
 
 <script>
 import compFilter from '../components/comp-filter-select.vue'
-import slider from '../components/comp-slider-modal-2.vue'
+import compProdPreview from '../components/comp-prod-preview.vue'
+// import slider from '../components/comp-pop-slider.vue'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'main-section',
-  // components: { compFilter },
-  components: { compFilter, slider },
+  components: { compFilter, compProdPreview },
+  // components: { compFilter, slider },
   data() {
     return{ }
   },

@@ -1,21 +1,19 @@
 <template>
   <svg 
-    viewBox="0 0 1024 1024" 
+    viewBox="0 0 21 21"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg" 
-    :transform="`rotate(${rotate})`"
     display="flex"
-    background-color="#000"
   >
-    <g>
-      <path d="M256 120.768L306.432 64 768 512l-461.568 448L256 903.232 659.072 512z" :fill="color">
-      </path>
-    </g>
+    <path d="M20 1L1 20M1.00001 1L20 20" 
+      :stroke="color" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    </path>
   </svg>
 </template>
 
 <script>
 export default {
-  name: 'ui-icon-nav-arrow',
+  name: 'ui-icon-close',
   props: {
     setts: { type: Object, default: () => {} }
   },
@@ -24,8 +22,7 @@ export default {
     }
   },
   methods: { },
-  computed: { 
-    rotate() { return !this.setts ? 90 : this.setts.rot },
+  computed: {
     color() { return this.setts === undefined ? '#fff' : this.setts.col }
   }
 }

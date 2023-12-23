@@ -27,6 +27,11 @@ body {
   min-height: -webkit-fill-available;
   scroll-behavior: smooth;
 }
+// Grids
+@mixin gpc {
+  display: grid;
+  place-content: center;
+}
 
 // Flexes
 @mixin flex-jcsb {

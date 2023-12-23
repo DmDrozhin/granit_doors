@@ -2,7 +2,7 @@
   <transition name="modal">
     <div 
       class="comp-modal modal"
-      @click="handle"
+      
       v-if="isModalOn"
     >
       <div class="modal__slot">
@@ -43,14 +43,17 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   pointer-events: auto;
   overflow: hidden;
   @include modal;
+  
   &__slot {
-    display: grid;
-    place-content: center;
+    position: relative;
+    z-index: 60;
+    // @include gpc;
   }
+
 }
 .modal-enter-from,
 .modal-leave-to {
