@@ -38,18 +38,24 @@ export default {
 
 <style lang="scss" scoped>
 .comp-modal, .modal {
-  position: absolute;
+  position: fixed;
   z-index: 50;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  min-height: 100%;
-  pointer-events: auto;
+  height: 100%;
+  pointer-events: none;
   overflow: hidden;
   @include modal;
   
   &__slot {
+    pointer-events: auto;
     position: relative;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     z-index: 60;
     // @include gpc;
   }
