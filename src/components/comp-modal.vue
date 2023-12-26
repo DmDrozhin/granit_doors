@@ -23,14 +23,15 @@ export default {
   props: {  },
   data() {
     return{
-      exceptions: ['nav__r', 'nav__l']
+      exceptions: ['modal__slot']
     }
   },
   methods: {
     ...mapActions('common', ['SET_MDW']),
     except(v) { return this.exceptions.includes(v)},
 
-    click(ev) {if (!this.except(ev.target.className)) this.SET_MDW(false) },
+    click(ev) {if (this.except(ev.target.className)) this.SET_MDW(false) },
+    // click(ev) { console.log(ev.target) },
 
     keyHandle(ev) { if (ev.key === 'Escape') this.SET_MDW(false) }
   },
@@ -57,13 +58,16 @@ export default {
   @include modal;
   
   &__slot {
+    width: 100%;
+    height: 100vh;
+    // border: 5px dotted rgb(217, 238, 27);
     pointer-events: auto;
     position: relative;
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
     z-index: 10;
-    // @include gpc;
+    @include gpc;
   }
 
 }

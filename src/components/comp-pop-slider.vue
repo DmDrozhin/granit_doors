@@ -134,7 +134,7 @@ $pic-h-sm: min(630px, 80vh);
 $pic-h-lg: min(607px, 80vh);
 .slider {
   // border: 1px dotted rgb(18, 219, 7); // **tech
-  height: 100vh; // that's ok
+  // height: 100vh; // that's ok
   @include gpc;
 
   &__container {
@@ -143,6 +143,8 @@ $pic-h-lg: min(607px, 80vh);
     @include media('min', 'lg') { width: 950px; }
     @include gpc;
     position: relative;
+    z-index: 90;
+    pointer-events: auto;
   }
   &__wrap {
     // border: 1px dotted rgb(219, 39, 7); // **tech
