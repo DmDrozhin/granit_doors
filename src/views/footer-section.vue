@@ -150,20 +150,24 @@ export default {
       &__site-title, .title {
         &__wrapper {
           height: inherit;
+          @include prev-slct;
           // @include flex-title;
         }
         &__part-1 {
+          @include prev-slct;
           @include site-title;
           color: $light;
           @include media('min', 'sm') { margin-right: 0.4rem; }
           @include media('min', 'lg') { margin-right: 0.5rem; }
         }
         &__part-2 {
+          @include prev-slct;
           @include site-title;
           color: $light;
         }
       }
       &__txt {
+        @include prev-slct;
         @include footer-txt;
         width: 277px;
       }

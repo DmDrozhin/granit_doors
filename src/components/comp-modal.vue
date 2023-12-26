@@ -1,12 +1,13 @@
 <template>
   <transition name="modal">
     <div 
-      class="comp-modal modal"
-      
-      v-if="isModalOn"
+      class="comp-modal modal" 
+      v-if="isModalOn" 
+      v-body-hidden="isModalOn"
+      @click.capture="click($event)"
     >
       <div class="modal__slot">
-        <slot></slot>
+        <slot @keydown.space="console.log('Press SPACER')"></slot>
       </div>
     
   </div>
@@ -22,24 +23,29 @@ export default {
   props: {  },
   data() {
     return{
-
+      exceptions: ['nav__r', 'nav__l']
     }
   },
   methods: {
     ...mapActions('common', ['SET_MDW']),
-    handle() { this.SET_MDW(false) }
+    except(v) { return this.exceptions.includes(v)},
+
+    click(ev) {if (!this.except(ev.target.className)) this.SET_MDW(false) },
+
+    keyHandle(ev) { if (ev.key === 'Escape') this.SET_MDW(false) }
   },
   computed: {
-    ...mapGetters('common', ['isModalOn'])
-  }
-
+    ...mapGetters('common', ['isModalOn']),
+  },
+  mounted() { window.addEventListener('keydown', (ev) => this.keyHandle(ev)) },
+  beforeUnmount() {  window.removeEventListener('keydown', this.keyHandle()) }
 }
 </script>
 
 <style lang="scss" scoped>
 .comp-modal, .modal {
   position: fixed;
-  z-index: 50;
+  z-index: 10;
   top: 0;
   right: 0;
   bottom: 0;
@@ -56,7 +62,7 @@ export default {
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    z-index: 60;
+    z-index: 10;
     // @include gpc;
   }
 

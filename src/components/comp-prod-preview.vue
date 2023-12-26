@@ -1,7 +1,7 @@
 <template>
   <div class="comp-prod-preview prev">
-    <comp-modal>
-      <comp-pop-slider></comp-pop-slider>
+    <comp-modal class="prev__modal">
+      <comp-pop-slider class="prev__slider"/>
     </comp-modal>
 
 
@@ -32,6 +32,10 @@ export default {
 
 <style lang="scss" scoped>
 .comp-prod-preview, .prev{
+  // &__modal {
+  // }
+  // &__slider {
+  // }
 
 }
 

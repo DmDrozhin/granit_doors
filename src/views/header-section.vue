@@ -2,7 +2,7 @@
   <menuSection></menuSection>
   <header class="header">
     <div class="header__slider slider">
-      <comp-carousel :go="sliderGo"></comp-carousel>
+      <comp-carousel :go="sliderGo" @goTo="goToSlide($event)"></comp-carousel>
     </div>
     <div class="header__wrap">
       <div class="header__l l">
@@ -13,6 +13,7 @@
         <div class="l__nav nav">
           <ui-nav-buttons
             class="nav__ui-comp"
+            :goTo="goTo"
             @sliderEv="handleSlider($event)"
           ></ui-nav-buttons>
         </div>
@@ -47,13 +48,15 @@ export default {
       title1: 'лучшие предложения на рынке дверей',
       title2: 'от известных производителей',
       sliderGo: {},
+      goTo: ''
     }
   },
   // watch: {
   //   sliderGo(d) { console.log('watcher', d) }
   // },
   methods: {
-    handleSlider(ev) { this.sliderGo = { go: ev, idx: Date.now() } }
+    handleSlider(ev) { this.sliderGo = { go: ev, idx: Date.now() } },
+    goToSlide(dir) {this.goTo = dir}
   },
 }
 </script>
@@ -62,6 +65,7 @@ export default {
 .header {
   margin: 14px 0 34px 0;
   @include header;
+  @include container-width;
   overflow: hidden;
   position: relative;
   &__slider, .slider {
@@ -73,7 +77,7 @@ export default {
   }
   &__wrap {
     // border: 1px dotted lawngreen;
-    height: inherit;
+    height: 100%;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -88,18 +92,19 @@ export default {
     @include fc-sb;
     width: 100%;
     @include media('min', 'sm') { margin: 26px 0 15px 15px; }
-    @include media('min', 'lg') { margin: 49px 0 30px 92px; }
+    @include media('min', 'lg') { margin: 49px 0 32px 92px; }
   
     &__titles, .titles {
+      @include prev-slct;
       &__t1 {
         @include header-title;
         @include media('min', 'sm') { margin-bottom: 8px; }
-        @include media('min', 'lg') { margin-bottom: 6px; }
+        @include media('min', 'lg') { margin-bottom: -4px; }
       }
       &__t2 {
         @include header-sub-title;
         @include media('min', 'sm') { margin-bottom: 23px; line-height: 1.3; }
-        @include media('min', 'lg') { margin-bottom: 0; line-height: 0.5; }
+        @include media('min', 'lg') { margin-bottom: 0px; line-height: 1.3; }
       }
     }
     &__nav, .nav {      

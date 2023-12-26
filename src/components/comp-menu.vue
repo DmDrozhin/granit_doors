@@ -68,6 +68,7 @@ export default {
 <style lang="scss" scoped>
   .menu {
     height: $nav-height;
+    @include container-width;
     &__container {
       height: inherit;
       @include flex-jcsb;

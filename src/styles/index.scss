@@ -3,6 +3,8 @@
 @import './modules/layouts.scss';
 @import './modules/resets.scss';
 @import './modules/backgrounds.scss';
+@import './modules/other.scss';
+@import './modules/media.scss';
 
 * {
   font-family: 'Futura PT 400', sans-serif;
@@ -42,6 +44,12 @@ body {
   align-items: center;
 }
 @mixin fr-sb-c {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.fr-sb-c {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

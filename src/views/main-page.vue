@@ -1,9 +1,9 @@
 <template>
   <div class="main-page">
-    <header-section class="main-page__header"></header-section>
-    <main-section class="main-page__main"></main-section>
+    <header-section></header-section>
+    <main-section></main-section>
     <!-- <h1 class="title">{{ title }}</h1> -->
-    <footer-section class="main-page__footer"></footer-section>
+    <footer-section></footer-section>
   </div>
 </template>
 
@@ -34,21 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main-page {
-  height: inherit;
+.main-page {  
   @include fc-sb-c;
-  &__header {
-
-  }
-  &__main {
-    flex: 1;
-  }
-  &__footer {
-
-  }
-
 }
-  .title h1 {
-
-  }
 </style>

@@ -83,10 +83,6 @@ footer { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', 'Futura PT 400', s
   font-size: 2rem;
   line-height: normal;
   text-transform: uppercase;
-  -webkit-user-select: none;  
-  -moz-user-select: none;    
-  -ms-user-select: none;      
-  user-select: none;
   @include media('min', 'sm') {
     font-size: 1.3125rem;
     line-height: 1.24;
@@ -97,6 +93,9 @@ footer { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', 'Futura PT 400', s
     letter-spacing: 0px;
   }
 }
+
+
+
 @mixin contact {
   color: #000;
   font-family: 'Inter 700';
@@ -162,6 +161,7 @@ option {
 @mixin art {
   font-family: 'Futura PT 400';
   font-size: 1rem; // 16
+  line-height: 1.25; // 20
   color: $light;
 }
 

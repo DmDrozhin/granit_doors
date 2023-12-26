@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     goL(){ this.$refs.slider.swiper.slidePrev() },
-    goR(){ this.$refs.slider.swiper.slideNext() },
+    goR(){ this.$refs.slider.swiper.slideNext() },    
     setSlider() {
       const slider = this.$refs.slider
       const setts = {
@@ -46,11 +46,19 @@ export default {
         effect: 'coverflow',
         grabCursor: true,
         slidesPerView: 'auto',
-        loop: true
+        loop: true,
       }
       Object.assign(slider, setts)
       slider.initialize()
-    }
+    },
+    watchGo() {this.$refs.slider.swiper.on('transitionEnd', (e) => {
+      const dir = e.swipeDirection
+      // console.log(dir)
+      if (dir === 'next' || dir === 'prev') {
+        this.$emit('goTo', dir)
+      }
+      
+    })}
   },
   computed: {
     ...mapGetters('slider', ['sm', 'lg']),
@@ -59,6 +67,7 @@ export default {
   },
   mounted() {
     this.setSlider()
+    this.watchGo()
   }
 }
 </script>

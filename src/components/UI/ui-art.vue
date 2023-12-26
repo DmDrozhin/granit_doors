@@ -25,11 +25,9 @@ export default {
     &__cont {
       @include art;
       text-align: center;
-      padding: 0 25px;
       background-color: $green-lt;
-      border-radius: 13px;
-      @include media('min', 'sm') { line-height: 50px; }
-      @include media('min', 'lg') { line-height: 40px; }
+      border-radius: min(13px, 1.5vh);
+      padding: min(10px, 1.5vh) min(25px, 4.5vh);
     }
   }
 </style>

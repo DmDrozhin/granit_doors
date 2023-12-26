@@ -4,8 +4,10 @@
       <compFilter></compFilter>
     </div>
     <div>
-      <button @click="doBtn" 
-        style="{border: 2px solid blue; background-color: orange; padding: 8px 25px; border-radius: 10px; }">Open modal
+      <button 
+        @click="doBtn"
+        style="{border: 2px solid blue; background-color: orange; padding: 8px 25px; border-radius: 10px; }"
+      >Open modal
       </button>
     </div>
     <!-- <div>
@@ -48,6 +50,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main {
+  @include main;
+  @include container-width;
+  border: 1px solid peru;
+}
   .btn {
     width: 191px;
     height: 44px;

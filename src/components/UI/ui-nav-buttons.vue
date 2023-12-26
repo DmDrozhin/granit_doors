@@ -2,22 +2,24 @@
   <div class="nav__wrapper">
     <button ref="leftBtn" class="nav__L" :style="{ 'background-color': colorL }" @click="handleClick('L')">
       <div class="nav__icon-wrapper-L">
-        <svg viewBox="200 100 1024 1024" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
-          <g>
-            <path d="M256 120.768L306.432 64 768 512l-461.568 448L256 903.232 659.072 512z" fill="#fff">
-            </path>
-          </g>
+        <svg 
+          viewBox="0 0 1024 1024" 
+          xmlns="http://www.w3.org/2000/svg"
+          display="flex"
+          transform="rotate(180)">
+          <g><path d="M256 120.768L306.432 64 768 512l-461.568 448L256 903.232 659.072 512z" fill="#fff"></path></g>
         </svg>
       </div>
 
     </button>
     <button ref="rightBtn" class="nav__R" :style="{ 'background-color': colorR }" @click="handleClick('R')">
       <div class="nav__icon-wrapper-R">
-        <svg viewBox="-200 -100 1024 1024" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
-          <g>
-            <path d="M256 120.768L306.432 64 768 512l-461.568 448L256 903.232 659.072 512z" fill="#fff">
-            </path>
-          </g>
+        <svg 
+          viewBox="0 0 1024 1024" 
+          xmlns="http://www.w3.org/2000/svg" 
+          display="flex"
+          transform="rotate(0)">
+          <g><path d="M256 120.768L306.432 64 768 512l-461.568 448L256 903.232 659.072 512z" fill="#fff"></path></g>
         </svg>
       </div>
     </button>
@@ -27,7 +29,7 @@
 <script>
 export default {
   name: 'ui-nav-buttons',
-  props: {},
+  props: { goTo: { type: String, default: 'next' }  },
   data() {
     return {
       inFocus: '',
@@ -41,6 +43,15 @@ export default {
         this.colorR = '#137039'
         this.colorL = '#12AB51'
       } else {
+        this.colorL = '#137039'
+        this.colorR = '#12AB51'
+      }
+    },
+    goTo(dir) {
+      if (dir === 'next') {
+        this.colorR = '#137039'
+        this.colorL = '#12AB51'
+      } else if (dir === 'prev') {
         this.colorL = '#137039'
         this.colorR = '#12AB51'
       }
@@ -67,10 +78,11 @@ export default {
     @include media('min', 'sm') { height: 29.18px; width: 62px; }
     @include media('min', 'lg') { height: 48px; width: 102px; }
   }
+  $r: 28%;
   &__L {
     width: 50%;
     height: inherit;
-    border-radius: 28% 0 0 28%;
+    border-radius: $r 0 0 $r;
     background-color: #137039;
     position: relative;
   }
@@ -78,7 +90,7 @@ export default {
   &__icon-wrapper-L {
     position: relative;
     width: 53%;
-    left: 15%;
+    right: -28%;
     @include media('min', 'sm') { top: 3%; }
     @include media('min', 'lg') { top: 0%; }
   }
@@ -86,7 +98,7 @@ export default {
   &__R {
     width: 50%;
     height: inherit;
-    border-radius: 0 28% 28% 0;
+    border-radius: 0 $r $r 0;
     background-color: #12AB51;
     position: relative;
   }
@@ -94,7 +106,7 @@ export default {
   &__icon-wrapper-R {
     position: relative;
     width: 53%;
-    right: -15%;
+    left: 24%;
     @include media('min', 'sm') { top: 3%; }
     @include media('min', 'lg') { top: 0%; }
   }
@@ -104,3 +116,7 @@ export default {
 
 }
 </style>
+
+viewBox="200 100 1024 1024" 
+
+viewBox="-200 -100 1024 1024" 

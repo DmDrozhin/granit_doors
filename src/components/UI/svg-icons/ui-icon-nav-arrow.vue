@@ -5,6 +5,7 @@
     :transform="`rotate(${rotate})`"
     display="flex"
     background-color="#000"
+    class="ui-icon-nav-arrow"
   >
     <g>
       <path d="M256 120.768L306.432 64 768 512l-461.568 448L256 903.232 659.072 512z" :fill="color">
@@ -32,4 +33,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .ui-icon-nav-arrow {
+    position: relative;
+    z-index: -1;
+  }
 </style>
