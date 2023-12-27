@@ -5,6 +5,7 @@
 @import './modules/backgrounds.scss';
 @import './modules/other.scss';
 @import './modules/media.scss';
+@import './modules/flex.scss';
 
 * {
   font-family: 'Futura PT 400', sans-serif;
@@ -13,7 +14,6 @@
   font-size: 16px;
   padding: 0;
   margin: 0;
-
   box-sizing: border-box;
 }
 
@@ -28,7 +28,6 @@ body {
   // mobile viewport bug fix */
   height: -webkit-fill-available;
   scroll-behavior: smooth;
-  margin: 0!important;
 }
 // Grids
 @mixin gpc {
@@ -36,59 +35,6 @@ body {
   place-content: center;
 }
 
-// Flexes
-@mixin flex-jcsb {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-@mixin fr-sb-c {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-.fr-sb-c {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-@mixin fr-c-c {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-@mixin fc-sb-c {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-@mixin flex-jcs {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-@mixin flex-jcr {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-@mixin flex-clmn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 0;
-}
-@mixin fc-sb {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 @mixin flex-title {
   @include media('min', 'sm') { @include flex-clmn }
   @include media('min', 'lg') { @include flex-jcsb }

@@ -61,7 +61,7 @@
             </a>
 
             <div class="contacts__order-btn">
-              <ui-button-main :setts="this.btnSetts"></ui-button-main>
+              <ui-order-button-footer></ui-order-button-footer>
             </div>
           </div>
           <ul class="side-r__socials socials">
@@ -77,13 +77,14 @@
 </template>
 
 <script>
+import uiOrderButtonFooter from '@/components/UI/ui-order-button-footer.vue'
 import { mapGetters } from 'vuex'
 export default {
   name: 'footer-section',
+  components: { uiOrderButtonFooter },
   data() {
     return {
-      logo: { col1: '#fff', col2: '#fff', col3: '#fff' },
-      btnSetts: { txt: 'Оставить заявку', txtCl: '#000', bg: '#fff', icn: 'phone', icnCl: '#137039', icnBg: '#D9D9D9' }
+      logo: { col1: '#fff', col2: '#fff', col3: '#fff' }
     }
   },
   methods: { },
@@ -222,10 +223,7 @@ export default {
         @include media('min', 'lg') { margin-bottom: 0px; }
       }
       &__order-btn {
-        position: relative;
-        top: 1px;
         width: 191px;
-        font-size: 14px;
       }
     }
 

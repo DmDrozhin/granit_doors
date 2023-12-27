@@ -1,0 +1,80 @@
+// Flex Row
+@mixin flex-jcs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@mixin flex-jcsb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+@mixin flex-jcr {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin fr {
+  display: flex;
+  flex-direction: row;
+}
+@mixin fr-sb {
+  @include fr;
+  justify-content: space-between;
+}
+@mixin fr-sb-c {
+  @include fr-sb;
+  align-items: center;
+}
+@mixin fr-st {
+  @include fr;
+  justify-content: flex-start;
+}
+@mixin fr-st-c {
+  @include fr-st;
+  align-items: center;
+}
+
+@mixin fr-c-c {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+// Flex Column
+@mixin fc {
+  display: flex;
+  flex-direction: column;
+}
+@mixin fc-sb {
+  @include fc;
+  justify-content: space-between;
+}
+@mixin fc-sb-st {
+  @include fc-sb;
+  align-items: flex-start;
+}
+@mixin fc-sb-c {
+  @include fc-sb;
+  align-items: center;
+}
+@mixin fc-st {
+  @include fc;
+  justify-content: flex-start;
+}
+@mixin fc-st-st {
+  @include fc-st;
+  align-items: flex-start;
+}
+
+@mixin flex-clmn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+}

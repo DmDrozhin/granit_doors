@@ -4,6 +4,12 @@ import uiIconEmail from '@/components/UI/svg-icons/ui-icon-email.vue'
 import uiIconNavArrow from '@/components/UI/svg-icons/ui-icon-nav-arrow.vue'
 import uiIconClose from '@/components/UI/svg-icons/ui-icon-close.vue'
 import uiIconArr from '@/components/UI/svg-icons/ui-icon-arr.vue'
+import uiIconDoor from '@/components/UI/svg-icons/ui-icon-door.vue'
+import uiIconSize from '@/components/UI/svg-icons/ui-icon-size.vue'
+import uiIconSale from '@/components/UI/svg-icons/ui-icon-sale.vue'
+import uiIconInStock from '@/components/UI/svg-icons/ui-icon-inStock.vue'
+import uiIconPhoneLg from '@/components/UI/svg-icons/ui-icon-phone-lg.vue'
+import uiIconShpCart from '@/components/UI/svg-icons/ui-icon-shop-cart.vue'
 
 export default [
   uiIconLogo,
@@ -11,5 +17,11 @@ export default [
   uiIconEmail,
   uiIconNavArrow,
   uiIconClose,
-  uiIconArr
+  uiIconArr,
+  uiIconDoor,
+  uiIconSize,
+  uiIconSale,
+  uiIconInStock,
+  uiIconPhoneLg,
+  uiIconShpCart,
 ]

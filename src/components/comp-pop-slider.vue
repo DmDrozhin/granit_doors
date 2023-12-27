@@ -29,7 +29,7 @@
           >
             <div class="slide__content content">
               <ui-art :setts="it.art" class="content__art"></ui-art>
-              <img class="content__pic" :src="it.src">
+              <img class="content__pic" :src="it.src1">
             </div>
           </swiper-slide>
         </swiper-container>
@@ -44,7 +44,7 @@
             v-for="(it, idx) in doors"
             :key="idx"
           >
-            <img class="door-thumbs__pic" :src="it.src">
+            <img class="door-thumbs__pic" :src="it.src1">
           </swiper-slide>
         </swiper-container>
       </div>
@@ -85,9 +85,10 @@ export default {
       const arts = this.prods[0].arts
       let arr = []
       for (const it in arts) {
-        const unt = { art: '', src: '' }
+        const unt = { art: '', src1: '', src2: '' }
         unt.art = 'Арт. ' + it.slice(1)
-        unt.src = arts[it].src.join(', ')
+        unt.src1 = arts[it].src1.join(', ')
+        unt.src2 = arts[it].src2.join(', ')
         arr.push(unt)
       }
       return arr

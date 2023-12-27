@@ -14,6 +14,7 @@ const product = {
       {
         id: '1',
         name: 'Дверь Гранит Лира 001',
+        nic: 'lira_001',
         desc1: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
         
         sz: {sm: '2050x860', lg: '2050x960'},
@@ -32,7 +33,8 @@ const product = {
             price: 13500,
             sale: 1,
             stock: 15,
-            src: [ require('@/assets/images/door/door1.webp') ]
+            src1: [ require('@/assets/images/door/door1.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0990: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -41,7 +43,8 @@ const product = {
             price: 13400,
             sale: 1,
             stock: 9,
-            src: [ require('@/assets/images/door/door2.webp') ]
+            src1: [ require('@/assets/images/door/door2.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0991: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -50,7 +53,8 @@ const product = {
             price: 13200,
             sale: 1,
             stock: 9,
-            src: [ require('@/assets/images/door/door3.webp') ]
+            src1: [ require('@/assets/images/door/door3.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0992: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -59,7 +63,8 @@ const product = {
             price: 13650,
             sale: 1,
             stock: 1,
-            src: [ require('@/assets/images/door/door4.webp') ]
+            src1: [ require('@/assets/images/door/door4.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0993: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -68,7 +73,8 @@ const product = {
             price: 12560,
             sale: 1,
             stock: 25,
-            src: [ require('@/assets/images/door/door5.webp') ]
+            src1: [ require('@/assets/images/door/door5.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0994: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -77,7 +83,8 @@ const product = {
             price: 13400,
             sale: 1,
             stock: 0,
-            src: [ require('@/assets/images/door/door6.webp') ]
+            src1: [ require('@/assets/images/door/door6.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0995: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -86,7 +93,8 @@ const product = {
             price: 13550,
             sale: 1,
             stock: 5,
-            src: [ require('@/assets/images/door/door7.webp') ]
+            src1: [ require('@/assets/images/door/door7.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0996: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -95,13 +103,15 @@ const product = {
             price: 12890,
             sale: 1,
             stock: 18,
-            src: [ require('@/assets/images/door/door8.webp') ]
+            src1: [ require('@/assets/images/door/door8.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
         }
       },
       {
         id: '2',
         name: 'Дверь Гранит Лаура 005',
+        nic: 'laura_005',
         desc1: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
         
         sz: {sm: '2050x860', lg: '2050x960'},
@@ -120,7 +130,8 @@ const product = {
             price: 15800,
             sale: 1,
             stock: 6,
-            src: [ require('@/assets/images/door/door1.webp') ]
+            src1: [ require('@/assets/images/door/door1.webp') ],
+            src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
           },
           a0852: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -129,7 +140,8 @@ const product = {
             price: 15430,
             sale: 1,
             stock: 0,
-            src: [ require('@/assets/images/door/door2.webp') ]
+            src1: [ require('@/assets/images/door/door2.webp') ],
+            src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
           },
           a0853: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -138,7 +150,8 @@ const product = {
             price: 15690,
             sale: 1,
             stock: 12,
-            src: [ require('@/assets/images/door/door3.webp') ]
+            src1: [ require('@/assets/images/door/door3.webp') ],
+            src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
           },
           a0854: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -147,7 +160,8 @@ const product = {
             price: 15860,
             sale: 1,
             stock: 10,
-            src: [ require('@/assets/images/door/door4.webp') ]
+            src1: [ require('@/assets/images/door/door4.webp') ],
+            src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
           },
           a0855: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -156,13 +170,15 @@ const product = {
             price: 15420,
             sale: 1,
             stock: 9,
-            src: [ require('@/assets/images/door/door5.webp') ]
+            src1: [ require('@/assets/images/door/door5.webp') ],
+            src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
           }
         }
       },
       {
         id: '3',
         name: 'Дверь Гранит Сеул 045',
+        nic: 'seul_045',
         desc1: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
         
         sz: {sm: '2050x860', lg: '2050x960'},
@@ -181,7 +197,8 @@ const product = {
             price: 18100,
             sale: 1,
             stock: 3,
-            src: [ require('@/assets/images/door/door1.webp') ]
+            src1: [ require('@/assets/images/door/door1.webp') ],
+            src2: [ require('@/assets/images/door/seul_045_side2.webp') ]
           },
           a0231: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -190,7 +207,8 @@ const product = {
             price: 18560,
             sale: 1,
             stock: 8,
-            src: [ require('@/assets/images/door/door2.webp') ]
+            src1: [ require('@/assets/images/door/door2.webp') ],
+            src2: [ require('@/assets/images/door/seul_045_side2.webp') ]
           },
           a0232: {
             desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
@@ -199,7 +217,8 @@ const product = {
             price: 18700,
             sale: 1,
             stock: 0,
-            src: [ require('@/assets/images/door/door3.webp') ]
+            src1: [ require('@/assets/images/door/door3.webp') ],
+            src2: [ require('@/assets/images/door/seul_045_side2.webp') ]
           }
         }
       },

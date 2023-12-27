@@ -40,9 +40,7 @@
           ></ui-comp-info>
         </a>
         <div class="contacts__order-btn">
-          <ui-button-main
-            :setts="btnSetts"
-          ></ui-button-main>
+          <ui-order-button-head></ui-order-button-head>
         </div>
       </div>
     </div>
@@ -50,13 +48,14 @@
 </template>
 
 <script>
+import uiOrderButtonHead from '@/components/UI/ui-order-button-head.vue'
 import { mapGetters } from 'vuex'
 export default {
   name: 'menu-section',
+  components: { uiOrderButtonHead, },
   data() {
     return {
-      logo: { col1: '#333333', col2: '#12AB51', col3: '#333333' },
-      btnSetts: { txt:'Оставить заявку', txtCl:'#fff', bg:'#12AB51', icn:'phone', icnCl:'#fff', icnBg:'#137039' }
+      logo: { col1: '#333333', col2: '#12AB51', col3: '#333333' }
     }
   },
   computed: {
@@ -122,9 +121,8 @@ export default {
         @include display-mode;
       }
       &__order-btn {
-        position: relative;
-        top: 1px;
-        @include order-button;
+        @include media('min', 'sm') { width: 120px; }
+        @include media('min', 'lg') { width: 191px; }
       }
     }
   }
