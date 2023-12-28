@@ -1,5 +1,5 @@
 <template>
-  <menu class="menu">
+  <menu class="menu-section menu">
     <div class="menu__container">
       <div class="menu__name-block name-block">
         <div class="name-block__wrapper">
@@ -65,65 +65,74 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .menu {
-    height: $nav-height;
-    @include container-width;
-    &__container {
-      height: inherit;
-      @include flex-jcsb;
+// NAV Menu
+$nav-height: 4.5rem;
+.menu-section, 
+.menu {
+  height: $nav-height;
+  @include container-width;
+  &__container {
+    height: inherit;
+    @include flex-jcsb;
+  }
+  &__name-block, 
+  .name-block {
+    height: inherit;
+    &__wrapper {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      // gap: .5rem;
     }
-    &__name-block, 
-    .name-block {
-      height: inherit;
+    &__logo {
+      width: 21px;
+      position: relative;
+      top: 2px;
+      margin-right: .55rem;
+    }
+    &__title, .title {
+      height: $nav-height;
       &__wrapper {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        // gap: .5rem;
-      }
-      &__logo {
-        width: 21px;
-        position: relative;
-        top: 2px;
-        margin-right: .55rem;
-      }
-      &__title, .title {
+        height: inherit;
         height: $nav-height;
-        &__wrapper {
-          height: inherit;
-          height: $nav-height;
-          @include flex-title;
-        }
-        &__t1 {
-          @include site-title;
-          color: $green-lt;
-          margin-right: 0.5rem;
-          @include media('min', 'sm') { letter-spacing: 0.3px; }
-          @include media('min', 'lg') { letter-spacing: 0px; }
-        }
-        &__t2 {
-          @include site-title;
-          color: $green-dk;
-          @include media('min', 'sm') { letter-spacing: 0.3px; }
-          @include media('min', 'lg') { letter-spacing: 0px; }
-        }
+        @include media('min', 'sm') { @include fc-c-st }
+        @include media('min', 'lg') { @include fr-sb-c }
       }
-    }
-    &__contacts,
-    .contacts {
-      @include flex-jcsb;
-      &__tel {
-        margin-right: 61px;
-        @include display-mode;
+      &__t1 {
+        @include site-title;
+        color: $green-lt;
+        margin-right: 0.5rem;
+        @include media('min', 'sm') { letter-spacing: 0.3px; }
+        @include media('min', 'lg') { letter-spacing: 0px; }
       }
-      &__email {
-        margin-right: 46px;
-        @include display-mode;
-      }
-      &__order-btn {
-        @include media('min', 'sm') { width: 120px; }
-        @include media('min', 'lg') { width: 191px; }
+      &__t2 {
+        @include site-title;
+        color: $green-dk;
+        @include media('min', 'sm') { letter-spacing: 0.3px; }
+        @include media('min', 'lg') { letter-spacing: 0px; }
       }
     }
   }
+  // Top menu info-blocks
+  @mixin display-mode {
+    @include media('min', 'sm') { display: none; }
+    @include media('min', 'lg') { display: block; }
+  }
+  &__contacts,
+  .contacts {
+    @include fr-sb-c;
+    &__tel {
+      margin-right: 61px;
+      @include display-mode;
+    }
+    &__email {
+      margin-right: 46px;
+      @include display-mode;
+    }
+    &__order-btn {
+      @include media('min', 'sm') { width: 120px; }
+      @include media('min', 'lg') { width: 191px; }
+    }
+  }
+}
 </style>

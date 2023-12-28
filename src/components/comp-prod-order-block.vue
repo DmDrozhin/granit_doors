@@ -33,7 +33,7 @@ export default {
   name: 'comp-prod-order-block',
   components: { uiPriceBlockBase, uiSaleStar, uiInStockBlock, uiOrderButtonShopCart, uiPrice },
   data() {
-
+    return {}
   },
   methods: {
 

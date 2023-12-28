@@ -17,7 +17,6 @@ export default {
   components: { compModal, compPopSlider },
   data() {
     return{
-
     }
   },
   methods: {

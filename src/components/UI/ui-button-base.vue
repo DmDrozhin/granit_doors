@@ -18,7 +18,9 @@
 // import { mapGetters } from 'vuex'
 export default {
   name: 'ui-button-base',
-  data() { },
+  data() {
+    return {}
+  },
   methods: { },
   computed: {
     // ...mapGetters('common', ['scrw']),

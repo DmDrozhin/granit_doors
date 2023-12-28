@@ -60,8 +60,10 @@
 </template>
 
 <script>
-
+import { register } from 'swiper/element/bundle'
 import { Thumbs, Navigation, Keyboard } from 'swiper/modules'
+register()
+
 import { mapGetters, mapActions } from 'vuex'
 
 export default {

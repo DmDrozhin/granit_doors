@@ -28,15 +28,6 @@ $breaks: ("sm":0px, "lg":1440px);
   @include media('min', 'lg') { padding: 0 20px; }
 }
 
-// NAV Menu
-$nav-height: 4.5rem;
-
-// Top menu info-blocks
-@mixin display-mode {
-  @include media('min', 'sm') { display: none; }
-  @include media('min', 'lg') { display: block; }
-}
-
 // *** Header ***
 @mixin header {
   @include media('min', 'sm') { 

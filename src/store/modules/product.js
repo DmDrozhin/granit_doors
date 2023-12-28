@@ -106,6 +106,26 @@ const product = {
             src1: [ require('@/assets/images/door/door8.webp') ],
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
+          a0997: {
+            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            col1: 'RAL 5102',
+            col2: undefined,
+            price: 14200,
+            sale: 1,
+            stock: 29,
+            src1: [ require('@/assets/images/door/door9.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
+          },
+          a0998: {
+            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            col1: 'RAL 6509',
+            col2: undefined,
+            price: 14560,
+            sale: 1,
+            stock: 5,
+            src1: [ require('@/assets/images/door/door10.webp') ],
+            src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
+          },
         }
       },
       {

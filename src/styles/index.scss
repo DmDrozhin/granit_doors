@@ -29,16 +29,6 @@ body {
   height: -webkit-fill-available;
   scroll-behavior: smooth;
 }
-// Grids
-@mixin gpc {
-  display: grid;
-  place-content: center;
-}
-
-@mixin flex-title {
-  @include media('min', 'sm') { @include flex-clmn }
-  @include media('min', 'lg') { @include flex-jcsb }
-}
 
 // @include media('min', 'sm') { }
 // @include media('min', 'lg') { }

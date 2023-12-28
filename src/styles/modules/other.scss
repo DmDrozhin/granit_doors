@@ -4,3 +4,12 @@
   -ms-user-select: none;      
   user-select: none;
 }
+
+// Grids
+@mixin gpc {
+  display: grid;
+  place-content: center;
+}
+
+// @include media('min', 'sm') { }
+// @include media('min', 'lg') { }
