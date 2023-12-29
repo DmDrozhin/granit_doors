@@ -1,5 +1,5 @@
 <template>
-  <div class="comp-pop-slider slider">
+  <div class="comp-preview-slider slider">
     <div class="slider__container">
 
       <div class="slider__nav nav">
@@ -20,6 +20,7 @@
         <swiper-container
           class="door-show"
           ref="main"
+          thumbs-swiper=".door-thumbs"
           init="false"
         >
           <swiper-slide
@@ -49,22 +50,15 @@
         </swiper-container>
       </div>
     </div>
-
-      <!-- <button
-        @click="imgArr"
-        style="{border: 2px solid blue; background-color: orange; padding: 8px 25px; border-radius: 10px; }">Run slider
-      </button> -->
-
   </div>
   
 </template>
 
 <script>
-import { Thumbs, Navigation, Keyboard } from 'swiper/modules'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'comp-pop-slider',
+  name: 'comp-preview-slider',
   data() {
     return{
       currProd: 0
@@ -94,30 +88,30 @@ export default {
     },
     setSlider() {
       const main = this.$refs.main
-      const thumbs = this.$refs.thumbs
-      const mSetts = { 
-        modules: [Thumbs, Navigation, Keyboard],
-        slidesPerView: 1, 
-        thumbs: { swiper: thumbs },
-        grabCursor: true,
+      const setts = {
         navigation: {
-          prevEl: this.$refs.btnL,
-          nextEl: this.$refs.btnR
+            prevEl: this.$refs.btnL,
+            nextEl: this.$refs.btnR,
         },
         keyboard: {
           enabled: true,
           onlyInViewport: true,
           pageUpDown: true
-        }
+        },
+        grabCursor: true,
       }
-      const tSetts = {
+      Object.assign(main, setts)
+      main.initialize()
+      this.setThumbs()
+    },
+    setThumbs() {
+      const thumbs = this.$refs.thumbs
+      const setts = {
         breakpoints: { 100: { spaceBetween: 12 }, 1440: { spaceBetween: 20 } },
         slidesPerView: 4,
         grabCursor: true,
       }
-      Object.assign(main, mSetts)
-      main.initialize()
-      Object.assign(thumbs, tSetts)
+      Object.assign(thumbs, setts)
       thumbs.initialize()
     }
   },
@@ -237,6 +231,7 @@ $pic-h-lg: min(607px, 80vh);
   }
 
 }
+
 .swiper-slide-visible {
   opacity: 0.8;
 }

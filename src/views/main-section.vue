@@ -72,8 +72,9 @@ export default {
   border: 1px solid peru;
   // background-color: #dcdcdc;
   &__wrap {
-    display: flex;
     gap: 30px;
+    @include media('min', 'sm') { @include fc; }
+    @include media('min', 'lg') { @include fr; }
   }
 }
 </style>

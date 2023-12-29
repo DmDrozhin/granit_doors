@@ -21,7 +21,6 @@
 
 <script>
 import { EffectCoverflow } from 'swiper/modules'
-
 import { mapGetters } from 'vuex'
 
 export default {

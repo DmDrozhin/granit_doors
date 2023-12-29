@@ -1,6 +1,6 @@
 // MacBook Pro 9 / 10
 $black: #000000;
-$green-lt: #12AB51;
+$green-lt: #12AB51; //
 $green-dk: #137039;
 $green-75: #12AB51BF;
 $green-sm: #38AB52;
@@ -14,4 +14,8 @@ $grey-b1: #B2B1B1; // Price block net price
 $grey-F5: #F5F5F5; // Prod order block
 
 $grey-C3: #C3C3C3; // Description in prod slide
+$grey-60: #636060; // Article buttons txt
 
+
+// @include media('min', 'sm') { }
+// @include media('min', 'lg') { }

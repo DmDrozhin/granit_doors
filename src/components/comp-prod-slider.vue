@@ -9,7 +9,6 @@
           class="swp-1__slider" 
           ref="swap1"
           init="false"
-          
         >
           <swiper-slide 
             class="swp-1__slide content" 
@@ -35,17 +34,28 @@
       </div>
 
       <div class="prod__swp2 swp-2">
-        <swiper-container ref="swap2">
+        <swiper-container 
+          class="swp-2__slider slider"
+          ref="swap2"
+          init="false"
+        >
+          <swiper-slide
+            class="slider__slide slide"
+            v-for="(it, idx) in artsArr"
+            :key="idx"
+          >
+              <button class="slide__content content" @click="handleBtn(it)">
+                <p class="content__txt">Арт. {{ it.slice(1) }}</p>
+              </button>
+          </swiper-slide>
         </swiper-container>
       </div>
-
     </div>
   </div>
 </template>
 
 <!-- <script type="module"> -->
 <script>
-import { Pagination, Navigation, Scrollbar } from 'swiper/modules'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -53,51 +63,71 @@ export default {
   data() {
     return {
       currSlide: 0,
+      currArticle: ''
     }
   },
   computed: {
     ...mapGetters('product', ['prods']),
 
-    crnt() { return this.prods[this.currSlide] }
+    crnt() { return this.prods[this.currSlide] },
+    artsArr() { return Object.keys(this.prods[this.currSlide].arts) }
   },
 
   methods: {
     // ...mapActions('product'),
+    handleBtn(art) { this.currArticle = art },
 
     setSl() {
-      const slider = this.$refs.swap1      
-      // const scrollDrag = this.$refs.scrollDrag
+      const slider = this.$refs.swap1
       const setts = {
-        modules: [ Pagination, Navigation, Scrollbar ],
         slidesPerView: 1,
-        direction: 'vertical',
-        // grabCursor: true,
-        scrollbar: {
-          hide: false,
-          draggable: true,
-          dragSize: 157,
+        grabCursor: true,
+        thumbs: { swiper: this.$refs.swap2 },
+        breakpoints: {
+          100: {
+            direction: 'horizontal',
+          }, 
+          1440: {
+            direction: 'vertical',
+          } 
         },
-        injectStyles: [`
-          .swiper-scrollbar-vertical {
-            background-color: #F5F5F5;
-            min-width: 6px;
-            margin-right: 20px;
-      
-          }
-          .swiper-scrollbar-drag {
-            background-color: #C3C3C3;
-          }
-        `],
-        // injectStylesUrls: ['../styles/swiper/setts.css']
       }
       Object.assign(slider, setts)
       slider.initialize()
+      this.setThumbs()
     },
 
-    setArts() {
+    setThumbs() {
       const control = this.$refs.swap2
       const setts = {
-        slidesPerView: 8
+        breakpoints: {
+          100: {
+            direction: 'horizontal',
+            slidesPerView: 3.7,
+            spaceBetween: 7,
+            scrollbar: {
+              dragSize: 118,
+            },
+          }, 
+          1440: {
+            direction: 'vertical',
+            slidesPerView: 8,
+            spaceBetween: 13,
+            scrollbar: {
+              dragSize: 157,
+            },
+          } 
+        },
+        scrollbar: {
+          hide: false,
+          draggable: true
+        },        
+        injectStyles: [` .swiper-scrollbar-drag { background-color: #C3C3C3; } `],
+        mousewheel: {
+          eventsTarget: '.swp-2__slider',
+          thresholdTime: 100,
+          forceToAxis: true
+        },
       }
       Object.assign(control, setts)
       control.initialize()
@@ -105,63 +135,62 @@ export default {
   },
   mounted() { this.setSl() }
 }
-
-
 </script>
 
 <style lang="scss" scoped>
 .comp-prod-slider,
 .prod {
-  // background-color: #eaeee3;
-  $w: calc(46px/2 + 134px*2 + 40px + 70px + 116px);
-  // width: $w;
-  height: 100%;
+  // background-color: #eaeee3; // tech
+  @mixin h-slider {
+    @include media('min', 'sm') { height: calc(195px + 23px + 56px); }
+    @include media('min', 'lg') { height: calc(282px + 11px + 63px); }
+  }
   width: 100%;
+  
+  @include media('min', 'sm') { height: 399px; }
+  @include media('min', 'lg') { height: 429px; } // height of entire prod block
   &__wrap {
-    padding-left: 20px;
-
+    height: 100%;
+    @include media('min', 'sm') { @include fc; padding-left: 0;}
+    @include media('min', 'lg') { @include fr; padding-left: 28px; } // between filter and this block
   }
 
   &__swp-1,
   .swp-1 {
-
     // border: 1px solid rgb(152, 19, 19); // tech
-    // width: 336px;
     &__title {
       color: #333;
       font-family: 'Futura PT 600';
-      font-size: 1.8125rem;
       line-height: 1.3;
-      margin-bottom: 20px;
+      @include media('min', 'sm') { font-size: 1.4375rem; margin-bottom: 19px; } // 23
+      @include media('min', 'lg') { font-size: 1.8125rem; margin-bottom: 19px; } // 29
     }
 
     &__slider {
-      border: 1px solid rgb(205, 113, 92);
-
-      $h: calc(286px + 17px + 63px);
-      $w: calc(46px/2 + 134px*2 + 40px + 70px + 116px);
-      height: $h;
-      width: $w;      
+      // border: 1px solid rgb(205, 113, 92); // tech
+      @include h-slider;
     }
 
     &__slide,
     .content {
-      border: 1px solid rgb(96, 92, 205);
-      height: calc(286px + 11px + 63px);
+      // border: 1px solid #605ccd; // tech
+      @include media('min', 'sm') { height: auto; }
+      @include media('min', 'lg') { height: calc(286px + 11px + 63px); }
       &__wrap {
-        width: 329px;
-        margin-left: 6px;
+        @include media('min', 'sm') { margin-left: 0; width: 300px; }
+        @include media('min', 'lg') { margin-left: 6px; width: 347px; }
       }
       &__drs, .drs {
         display: flex;
-        gap: 40px;
-        margin-bottom: 11px;
+        @include media('min', 'sm') { margin-bottom: 20px; gap: 27px; justify-content: center; }
+        @include media('min', 'lg') { margin-bottom: 11px; gap: 40px; justify-content: start; }
+
         &__dr1,
         &__dr2 {
           $pic-w-sm: min(92px, 40vh);
-          $pic-h-sm: min(195px, 25vh);
+          $pic-h-sm: min(193px, 25vh);
           $pic-w-lg: min(134px, 40vh);
-          $pic-h-lg: min(286px, 25vh);
+          $pic-h-lg: min(282px, 25vh);
           img {
             @include media('min', 'sm') { width: $pic-w-sm; height: $pic-h-sm }
             @include media('min', 'lg') { width: $pic-w-lg; height: $pic-h-lg }
@@ -169,25 +198,49 @@ export default {
         }
       }        
       &__desc {
-        @include FT400-16;
+        @include FT400-16-14;
         color: $grey-C3;
+        @include media('min', 'sm') { text-align: center; padding: 0 6px; }
+        @include media('min', 'lg') { text-align: left; padding: 0; }
       }
-
     }
   }
-  &__swp-2 {
+  &__swp-2, .swp-2 {
+    &__slider, .slider {
+      // @include h;
+      height: 100%;
+      @include media('min', 'sm') { width: 310px; margin-top: 15px; padding-bottom: 0; }
+      @include media('min', 'lg') { width: 100%; margin-top: 6px; padding-bottom: 17px; }
+      &__slide, .slide {
+        
+        @include media('min', 'sm') { margin-left: 0; margin-bottom: 5px; }
+        @include media('min', 'lg') { margin-left: 32px; margin-bottom: 0; }
 
+        &.swiper-slide-thumb-active .content {
+          background-color: $green-lt;
+          &__txt { color: $light; }
+        }
+        &__content, .content {
+          height: 40px;
+          border-radius: 13px;
+          @include media('min', 'sm') { width: 78px; }
+          @include media('min', 'lg') { width: 116px; }
+          background-color: $grey-F5;
+          &__txt {
+            @include FT400-16-14;
+            color: $grey-60;
+          }
+        }
+      }
+    }
   }
-  // --swiper-scrollbar-border-radius: 10px;
-  // --swiper-scrollbar-top: auto;
-  // --swiper-scrollbar-bottom: 4px;
-  // --swiper-scrollbar-left: auto;
-  // --swiper-scrollbar-right: 4px;
-  // --swiper-scrollbar-sides-offset: 1%;
-  // --swiper-scrollbar-bg-color: rgba(0, 0, 0, 0.1);
-  // --swiper-scrollbar-drag-bg-color: rgba(0, 0, 0, 0.5);
-  // --swiper-scrollbar-size: 4px;
-
-
+  // There are following CSS parts are available for styling:
+  // https://swiperjs.com/element#parts
+  swiper-container::part(scrollbar) {
+    background-color: #F5F5F5;
+    @include media('min', 'sm') { width: 300px; height: 6px; top: auto; }
+    @include media('min', 'lg') { width: 6px; height: 405px; top: 0; }
+    left: 0;
+  }
 }
 </style>

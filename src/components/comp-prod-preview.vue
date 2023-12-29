@@ -1,7 +1,7 @@
 <template>
   <div class="comp-prod-preview prev">
     <comp-modal class="prev__modal">
-      <comp-pop-slider class="prev__slider"/>
+      <comp-preview-slider class="prev__slider"/>
     </comp-modal>
 
 
@@ -11,10 +11,10 @@
 
 <script>
 import compModal from '@/components/comp-modal.vue'
-import compPopSlider from '@/components/comp-pop-slider.vue'
+import compPreviewSlider from '@/components/comp-preview-slider.vue'
 export default {
   name: 'comp-prod-preview',
-  components: { compModal, compPopSlider },
+  components: { compModal, compPreviewSlider },
   data() {
     return{
     }
