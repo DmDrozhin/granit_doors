@@ -33,22 +33,15 @@ export default {
   name: 'comp-prod-order-block',
   components: { uiPriceBlockBase, uiSaleStar, uiInStockBlock, uiOrderButtonShopCart, uiPrice },
   data() {
-    return {}
+    return { }
   },
-  methods: {
-
-  },
-  computed: {
-
-  }
-
+  methods: { },
+  computed: { }
 }
 </script>
 
 <style lang="scss" scoped>
-.comp-prod-order-block, .ord {
+// .comp-prod-order-block, .ord {
 
-}
-
-
+// }
 </style>

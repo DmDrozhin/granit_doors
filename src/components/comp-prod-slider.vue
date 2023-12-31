@@ -1,5 +1,6 @@
 <template>
   <div class="comp-prod-slider prod">
+
     <div class="prod__wrap">
       <div class="prod__swp-1 swp-1">
         <div class="swp-1__title">
@@ -28,7 +29,6 @@
                 {{ it.desc2 }}
               </div>
             </div>
-
           </swiper-slide>
         </swiper-container>
       </div>
@@ -51,10 +51,10 @@
         </swiper-container>
       </div>
     </div>
+
   </div>
 </template>
 
-<!-- <script type="module"> -->
 <script>
 import { mapGetters } from 'vuex'
 
@@ -70,7 +70,7 @@ export default {
     ...mapGetters('product', ['prods']),
 
     crnt() { return this.prods[this.currSlide] },
-    artsArr() { return Object.keys(this.prods[this.currSlide].arts) }
+    artsArr() { return Object.keys(this.prods[this.currSlide].arts) },
   },
 
   methods: {
@@ -81,16 +81,13 @@ export default {
       const slider = this.$refs.swap1
       const setts = {
         slidesPerView: 1,
+        spaceBetween: 20,
         grabCursor: true,
         thumbs: { swiper: this.$refs.swap2 },
         breakpoints: {
-          100: {
-            direction: 'horizontal',
-          }, 
-          1440: {
-            direction: 'vertical',
-          } 
-        },
+          100: { direction: 'horizontal' }, 
+          1440: { direction: 'vertical' } 
+        }
       }
       Object.assign(slider, setts)
       slider.initialize()
@@ -107,7 +104,7 @@ export default {
             spaceBetween: 7,
             scrollbar: {
               dragSize: 118,
-            },
+            }
           }, 
           1440: {
             direction: 'vertical',
@@ -115,25 +112,29 @@ export default {
             spaceBetween: 13,
             scrollbar: {
               dragSize: 157,
-            },
-          } 
+            }
+          }
         },
         scrollbar: {
           hide: false,
           draggable: true
         },        
         injectStyles: [` .swiper-scrollbar-drag { background-color: #C3C3C3; } `],
-        mousewheel: {
-          eventsTarget: '.swp-2__slider',
-          thresholdTime: 100,
-          forceToAxis: true
-        },
+        // mousewheel: {
+        //   eventsTarget: '.swp-2__slider',
+        //   thresholdTime: 100,
+        //   forceToAxis: true
+        // },
       }
       Object.assign(control, setts)
       control.initialize()
-    },
+
+    }
   },
-  mounted() { this.setSl() }
+  mounted() { 
+    this.setSl() 
+    this.$refs.swap1.swiper.swiper.slideTo(5)
+  }
 }
 </script>
 
@@ -141,18 +142,14 @@ export default {
 .comp-prod-slider,
 .prod {
   // background-color: #eaeee3; // tech
-  @mixin h-slider {
-    @include media('min', 'sm') { height: calc(195px + 23px + 56px); }
-    @include media('min', 'lg') { height: calc(282px + 11px + 63px); }
-  }
   width: 100%;
-  
   @include media('min', 'sm') { height: 399px; }
   @include media('min', 'lg') { height: 429px; } // height of entire prod block
   &__wrap {
+    position: relative;
     height: 100%;
-    @include media('min', 'sm') { @include fc; padding-left: 0;}
-    @include media('min', 'lg') { @include fr; padding-left: 28px; } // between filter and this block
+    @include media('min', 'sm') { @include fc; }
+    @include media('min', 'lg') { @include fr; }
   }
 
   &__swp-1,
@@ -163,19 +160,21 @@ export default {
       font-family: 'Futura PT 600';
       line-height: 1.3;
       @include media('min', 'sm') { font-size: 1.4375rem; margin-bottom: 19px; } // 23
-      @include media('min', 'lg') { font-size: 1.8125rem; margin-bottom: 19px; } // 29
+      @include media('min', 'lg') { font-size: 1.8125rem; margin-bottom: 17px; } // 29
     }
 
     &__slider {
-      // border: 1px solid rgb(205, 113, 92); // tech
-      @include h-slider;
+      // border: 1px solid rgb(205, 113, 92); // tec
+      @include media('min', 'sm') { height: calc(195px + 23px + 56px); }
+      @include media('min', 'lg') { height: calc(282px + 15px + 66px); }
     }
 
     &__slide,
     .content {
       // border: 1px solid #605ccd; // tech
       @include media('min', 'sm') { height: auto; }
-      @include media('min', 'lg') { height: calc(286px + 11px + 63px); }
+      @include media('min', 'lg') { height: calc(286px + 15px + 63px); }
+
       &__wrap {
         @include media('min', 'sm') { margin-left: 0; width: 300px; }
         @include media('min', 'lg') { margin-left: 6px; width: 347px; }
@@ -183,7 +182,7 @@ export default {
       &__drs, .drs {
         display: flex;
         @include media('min', 'sm') { margin-bottom: 20px; gap: 27px; justify-content: center; }
-        @include media('min', 'lg') { margin-bottom: 11px; gap: 40px; justify-content: start; }
+        @include media('min', 'lg') { margin-bottom: 16px; gap: 40px; justify-content: start; }
 
         &__dr1,
         &__dr2 {
@@ -200,8 +199,8 @@ export default {
       &__desc {
         @include FT400-16-14;
         color: $grey-C3;
-        @include media('min', 'sm') { text-align: center; padding: 0 6px; }
-        @include media('min', 'lg') { text-align: left; padding: 0; }
+        @include media('min', 'sm') { text-align: center; padding: 0 5px; }
+        @include media('min', 'lg') { text-align: left; padding: 0 7px 0 0; }
       }
     }
   }
@@ -223,8 +222,8 @@ export default {
         &__content, .content {
           height: 40px;
           border-radius: 13px;
-          @include media('min', 'sm') { width: 78px; }
-          @include media('min', 'lg') { width: 116px; }
+          @include media('min', 'sm') { width: 78px; margin-bottom: 5px; }
+          @include media('min', 'lg') { width: 116px; margin-bottom: 0px; }
           background-color: $grey-F5;
           &__txt {
             @include FT400-16-14;

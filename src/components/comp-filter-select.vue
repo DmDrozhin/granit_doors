@@ -48,19 +48,17 @@ export default {
 .comp-filer-select,
 .select-block {
   // margin-left: auto;
-  
   &__wrapper {
-
     position: relative;
-    border: 1px solid greenyellow;
+    // border: 1px solid greenyellow;
     display: flex;
     @include media('min', 'sm') {
-      margin-top: 20px;
+      // margin-top: 20px;
       flex-direction: row-reverse;
       justify-content: flex-end;
     }
     @include media('min', 'lg') {
-      margin-top: 26px;
+      // margin-top: 26px;
       flex-direction: row;
       justify-content: flex-end;
     }

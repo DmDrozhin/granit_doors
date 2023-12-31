@@ -1,54 +1,30 @@
 <template>
   <main class="main">
-    <div>
-      <compFilter></compFilter>
-    </div>
-    <div class="main__wrap">
-      <div class="main__l">
-        <div>
-          <button @click="doBtn"
-            style="{border: 2px solid blue; background-color: orange; padding: 8px 25px; border-radius: 10px; }">Open
-            modal
-          </button>
+    <div class="main__container">
+      <div class="main__wrap">
+
+        <div class="main__sec1 sec1">
+          <aside-section class="sec1__aside"></aside-section>
         </div>
-        <div>
-          <comp-prod-preview></comp-prod-preview>
+
+        <div class="main__sec2 sec2">
+          <comp-product-section></comp-product-section>
         </div>
-        <br>
-        <div class="btn-opening">
-          <ui-button-opening></ui-button-opening>
-        </div>
-        <br>
-        <div class="btn-door-size">
-          <ui-button-door-size></ui-button-door-size>
-        </div>
-        <br>
-        <br>
-        <div>
-          <comp-prod-order-block></comp-prod-order-block>
-        </div>
-      </div>
-      <div class="main__r">
-        <comp-prod-slider></comp-prod-slider>
+        
       </div>
     </div>
   </main>
 </template>
 
 <script>
-import compFilter from '../components/comp-filter-select.vue'
-import compProdPreview from '../components/comp-prod-preview.vue'
-import uiButtonOpening from '@/components/UI/ui-button-opening.vue'
-import uiButtonDoorSize from '@/components/UI/ui-button-door-size.vue'
-import compProdOrderBlock from '@/components/comp-prod-order-block.vue'
-
-import compProdSlider from '@/components/comp-prod-slider.vue'
+import asideSection from '../views/aside-section.vue'
+import compProductSection from '@/components/comp-product-section.vue'
 
 import { mapActions } from 'vuex'
 
 export default {
   name: 'main-section',
-  components: { compFilter, compProdPreview, uiButtonOpening, uiButtonDoorSize, compProdOrderBlock, compProdSlider },
+  components: { asideSection, compProductSection },
   // components: { compFilter, slider },
   data() {
     return {
@@ -67,14 +43,25 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  @include main;
-  @include container-width;
-  border: 1px solid peru;
-  // background-color: #dcdcdc;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+&__container {
+    // border: 1px solid peru; // tech
+    // background-color: #dcdcdc;
+    @include container-width;
+    @include media('min', 'sm') { min-height: 800px; }
+    @include media('min', 'lg') { min-height: 800px; }
+  }
   &__wrap {
-    gap: 30px;
     @include media('min', 'sm') { @include fc; }
     @include media('min', 'lg') { @include fr; }
+  }
+  &__sec1, .sec1 {
+    flex: 0 0 236px; // width of aside 236px
+  }
+  &__sec2, .sec2 {
+    flex: 1 1 auto;
   }
 }
 </style>

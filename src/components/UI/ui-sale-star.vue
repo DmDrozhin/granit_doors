@@ -26,9 +26,9 @@ export default {
 
 <style lang="scss" scoped>
 .ui-sale-star, .sale-star {
-  $sz: 42px;
-  width: $sz;
-  height: $sz;
+  @include media('min', 'sm') { width: 39px; height: 39px; }
+  @include media('min', 'lg') { width: 42px; height: 42px; }
+
   position: relative;
   &__icon {
     display: flex;
@@ -45,7 +45,7 @@ export default {
   &__txt {
     @include FT600-12;
     position: relative;
-    top: 2px;
+    top: 1px;
   }
 }
 

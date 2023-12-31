@@ -57,7 +57,7 @@ export default {
   @include media('min', 'lg') {
     width: 217px; 
     height: 297px;
-    padding: 12px 12px 24px 12px;
+    padding: 12px 12px 22px 14px;
     border-radius: 27px;
   }
   &__wrap {
@@ -83,7 +83,7 @@ export default {
     margin-top: 40px;
     margin-bottom: 18px;
     @include media('min', 'sm') { margin-top: 0px; margin-bottom: 6px; flex-direction: column-reverse; }
-    @include media('min', 'lg') { margin-top: 40px; margin-bottom: 16px; flex-direction: column; }
+    @include media('min', 'lg') { margin-top: 40px; margin-bottom: 15px; flex-direction: column; }
     &__price {
       position: relative;
       @include media('min', 'sm') { }
@@ -92,7 +92,7 @@ export default {
     &__in-stock {
       position: relative;
       @include media('min', 'sm') { left: -8px; }
-      @include media('min', 'lg') { left: -3px; }
+      @include media('min', 'lg') { left: -4px; }
     }
   }
   &__p2, .p2 {

@@ -1,48 +1,54 @@
 <template>
   <menuSection></menuSection>
   <header class="header">
-    <div class="header__slider slider">
-      <comp-carousel :go="sliderGo" @goTo="goToSlide($event)"></comp-carousel>
-    </div>
-    <div class="header__wrap">
-      <div class="header__l l">
-        <div class="l__titles titles">
-          <h1 class="titles__t1">лучшие предложения <br/> на рынке дверей</h1>
-          <p class="titles__t2">от известных производителей</p>
-        </div>
-        <div class="l__nav nav">
-          <ui-nav-buttons
-            class="nav__ui-comp"
-            :goTo="goTo"
-            @sliderEv="handleSlider($event)"
-          ></ui-nav-buttons>
-        </div>
+    <div class="header__container">
+      <div class="header__slider slider">
+        <comp-carousel :go="sliderGo" @goTo="goToSlide($event)"></comp-carousel>
       </div>
-
-      <div class="header__r r">
-        <div class="r__signs signs">
-          <div>
-            <ui-emblem-quality></ui-emblem-quality>
+      <div class="header__wrap">
+        <div class="header__l l">
+          <div class="l__titles titles">
+            <h1 class="titles__t1">лучшие предложения <br/> на рынке дверей</h1>
+            <p class="titles__t2">от известных производителей</p>
           </div>
-          <div>
-            <ui-emblem-guarantee></ui-emblem-guarantee>
-          </div>
-          <div>
-            <ui-emblem-trust></ui-emblem-trust>
+          <div class="l__nav nav">
+            <ui-nav-buttons
+              class="nav__ui-comp"
+              :goTo="goTo"
+              @sliderEv="handleSlider($event)"
+            ></ui-nav-buttons>
           </div>
         </div>
 
+        <div class="header__r r">
+          <div class="r__signs signs">
+            <div>
+              <ui-emblem-quality></ui-emblem-quality>
+            </div>
+            <div>
+              <ui-emblem-guarantee></ui-emblem-guarantee>
+            </div>
+            <div>
+              <ui-emblem-trust></ui-emblem-trust>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
+
+  <div class="prod-filter">
+    <compFilter></compFilter>
+  </div>
 </template>
 
 <script>
 import menuSection from '@/components/comp-menu.vue'
 import compCarousel from '@/components/comp-slider-header.vue'
+import compFilter from '@/components/comp-filter-select.vue'
 export default {
   name: 'header-section',
-  components: { menuSection, compCarousel },
+  components: { menuSection, compCarousel, compFilter },
   data() {
     return {
       title1: 'лучшие предложения на рынке дверей',
@@ -63,11 +69,20 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  margin: 14px 0 34px 0;
-  @include header;
-  @include container-width;
-  overflow: hidden;
-  position: relative;
+  width: 100%;
+  height: 100%;
+  @include media('min', 'sm') { margin: 14px 0 20px 0; }
+  @include media('min', 'lg') { margin: 14px 0 26px 0; }
+  &__container {    
+    @include container-width; // width
+    overflow: hidden;
+    position: relative;
+    // border: 1px solid orangered; // tech
+    @include media('min', 'sm') { 
+      border-radius: 19px; height: 226px; }
+    @include media('min', 'lg') { 
+      border-radius: 31px; height: 348px; }
+  }
   &__slider, .slider {
     position: absolute;
     width: 100%;
@@ -140,6 +155,9 @@ export default {
       margin-right: .75rem;
     }
   }
+}  
+.prod-filter {
+  padding-bottom: 23px;
 }
 </style>
 

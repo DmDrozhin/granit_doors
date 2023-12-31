@@ -28,36 +28,15 @@ $breaks: ("sm":0px, "lg":1440px);
   @include media('min', 'lg') { padding: 0 20px; }
 }
 
-// *** Header ***
-@mixin header {
-  @include media('min', 'sm') { 
-    flex: 0 0 226px; 
-    border-radius: 1.1875rem;
-  }
-  @include media('min', 'lg') { 
-    flex: 0 0 348px;
-    border-radius: 1.9375rem;
-  }
-}
-// *** Main ***
-@mixin main {
-  @include media('min', 'sm') { 
-    flex: 1 0 600px; 
-  }
-  @include media('min', 'lg') { 
-    flex: 1 0 600px;
-    
-  }
-}
+
 // *** Footer ***
-@mixin container-footer {
-  @include media('min', 'sm') { width: 300px; }
-  @include media('min', 'lg') { width: 1396px; }
-}
+// @mixin container-footer {
+//   @include media('min', 'sm') { width: 300px; }
+//   @include media('min', 'lg') { width: 1396px; }
+// }
 
 @mixin footer {
-  $r: 1.6875rem;
-  border-radius: $r $r 0 0;
+
   @include media('min', 'sm') { 
     flex: 0 0 568px;
     width: 320px;

@@ -28,7 +28,7 @@ export default {
     toggle() { this.isChanged = !this.isChanged }
   },
   computed: {
-    txt () { return this.isChanged ? '2050 x 960 mm' : '2050 x 860 mm'}
+    txt () { return this.isChanged ? '2050x960mm' : '2050x860mm'}
   }
 
 }
@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 .ui-button-door-size, 
 .size {
-  width: fit-content;
+  width: 100%;
   // border: 1px solid hotpink; // tech
   &__icon {
     @include media('min', 'sm') { width: 20px; }

@@ -3,10 +3,7 @@
     <comp-modal class="prev__modal">
       <comp-preview-slider class="prev__slider"/>
     </comp-modal>
-
-
   </div>
-  
 </template>
 
 <script>
@@ -16,16 +13,10 @@ export default {
   name: 'comp-prod-preview',
   components: { compModal, compPreviewSlider },
   data() {
-    return{
-    }
+    return{ }
   },
-  methods: {
-
-  },
-  computed: {
-
-  }
-
+  methods: { },
+  computed: { }
 }
 </script>
 

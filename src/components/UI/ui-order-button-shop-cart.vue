@@ -43,7 +43,7 @@ export default {
     width: $w;
     top: calc(50% - $w / 2 - $h-offset);
     left: 10px;
-    transform: rotate(-2deg);
+    // transform: rotate(-2deg);
     // border: 1px solid rgb(154, 139, 7); // tech
   }
   &__txt {

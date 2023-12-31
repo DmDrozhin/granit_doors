@@ -2,7 +2,6 @@
   <div class="main-page">
     <header-section></header-section>
     <main-section></main-section>
-    <!-- <h1 class="title">{{ title }}</h1> -->
     <footer-section></footer-section>
   </div>
 </template>
@@ -34,7 +33,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main-page {  
-  @include fc-sb-c;
+.main-page {
+  // height: 100vh;
+
 }
 </style>

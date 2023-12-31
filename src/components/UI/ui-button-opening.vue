@@ -29,7 +29,7 @@ export default {
     toggle() { this.isChanged = !this.isChanged }
   },
   computed: {
-    txt () { return this.isChanged ? 'Левое открывание' : 'Правое открывание'},
+    txt () { return this.isChanged ? 'Открывание левое ' : 'Открывание правое'},
     side () { return this.isChanged ? -1 : 1 }
   }
 
@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 .ui-button-opening, 
 .opening {
-  width: fit-content;
+  width: 100%;
   // border: 1px solid hotpink; // tech
   &__icon {
     @include media('min', 'sm') { width: 15px; }

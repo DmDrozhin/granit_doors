@@ -38,6 +38,14 @@
   @include fr-st;
   align-items: center;
 }
+@mixin fr-nd {
+  @include fr;
+  justify-content: flex-end;
+}
+@mixin fr-nd-c {
+  @include fr-nd;
+  align-items: center;
+}
 // js center
 @mixin fr-c-c {
   display: flex;
@@ -51,6 +59,10 @@
 @mixin fc {
   display: flex;
   flex-direction: column;
+}
+@mixin fcr {
+  display: flex;
+  flex-direction: column-reverse;
 }
 // js space-between
 @mixin fc-sb {
