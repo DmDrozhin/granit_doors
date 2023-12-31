@@ -242,11 +242,18 @@ const product = {
           }
         }
       },
-    ]
-
+    ],
+    currSlide: { curr: '', idx: '', qt: '' }
   },
   getters: {
-    prods: (state) => state.prods
+    PRODS: (state) => state.prods,
+    CURR_SLIDE: (state) => state.currSlide,
+  },
+  mutations: {
+    SET_SLIDE: (state, dt) => state.currSlide = dt
+  },
+  actions: {
+    SET_SLIDE({ commit }, pl) { commit('SET_SLIDE', pl) }
   }
 }
 export default product

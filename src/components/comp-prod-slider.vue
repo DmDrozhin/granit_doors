@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'comp-prod-slider',
@@ -66,16 +66,27 @@ export default {
       currArticle: ''
     }
   },
+  watch: {
+    CURR_SLIDE(v) { this.$refs.swap1.swiper.slideTo(v.idx, 300, false) }
+  },
   computed: {
-    ...mapGetters('product', ['prods']),
+    ...mapGetters('product', ['PRODS', 'CURR_SLIDE']),
 
-    crnt() { return this.prods[this.currSlide] },
-    artsArr() { return Object.keys(this.prods[this.currSlide].arts) },
+    crnt() { return this.PRODS[this.currSlide] },
+    artsArr() { return Object.keys(this.PRODS[this.currSlide].arts) },
+    length() { return this.artsArr.length },
   },
 
   methods: {
-    // ...mapActions('product'),
+    ...mapActions('product', ['SET_SLIDE']),
+
     handleBtn(art) { this.currArticle = art },
+
+    handler(idx) {
+      const d = { curr: this.currSlide, idx: idx, qt: this.length }
+      this.SET_SLIDE(d)
+      // console.log('currSlide', d )
+    },
 
     setSl() {
       const slider = this.$refs.swap1
@@ -87,7 +98,9 @@ export default {
         breakpoints: {
           100: { direction: 'horizontal' }, 
           1440: { direction: 'vertical' } 
-        }
+        },
+        on: { slideChangeTransitionEnd: (ev) => this.handler(ev.activeIndex) }
+        
       }
       Object.assign(slider, setts)
       slider.initialize()
@@ -131,9 +144,11 @@ export default {
 
     }
   },
-  mounted() { 
+  mounted() {
+    const start = 2
     this.setSl() 
-    this.$refs.swap1.swiper.swiper.slideTo(5)
+    this.$refs.swap1.swiper.slideTo(start, 300, false)
+    this.handler(start)
   }
 }
 </script>

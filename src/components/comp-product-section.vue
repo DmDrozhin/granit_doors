@@ -2,7 +2,9 @@
   <div class="comp-product-section prod">
     <div class="prod__wrap">
       <div class="prod__carousel">
-        <comp-prod-slider></comp-prod-slider>
+        <comp-prod-slider
+          @currSlide="currSlide = $event"
+        ></comp-prod-slider>
       </div>
       <div class="prod__details">
         <comp-prod-info></comp-prod-info>

@@ -18,7 +18,13 @@
         <ui-order-button-shop-cart></ui-order-button-shop-cart>
       </template>
 
+      
     </ui-price-block-base>
+    
+    <div>
+      <ui-pagination></ui-pagination>
+    </div>
+  
   </div>
   
 </template>
@@ -29,9 +35,10 @@ import uiInStockBlock from '@/components/UI/ui-in-stock-block.vue'
 import uiOrderButtonShopCart from '@/components/UI/ui-order-button-shop-cart.vue'
 import uiPrice from '@/components/UI/ui-price.vue'
 import uiSaleStar from '@/components/UI/ui-sale-star.vue'
+import uiPagination from '@/components/UI/ui-pagination.vue'
 export default {
   name: 'comp-prod-order-block',
-  components: { uiPriceBlockBase, uiSaleStar, uiInStockBlock, uiOrderButtonShopCart, uiPrice },
+  components: { uiPriceBlockBase, uiSaleStar, uiInStockBlock, uiOrderButtonShopCart, uiPrice, uiPagination, },
   data() {
     return { }
   },

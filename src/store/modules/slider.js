@@ -62,12 +62,13 @@ const slider = {
           ]
         }
       ]
-    }
+    },
   },
   getters: {
     lg: (state) => state.slides.lg,
     sm: (state) => state.slides.sm,
   },
+
 
 }
 export default slider
