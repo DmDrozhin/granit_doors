@@ -8,7 +8,9 @@
         </div>
 
         <div class="main__sec2 sec2">
-          <comp-product-section></comp-product-section>
+          <comp-product-section
+            :doorId="0"
+          ></comp-product-section>
         </div>
         
       </div>
@@ -20,7 +22,7 @@
 import asideSection from '../views/aside-section.vue'
 import compProductSection from '@/components/comp-product-section.vue'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'main-section',
@@ -36,7 +38,8 @@ export default {
     doBtn() { this.SET_MDW(true) }
   },
   computed: {
-
+    ...mapGetters('product', ['PRODS']),
+    prodArrLength() { return this.PRODS.length}
   }
 }
 </script>

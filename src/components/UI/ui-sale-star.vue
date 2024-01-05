@@ -4,7 +4,7 @@
       <ui-icon-sale></ui-icon-sale>
     </div>
     <div class="sale-star__txt-wrap">
-      <p class="sale-star__txt">-{{ sale }}%</p>
+      <p class="sale-star__txt">-{{ val }}%</p>
     </div>
 
   </div>
@@ -14,13 +14,15 @@
 <script>
 export default {
   name: 'ui-sale-star',
+  props: { sale: { type: Number, default: 0.5 } },
   data() {
     return{
-      sale: 50
     }
   },
   methods: { },
-  computed: { }
+  computed: {
+    val() { return this.sale * 100 }
+  }
 }
 </script>
 

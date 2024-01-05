@@ -1,22 +1,28 @@
 const common = {
   namespaced: true,
   state: {
-    scrw: '', // current screen size
-    bpns: { sm: 0, lg: 1440 }, // breakpoints
-    isModalOn: false, // on / off modal wind
+    screen: '', // current screen size
+    breaks: { sm: 0, lg: 1440 }, // breakpoints
+    isModalOn: false, // on / off modal wind,
+    isPreviewOn: false, // of / off doors preview slider
   },
   getters: {
-    scrw: (state) => state.scrw,
-    bpns: (state) => state.bpns,
-    isModalOn: (state) => state.isModalOn,
+    SCREEN: (state) => state.screen,
+    BREAKS: (state) => state.breaks,
+    IS_MODAL_ON: (state) => state.isModalOn,
   },
   mutations: {
-    SET_W: (state, w) => state.scrw = w,
-    SET_MDW: (state, bl) => state.isModalOn = bl
+    SET_W: (state, w) => state.screen = w,
+    SET_MODAL: (state, bl) => state.isModalOn = bl,
+    OPEN_PREVIEW: (state) => { 
+      state.isPreviewOn = true
+      state.isModalOn = true
+    }
   },
   actions: {
     SET_W({ commit }, w) { commit('SET_W', w) },
-    SET_MDW({ commit }, bl) { commit('SET_MDW', bl) },
+    SET_MODAL({ commit }, bl) { commit('SET_MODAL', bl) },
+    OPEN_PREVIEW({ commit }) { commit('OPEN_PREVIEW') }
   }
 }
 export default common

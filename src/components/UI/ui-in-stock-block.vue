@@ -4,7 +4,7 @@
       <ui-icon-inStock></ui-icon-inStock>
     </div>
     <div class="stock__txt">
-      В наличии {{ qt }} шт.
+      В наличии {{ stock }} шт.
     </div>
 
   </div>
@@ -14,17 +14,14 @@
 <script>
 export default {
   name: 'ui-in-stock-block',
+  props: { stock: { type: Number, default: 36 } },
   data() {
     return{
-      qt: 526
+      
     }
   },
-  methods: {
-
-  },
-  computed: {
-
-  }
+  methods: { },
+  computed: { }
 
 }
 </script>

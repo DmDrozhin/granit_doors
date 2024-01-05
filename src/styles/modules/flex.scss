@@ -20,7 +20,7 @@
   display: flex;
   flex-direction: row;
 }
-// js space between
+// jc space between
 @mixin fr-sb {
   @include fr;
   justify-content: space-between;
@@ -29,7 +29,7 @@
   @include fr-sb;
   align-items: center;
 }
-// js start
+// jc start
 @mixin fr-st {
   @include fr;
   justify-content: flex-start;
@@ -38,12 +38,22 @@
   @include fr-st;
   align-items: center;
 }
+// jc end
 @mixin fr-nd {
   @include fr;
   justify-content: flex-end;
 }
 @mixin fr-nd-c {
   @include fr-nd;
+  align-items: center;
+}
+// jc evenly
+@mixin fr-ev {
+  @include fr;
+  justify-content: space-evenly;
+}
+@mixin fr-ev-c {
+  @include fr-ev;
   align-items: center;
 }
 // js center

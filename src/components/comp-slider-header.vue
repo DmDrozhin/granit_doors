@@ -13,6 +13,7 @@
             class="slider__pic"
             :src="img.src" 
             :srcset="img.srcset.join(', ')"
+            :alt="img.alt"
           >
         </swiper-slide>
       </swiper-container>
@@ -60,9 +61,9 @@ export default {
     })}
   },
   computed: {
-    ...mapGetters('slider', ['sm', 'lg']),
-    ...mapGetters('common', ['scrw', 'bpns']),
-    slides() { return this.scrw >= this.bpns.lg ? this.lg : this.sm }
+    ...mapGetters('slider', ['SM', 'LG']),
+    ...mapGetters('common', ['SCREEN', 'BREAKS']),
+    slides() { return this.SCREEN >= this.BREAKS.lg ? this.LG : this.SM }
   },
   mounted() {
     this.setSlider()

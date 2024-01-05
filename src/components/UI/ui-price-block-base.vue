@@ -29,16 +29,10 @@ export default {
   name: 'ui-price-block-base',
   data() {
     return{
-
     }
   },
-  methods: {
-
-  },
-  computed: {
-
-  }
-
+  methods: { },
+  computed: { }
 }
 </script>
 

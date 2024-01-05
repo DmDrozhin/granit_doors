@@ -3,9 +3,9 @@
 
     <div class="prod__wrap">
       <div class="prod__swp-1 swp-1">
-        <div class="swp-1__title">
-          {{ crnt.name }}
-        </div>
+        <h2 class="swp-1__title">
+          {{ currDoorData.name }}
+        </h2>
         <swiper-container 
           class="swp-1__slider" 
           ref="swap1"
@@ -13,16 +13,16 @@
         >
           <swiper-slide 
             class="swp-1__slide content" 
-            v-for="it in crnt.arts" 
-            :key="it.id"
+            v-for="(it, idx) in currDoorData.arts"
+            :key="idx"
           >
             <div class="content__wrap">
               <div class="content__drs drs">
                 <div class="drs__dr1">
-                  <img :src="it.src1" alt="">
+                  <img :src="it.src1" :alt="`Наружная сторона. ${currDoorData.name} Арт.${idx.slice(1)}`">
                 </div>
                 <div class="drs__dr2">
-                  <img :src="it.src2" alt="">
+                  <img :src="it.src2" :alt="`Внутренняя сторона. ${currDoorData.name} Арт.${idx.slice(1)}`">
                 </div>
               </div>
               <div class="content__desc">
@@ -44,9 +44,9 @@
             v-for="(it, idx) in artsArr"
             :key="idx"
           >
-              <button class="slide__content content" @click="handleBtn(it)">
-                <p class="content__txt">Арт. {{ it.slice(1) }}</p>
-              </button>
+            <button class="slide__content content">
+              <p class="content__txt">Арт. {{ it.slice(1) }}</p>
+            </button>
           </swiper-slide>
         </swiper-container>
       </div>
@@ -60,32 +60,37 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'comp-prod-slider',
+  props: { doorId: { type: Number, default: 1 } },
   data() {
     return {
-      currSlide: 0,
-      currArticle: ''
+      currSlide: ''
     }
   },
   watch: {
-    CURR_SLIDE(v) { this.$refs.swap1.swiper.slideTo(v.idx, 300, false) }
+    getCurrSlide(v) {
+      if (v.doorId === this.doorId ) this.$refs.swap1.swiper.slideTo(v.currArtId, 300, false)
+    },
+    // currSlide(n, o) { 
+    //   console.log('Watch new ***', n)
+    //   console.log('Watch old ***', o)
+    //   this.handler(n)
+    // }
   },
   computed: {
-    ...mapGetters('product', ['PRODS', 'CURR_SLIDE']),
+    ...mapGetters('product', ['PROD', 'SLIDE_INFO', 'ARTS_ARR']),
 
-    crnt() { return this.PRODS[this.currSlide] },
-    artsArr() { return Object.keys(this.PRODS[this.currSlide].arts) },
-    length() { return this.artsArr.length },
+    artsArr() { return this.ARTS_ARR(this.doorId) }, // new
+    getCurrSlide() { return this.SLIDE_INFO(this.doorId) }, // new
+    currDoorData() { return this.PROD(this.doorId) }, // new
   },
 
   methods: {
-    ...mapActions('product', ['SET_SLIDE']),
-
-    handleBtn(art) { this.currArticle = art },
+    ...mapActions('product', ['SET_CURR_ARTICLE']),
 
     handler(idx) {
-      const d = { curr: this.currSlide, idx: idx, qt: this.length }
-      this.SET_SLIDE(d)
-      // console.log('currSlide', d )
+      const d = { doorId: this.doorId, currArtId: idx }
+      this.SET_CURR_ARTICLE(d)
+      // console.log('doorId', d )
     },
 
     setSl() {
@@ -99,7 +104,12 @@ export default {
           100: { direction: 'horizontal' }, 
           1440: { direction: 'vertical' } 
         },
-        on: { slideChangeTransitionEnd: (ev) => this.handler(ev.activeIndex) }
+        on: { slideChangeTransitionEnd: (ev) => {
+            // console.log(ev)
+            this.handler(ev.activeIndex)
+            // this.currSlide = ev.activeIndex
+          }
+        }
         
       }
       Object.assign(slider, setts)
@@ -144,11 +154,11 @@ export default {
 
     }
   },
+
   mounted() {
-    const start = 2
-    this.setSl() 
-    this.$refs.swap1.swiper.slideTo(start, 300, false)
-    this.handler(start)
+    this.setSl()
+    this.handler(0)
+    // this.$refs.swap1.swiper.slideTo(2, 300, false)
   }
 }
 </script>

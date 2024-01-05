@@ -8,7 +8,8 @@ const product = {
       osd: { L: 'Левое открывание', R: 'Правое открывание' },
       szs: ['780х2000 мм', '800х2030 мм', '860х2050 мм', '900х2050 мм', '960х2070 мм', '980х2080 мм', '1050х2070 мм'],
       def: { ok: 'Без дефектов', used: 'Витринный образец', bad: 'С дефектом', old: 'Устаревшая модель' },
-      ads: { mirr: 'С зеркалом' }
+      ads: { mirr: 'С зеркалом' },
+      sale: { 1: 0.5, 2: 0.3, 3: 0.15 }
     },
     prods: [
       {
@@ -27,17 +28,17 @@ const product = {
         mirr: true,
         arts: {
           a0989: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '1) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1334',
             col2: undefined,
             price: 13500,
-            sale: 1,
+            sale: 3,
             stock: 15,
             src1: [ require('@/assets/images/door/door1.webp') ],
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0990: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '2) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1387',
             col2: undefined,
             price: 13400,
@@ -47,17 +48,17 @@ const product = {
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0991: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '3) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1300',
             col2: undefined,
             price: 13200,
-            sale: 1,
+            sale: 2,
             stock: 9,
             src1: [ require('@/assets/images/door/door3.webp') ],
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0992: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '4) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1387',
             col2: undefined,
             price: 13650,
@@ -67,7 +68,7 @@ const product = {
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0993: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '5) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1374',
             col2: undefined,
             price: 12560,
@@ -77,7 +78,7 @@ const product = {
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0994: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '6) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 8056',
             col2: undefined,
             price: 13400,
@@ -87,7 +88,7 @@ const product = {
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0995: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '7) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 0057',
             col2: undefined,
             price: 13550,
@@ -97,17 +98,17 @@ const product = {
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0996: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '8) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1058',
             col2: undefined,
             price: 12890,
-            sale: 1,
+            sale: 2,
             stock: 18,
             src1: [ require('@/assets/images/door/door8.webp') ],
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0997: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '9) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 5102',
             col2: undefined,
             price: 14200,
@@ -117,11 +118,11 @@ const product = {
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
           },
           a0998: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '10) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 6509',
             col2: undefined,
             price: 14560,
-            sale: 1,
+            sale: 3,
             stock: 5,
             src1: [ require('@/assets/images/door/door10.webp') ],
             src2: [ require('@/assets/images/door/lira_001_side2.webp') ],
@@ -144,7 +145,7 @@ const product = {
         mirr: true,
         arts: {
           a0851: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '1) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1334',
             col2: undefined,
             price: 15800,
@@ -154,7 +155,7 @@ const product = {
             src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
           },
           a0852: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '2) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1387',
             col2: undefined,
             price: 15430,
@@ -164,7 +165,7 @@ const product = {
             src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
           },
           a0853: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '3) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1300',
             col2: undefined,
             price: 15690,
@@ -174,7 +175,7 @@ const product = {
             src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
           },
           a0854: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '4) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1387',
             col2: undefined,
             price: 15860,
@@ -184,7 +185,7 @@ const product = {
             src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
           },
           a0855: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '5) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1374',
             col2: undefined,
             price: 15420,
@@ -211,7 +212,7 @@ const product = {
         mirr: false,
         arts: {
           a0230: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '1) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1334',
             col2: undefined,
             price: 18100,
@@ -221,7 +222,7 @@ const product = {
             src2: [ require('@/assets/images/door/seul_045_side2.webp') ]
           },
           a0231: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '2) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1387',
             col2: undefined,
             price: 18560,
@@ -231,7 +232,7 @@ const product = {
             src2: [ require('@/assets/images/door/seul_045_side2.webp') ]
           },
           a0232: {
-            desc2: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
+            desc2: '3) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
             col1: 'RAL 1300',
             col2: undefined,
             price: 18700,
@@ -243,17 +244,29 @@ const product = {
         }
       },
     ],
-    currSlide: { curr: '', idx: '', qt: '' }
+    // curr - id of Door model, idx - id of Article, qt - entire qt of Articles
+    // currSlide: { doorId: '', currArt: '', length: '' },
+    currSlide: [{ doorId: '', currArtId: '' }],
+
   },
   getters: {
+    SETTS: (state) => state.setts,
     PRODS: (state) => state.prods,
-    CURR_SLIDE: (state) => state.currSlide,
+    PROD: (state) => (doorId) => state.prods[doorId], //used
+    ARTS_ARR: (state) => (doorId) => Object.keys(state.prods[doorId].arts), //used
+    SLIDE_INFO: (state) => (doorId) => state.currSlide[doorId], //used
+    CURR_ARTICLE_DATA: (state, getters) => (doorId) => { //used
+      const currProd = getters.PROD(doorId)
+      const artIdx = getters.SLIDE_INFO(doorId).currArtId
+      const art = getters.ARTS_ARR(doorId)[artIdx]
+      return currProd.arts[art]
+    }
   },
   mutations: {
-    SET_SLIDE: (state, dt) => state.currSlide = dt
+    SET_CURR_ARTICLE: (state, pl) => state.currSlide[pl.doorId] = pl
   },
   actions: {
-    SET_SLIDE({ commit }, pl) { commit('SET_SLIDE', pl) }
+    SET_CURR_ARTICLE({ commit }, pl) { commit('SET_CURR_ARTICLE', pl) }
   }
 }
 export default product

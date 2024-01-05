@@ -13,10 +13,11 @@
 <script>
 export default {
   name: 'ui-price',
+  props: { price: { type: Number, default: 27134 }, sale: { type: Number, default: 0.5 } },
   data() {
     return{
-      price: 27134,
-      sale: 0.5
+      // price: 27134,
+      // sale: 0.5
     }
   },
   methods: {
@@ -29,7 +30,7 @@ export default {
     }
   },
   computed: {
-    salePrice() { return this.toCurrency(this.price * this.sale) },
+    salePrice() { return this.toCurrency(this.price * (1 - this.sale)) },
     netPrice() { return this.toCurrency(this.price) }
   }
 

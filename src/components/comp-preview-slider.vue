@@ -59,6 +59,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'comp-preview-slider',
+  props: { doorId: { type: Number,  default: 0 } },
   data() {
     return{
       currProd: 0
@@ -66,16 +67,16 @@ export default {
   },
 
   computed: {
-    ...mapGetters('product', ['prods']),
+    ...mapGetters('product', ['PRODS']),
     doors() { return this.imgArr() }
   },
 
   methods: {
-    ...mapActions('common', ['SET_MDW']),
-    close() { this.SET_MDW(false) },
+    ...mapActions('common', ['SET_MODAL']),
+    close() { this.SET_MODAL(false) },
 
     imgArr() {
-      const arts = this.prods[0].arts
+      const arts = this.PRODS[0].arts
       let arr = []
       for (const it in arts) {
         const unt = { art: '', src1: '', src2: '' }

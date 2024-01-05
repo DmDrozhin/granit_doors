@@ -2,12 +2,12 @@
   <transition name="modal">
     <div 
       class="comp-modal modal" 
-      v-if="isModalOn" 
-      v-body-hidden="isModalOn"
+      v-if="IS_MODAL_ON"
+      v-body-hidden="IS_MODAL_ON"
       @click.capture="click($event)"
     >
       <div class="modal__slot">
-        <slot @keydown.space="console.log('Press SPACER')"></slot>
+        <slot></slot>
       </div>
     
   </div>
@@ -27,16 +27,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions('common', ['SET_MDW']),
+    ...mapActions('common', ['SET_MODAL']),
     except(v) { return this.exceptions.includes(v)},
 
-    click(ev) {if (this.except(ev.target.className)) this.SET_MDW(false) },
+    click(ev) {if (this.except(ev.target.className)) this.SET_MODAL(false) },
     // click(ev) { console.log(ev.target) },
 
-    keyHandle(ev) { if (ev.key === 'Escape') this.SET_MDW(false) }
+    keyHandle(ev) { if (ev.key === 'Escape') this.SET_MODAL(false) }
   },
   computed: {
-    ...mapGetters('common', ['isModalOn']),
+    ...mapGetters('common', ['IS_MODAL_ON']),
   },
   mounted() { window.addEventListener('keydown', (ev) => this.keyHandle(ev)) },
   beforeUnmount() {  window.removeEventListener('keydown', this.keyHandle()) }

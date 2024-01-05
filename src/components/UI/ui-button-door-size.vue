@@ -16,6 +16,7 @@
 
 <script>
 import uiButtonBase from './ui-button-base.vue'
+import { mapGetters } from 'vuex'
 export default {
   components: { uiButtonBase },
   name: 'ui-button-door-size',
@@ -28,7 +29,8 @@ export default {
     toggle() { this.isChanged = !this.isChanged }
   },
   computed: {
-    txt () { return this.isChanged ? '2050x960mm' : '2050x860mm'}
+    ...mapGetters('product', ['SETTS']),
+    txt () { return this.isChanged ? this.SETTS.sz.lg + 'mm' : this.SETTS.sz.sm + 'mm' }
   }
 
 }

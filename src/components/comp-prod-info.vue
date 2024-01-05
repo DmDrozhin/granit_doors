@@ -5,7 +5,7 @@
         <div class="sec1__btn btn">
           <ui-button-details
             class="btn__ui-details"
-            @toRoll="toRoll"
+            @toRoll="toRollOut"
           ></ui-button-details>
           <div class="btn__wrap">
             <ui-button-door-size
@@ -16,52 +16,60 @@
             ></ui-button-opening>
           </div>
         </div>
-        <ul class="sec2__tech-list tech-list">
-          <li class="tech-list__item item">
-            <span class="item__l">Основной замок:</span>
-            <span class="item__c"></span>
-            <span class="item__r">some</span>
-          </li>
-          <li class="tech-list__item item">
-            <span class="item__l">Дополнительный замок:</span>
-            <span class="item__c"></span>
-            <span class="item__r">some</span>
-          </li>
-          <li class="tech-list__item item">
-            <span class="item__l">Толщина дверного полотна:</span>
-            <span class="item__c"></span>
-            <span class="item__r">some</span>
-          </li>
-          <li class="tech-list__item item">
-            <span class="item__l">Количество контуров уплотнения:</span>
-            <span class="item__c"></span>
-            <span class="item__r">some</span>
-          </li>
-          <li class="tech-list__item item">
-            <span class="item__l">Цвет покраски:</span>
-            <span class="item__c"></span>
-            <span class="item__r">some</span>
-          </li>
-          <li class="tech-list__item item">
-            <span class="item__l">Назначение двери:</span>
-            <span class="item__c"></span>
-            <span class="item__r">some</span>
-          </li>
-          <li class="tech-list__item item">
-            <span class="item__l">Наличие зеркала:</span>
-            <span class="item__c"></span>
-            <span class="item__r">some</span>
-          </li>
-        </ul>
+        
+        <transition 
+          name="roll_out" 
+          appear
+        >
+          <ul class="sec2__tech-list tech-list" v-if="isRolledOut">
+            <li class="tech-list__item item">
+              <span class="item__l">Основной замок:</span>
+              <span class="item__c"></span>
+              <span class="item__r" v-bool-to-string>{{ prodDt.lock1 }}</span>
+            </li>
+            <li class="tech-list__item item">
+              <span class="item__l">Дополнительный замок:</span>
+              <span class="item__c"></span>
+              <span class="item__r" v-bool-to-string>{{ prodDt.lock2 }}</span>
+            </li>
+            <li class="tech-list__item item">
+              <span class="item__l">Толщина дверного полотна:</span>
+              <span class="item__c"></span>
+              <span class="item__r">{{ prodDt.d }}mm</span>
+            </li>
+            <li class="tech-list__item item">
+              <span class="item__l">Количество контуров уплотнения:</span>
+              <span class="item__c"></span>
+              <span class="item__r">{{ prodDt.cont }}</span>
+            </li>
+            <li class="tech-list__item item">
+              <span class="item__l">Цвет покраски:</span>
+              <span class="item__c"></span>
+              <span class="item__r">{{ artDt.col1 }}</span>
+            </li>
+            <li class="tech-list__item item">
+              <span class="item__l">Назначение двери:</span>
+              <span class="item__c"></span>
+              <span class="item__r">{{ doorType }}</span>
+            </li>
+            <li class="tech-list__item item">
+              <span class="item__l">Наличие зеркала:</span>
+              <span class="item__c"></span>
+              <span class="item__r" v-bool-to-string>{{ prodDt.mirr }}</span>
+            </li>
+          </ul>
+        </transition>
       </div>
 
       <div class="info__sec2 sec2">
-        <ui-button-open-slider
-          class="sec2__ui-button"
-        ></ui-button-open-slider>
-        <div class="sec2__desc">
-          Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam
-        </div>
+        <!-- <transition-group name="slide_up" appear> -->
+          <ui-button-open-slider
+            class="sec2__ui-button" @click="openProdPreview"
+          ></ui-button-open-slider>
+          <p class="sec2__desc">
+            Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam
+          </p>
+        <!-- </transition-group> -->
       </div>
     </div>
 
@@ -74,20 +82,28 @@ import uiButtonOpening from '@/components/UI/ui-button-opening.vue'
 import uiButtonDoorSize from '@/components/UI/ui-button-door-size.vue'
 import uiButtonDetails from '@/components/UI/ui-button-details.vue'
 import uiButtonOpenSlider from '@/components/UI/ui-button-open-slider.vue'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'comp-prod-info',
   components: { uiButtonOpening, uiButtonDoorSize, uiButtonDetails, uiButtonOpenSlider },
+  props: { doorId: { type: Number, default: 0 } },
   data() {
     return{
-      isRolled: false
+      isRolledOut: true
     }
   },
   methods: {
-    toRoll() { this.isRolled = !this.isRolled }
+    ...mapActions('common', ['SET_MODAL']),
+    openProdPreview() { this.SET_MODAL(true) },
+    toRollOut() { this.isRolledOut = !this.isRolledOut },
   },
   computed: {
+    ...mapGetters('product', ['PROD', 'CURR_ARTICLE_DATA', 'SETTS']),
 
+    prodDt() { return this.PROD(this.doorId) },
+    artDt() { return {...this.CURR_ARTICLE_DATA(this.doorId)} },
+    doorType() { return this.SETTS.typ[this.prodDt.typ] }
   }
 
 }
@@ -100,11 +116,13 @@ export default {
   &__wrap {
     height: 100%;
     width: 100%;
-    @include media('min', 'sm') { @include fc-sb-st; padding: 0 0 0px 0; gap: 22px; }
-    @include media('min', 'lg') { @include fc-sb-st; padding: 0 0 9px 0; gap: none; }
+    @include media('min', 'sm') { padding: 0 0 0px 0; }
+    @include media('min', 'lg') { padding: 0 0 9px 0; }
   }
   &__sec1, .sec1 {
     width: 100%;
+    @include media('min', 'sm') { margin-bottom: 29px; }
+    @include media('min', 'lg') { margin-bottom: 20px; }
     &__btn, .btn {
       @include media('min', 'sm') { @include fcr; gap: 13px; }
       @include media('min', 'lg') { @include fc; gap: 14px; margin-bottom: 30px; }
@@ -156,6 +174,7 @@ export default {
   }
   &__sec2, .sec2 {
     width: 100%;
+    transition: transform 0.5s, opacity 0.5s;
     &__ui-button {
       @include media('min', 'sm') { margin-bottom: 24px; }
       @include media('min', 'lg') { margin-bottom: 19px; }
@@ -166,6 +185,25 @@ export default {
     }
   }
 }
+.roll_out-enter-active {
+  animation : slide-in 0.3s ease-out forwards;
+  transition : opacity 0.3s;
+}
+.roll_out-leave-active {
+  animation : slide-out 0.3s ease-out forwards;
+  transition : opacity 0.3s;
+}
+.roll_out-enter-from,
+.roll_out-leave-to {
+  opacity: .3;
+}
 
-
+@keyframes slide-in {
+  from { transform: translateY(20px); }
+  to { transform: translateY(0); }
+}
+@keyframes slide-out {
+  from { transform: translateY(0); }
+  to { transform: translateY(20px); }
+}
 </style>

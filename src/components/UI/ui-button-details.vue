@@ -35,20 +35,25 @@ export default {
 
 <style lang="scss" scoped>
 .ui-button-details, .details {
+  display: inline-block;
+  width: fit-content;
   @include fr-st-c;
+  @include media('min', 'sm') { pointer-events: all; }
+  @include media('min', 'lg') { pointer-events: none; }
+  // border: 1px solid lightblue; // tech
+
   &__txt {
     font-family: 'Futura PT 600';
     line-height: 1.3;
     text-decoration: underline;
-    @include media('min', 'sm') { font-size: 1rem; } // 16
-    @include media('min', 'lg') { font-size: 1.125rem; } // 18
+    @include media('min', 'sm') { font-size: 1rem; pointer-events: all; } // 16
+    @include media('min', 'lg') { font-size: 1.125rem; pointer-events: none; } // 18
     margin-right: 6px;
   }
   &__icon {
     width: 15px;
+    @include media('min', 'sm') { display: block; }
+    @include media('min', 'lg') { display: none; }
   }
-
 }
-
-
 </style>
