@@ -9,7 +9,9 @@
 
         <div class="main__sec2 sec2">
           <comp-product-section
-            :doorId="0"
+            v-for="(it, idx) in prodsArrLength"
+            :key="idx"
+            :doorId="idx"
           ></comp-product-section>
         </div>
         
@@ -39,7 +41,7 @@ export default {
   },
   computed: {
     ...mapGetters('product', ['PRODS']),
-    prodArrLength() { return this.PRODS.length}
+    prodsArrLength() { return this.PRODS.length}
   }
 }
 </script>

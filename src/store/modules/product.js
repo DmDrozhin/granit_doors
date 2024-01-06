@@ -5,7 +5,7 @@ const product = {
       sz: {sm: '2050x860', lg: '2050x960'},
       fUse: { hm: 'Квартирная', out: 'Для дома и дачи' },
       typ: { entr: 'Входная', int: 'Межкомнатная' },
-      osd: { L: 'Левое открывание', R: 'Правое открывание' },
+      osd: { L: 'Открывание левое', R: 'Открывание правое' },
       szs: ['780х2000 мм', '800х2030 мм', '860х2050 мм', '900х2050 мм', '960х2070 мм', '980х2080 мм', '1050х2070 мм'],
       def: { ok: 'Без дефектов', used: 'Витринный образец', bad: 'С дефектом', old: 'Устаревшая модель' },
       ads: { mirr: 'С зеркалом' },
@@ -19,7 +19,7 @@ const product = {
         desc1: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
         
         sz: {sm: '2050x860', lg: '2050x960'},
-        osd: { L: 'Левое открывание', R: 'Правое открывание' },
+        osd: { L: 'Открывание левое', R: 'Открывание правое' },
         lock1: true,
         lock2: true,
         d: 150,
@@ -135,8 +135,8 @@ const product = {
         nic: 'laura_005',
         desc1: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
         
-        sz: {sm: '2050x860', lg: '2050x960'},
-        osd: { L: 'Левое открывание', R: 'Правое открывание' },
+        sz: {sm: '2055x865', lg: '2055x965'},
+        osd: { L: 'Открывание левое', R: 'Открывание правое' },
         lock1: true,
         lock2: true,
         d: 145,
@@ -146,10 +146,10 @@ const product = {
         arts: {
           a0851: {
             desc2: '1) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
-            col1: 'RAL 1334',
+            col1: 'RAL 5008',
             col2: undefined,
             price: 15800,
-            sale: 1,
+            sale: 3,
             stock: 6,
             src1: [ require('@/assets/images/door/door1.webp') ],
             src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
@@ -179,7 +179,7 @@ const product = {
             col1: 'RAL 1387',
             col2: undefined,
             price: 15860,
-            sale: 1,
+            sale: 2,
             stock: 10,
             src1: [ require('@/assets/images/door/door4.webp') ],
             src2: [ require('@/assets/images/door/laura_005_side2.webp') ]
@@ -202,8 +202,8 @@ const product = {
         nic: 'seul_045',
         desc1: 'Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
         
-        sz: {sm: '2050x860', lg: '2050x960'},
-        osd: { L: 'Левое открывание', R: 'Правое открывание' },
+        sz: {sm: '2045x855', lg: '2045x955'},
+        osd: { L: 'Открывание левое', R: 'Открывание правое' },
         lock1: true,
         lock2: false,
         d: 155,
@@ -213,7 +213,7 @@ const product = {
         arts: {
           a0230: {
             desc2: '1) Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam',
-            col1: 'RAL 1334',
+            col1: 'RAL 8120',
             col2: undefined,
             price: 18100,
             sale: 1,
@@ -226,7 +226,7 @@ const product = {
             col1: 'RAL 1387',
             col2: undefined,
             price: 18560,
-            sale: 1,
+            sale: 2,
             stock: 8,
             src1: [ require('@/assets/images/door/door2.webp') ],
             src2: [ require('@/assets/images/door/seul_045_side2.webp') ]
@@ -244,29 +244,39 @@ const product = {
         }
       },
     ],
-    // curr - id of Door model, idx - id of Article, qt - entire qt of Articles
-    // currSlide: { doorId: '', currArt: '', length: '' },
-    currSlide: [{ doorId: '', currArtId: '' }],
+    // currnet slide data
+    currSlide: [{ doorId: '', currArtId: '', currArt: '' }],
+    currArt: [{ art: '', data: '' }]
 
   },
   getters: {
     SETTS: (state) => state.setts,
     PRODS: (state) => state.prods,
     PROD: (state) => (doorId) => state.prods[doorId], //used
+    // PROD: (state) => (doorId) => {
+    //   const { arts, ...nData } = state.prods[doorId]
+    //   arts
+    //   return nData
+    // }, //used
     ARTS_ARR: (state) => (doorId) => Object.keys(state.prods[doorId].arts), //used
     SLIDE_INFO: (state) => (doorId) => state.currSlide[doorId], //used
-    CURR_ARTICLE_DATA: (state, getters) => (doorId) => { //used
-      const currProd = getters.PROD(doorId)
-      const artIdx = getters.SLIDE_INFO(doorId).currArtId
-      const art = getters.ARTS_ARR(doorId)[artIdx]
-      return currProd.arts[art]
-    }
+    ART_DATA: (state) => (doorId) => state.currArt[doorId], //used
+    PAGINATION_DATA: (state) => state.currSlide
   },
   mutations: {
-    SET_CURR_ARTICLE: (state, pl) => state.currSlide[pl.doorId] = pl
+    SET_CURR_SLIDE: (state, pl) => state.currSlide[pl.doorId] = pl,
+    SET_CURR_ART_DATA: (state, pl) => {
+      state.currArt[pl.doorId] = { 
+        art: pl.currArt, 
+        data: state.prods[pl.doorId].arts[pl.currArt]
+      }
+    }
   },
   actions: {
-    SET_CURR_ARTICLE({ commit }, pl) { commit('SET_CURR_ARTICLE', pl) }
+    SET_CURR_SLIDE({ commit }, pl) {
+      commit('SET_CURR_SLIDE', pl)
+      commit('SET_CURR_ART_DATA', pl)
+    }
   }
 }
 export default product

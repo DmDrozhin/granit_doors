@@ -1,18 +1,29 @@
 <template>
   <div class="comp-prod-info info">
+    <div class="info__prod-preview">
+      <comp-prod-preview
+        :doorId="doorId"
+        :idPreview="idPreview"
+    ></comp-prod-preview>
+    </div>
     <div class="info__wrap">
       <div class="info__sec1 sec1">
         <div class="sec1__btn btn">
+
           <ui-button-details
             class="btn__ui-details"
             @toRoll="toRollOut"
           ></ui-button-details>
+
           <div class="btn__wrap">
             <ui-button-door-size
               class="btn__size"
+              :doorId="doorId"
             ></ui-button-door-size>
+
             <ui-button-opening
               class="btn__opening"
+              :doorId="doorId"
             ></ui-button-opening>
           </div>
         </div>
@@ -45,7 +56,8 @@
             <li class="tech-list__item item">
               <span class="item__l">Цвет покраски:</span>
               <span class="item__c"></span>
-              <span class="item__r">{{ artDt.col1 }}</span>
+              <span class="item__r">{{ decor }}</span>
+              <!-- <span class="item__r" ref="ral">UUU</span> -->
             </li>
             <li class="tech-list__item item">
               <span class="item__l">Назначение двери:</span>
@@ -64,7 +76,8 @@
       <div class="info__sec2 sec2">
         <!-- <transition-group name="slide_up" appear> -->
           <ui-button-open-slider
-            class="sec2__ui-button" @click="openProdPreview"
+            class="sec2__ui-button" 
+            @click="openPreview"
           ></ui-button-open-slider>
           <p class="sec2__desc">
             Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam
@@ -78,6 +91,7 @@
 </template>
 
 <script>
+import compProdPreview from '@/components/comp-prod-preview.vue'
 import uiButtonOpening from '@/components/UI/ui-button-opening.vue'
 import uiButtonDoorSize from '@/components/UI/ui-button-door-size.vue'
 import uiButtonDetails from '@/components/UI/ui-button-details.vue'
@@ -86,26 +100,33 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'comp-prod-info',
-  components: { uiButtonOpening, uiButtonDoorSize, uiButtonDetails, uiButtonOpenSlider },
+  components: { compProdPreview, uiButtonOpening, uiButtonDoorSize, uiButtonDetails, uiButtonOpenSlider },
   props: { doorId: { type: Number, default: 0 } },
   data() {
     return{
-      isRolledOut: true
+      isRolledOut: true,
+      idPreview: '',
+      decor: ''
     }
+  },
+  watch: {
+    artData(v) { this.decor = v.data.col1 }
   },
   methods: {
     ...mapActions('common', ['SET_MODAL']),
-    openProdPreview() { this.SET_MODAL(true) },
+    makeId() { return Math.random().toString(16).slice (2) },
+    openPreview() { this.SET_MODAL({ idx: this.idPreview, isOn: true }) },
     toRollOut() { this.isRolledOut = !this.isRolledOut },
   },
   computed: {
-    ...mapGetters('product', ['PROD', 'CURR_ARTICLE_DATA', 'SETTS']),
+    ...mapGetters('product', ['PROD', 'ART_DATA', 'SETTS']),
 
     prodDt() { return this.PROD(this.doorId) },
-    artDt() { return {...this.CURR_ARTICLE_DATA(this.doorId)} },
-    doorType() { return this.SETTS.typ[this.prodDt.typ] }
-  }
+    doorType() { return this.SETTS.typ[this.prodDt.typ] },
+    artData() { return this.ART_DATA(this.doorId) },
 
+  },
+  created() { this.idPreview = this.makeId() }
 }
 </script>
 
@@ -167,10 +188,8 @@ export default {
         &__r {
           @include FT450-14-16;
         }
-      }
-      
+      } 
     }
-    
   }
   &__sec2, .sec2 {
     width: 100%;

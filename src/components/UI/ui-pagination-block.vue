@@ -3,19 +3,19 @@
     <div class="pag__wrap">
       <div 
         class="pag__bullet bullet"
-        v-for="(it, idx) in length"
-        :key="idx"
+        v-for="(it, idx) in artsArray"
+        :key="it"
       >
         <input 
           class="bullet__inp" 
           name="pagination" 
           type="radio"
-          :id="idx"
+          :id="it"
           :value="idx"
           @change="goTo(idx)"
-          :checked="idx === slide.currArtId"
+          :checked="idx === cs"
         >
-        <label class="bullet__labe" :for="idx"></label>
+        <label class="bullet__labe" :for="it"></label>
       </div>
     </div>
   </div>
@@ -28,30 +28,33 @@ export default {
   props: { doorId: { type: Number, default: 0 } },
   data() {
     return{
+      // currentSlideId: 0,
     }
   },
+  watch: {
+    // getCurrSlide(slide) { this.currentSlideId = slide.currArtId },
+  },
   methods: {
-    ...mapActions('product', ['SET_CURR_ARTICLE']),
+    ...mapActions('product', ['SET_CURR_SLIDE']),
 
     goTo(idx) {
-      const d = { ...this.slide }
-      d.currArtId = idx
-      this.SET_CURR_ARTICLE(d)
+      const d = { doorId: this.doorId, currArtId: idx, currArt: this.artsArray[idx] }
+      this.SET_CURR_SLIDE(d)
     }
   },
   computed: {
-    ...mapGetters('product', ['SLIDE_INFO', 'ARTS_ARR']),
-    
-    slide() { return this.SLIDE_INFO(this.doorId) },
-    length() { return this.ARTS_ARR(this.doorId).length }
-  }
+    ...mapGetters('product', ['SLIDE_INFO', 'ARTS_ARR', 'PAGINATION_DATA']),
+    artsArray() { return this.ARTS_ARR(this.doorId) },
+    // getCurrSlide() { return this.SLIDE_INFO(this.doorId) },
+    cs() { return {...this.PAGINATION_DATA[this.doorId]}.currArtId }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .ui-pagination, .pag {
-  @include media('min', 'sm') { display: block; }
-  @include media('min', 'lg') { display: none; }
+  // @include media('min', 'sm') { display: block; }
+  // @include media('min', 'lg') { display: none; }
   width: 100%;
   &__wrap {
     @include fr-ev-c;

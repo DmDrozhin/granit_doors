@@ -20,7 +20,6 @@
         <swiper-container
           class="door-show"
           ref="main"
-          thumbs-swiper=".door-thumbs"
           init="false"
         >
           <swiper-slide
@@ -59,24 +58,23 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'comp-preview-slider',
-  props: { doorId: { type: Number,  default: 0 } },
+  props: { doorId: { type: Number,  default: 0 }, idPreview: { type: String, default: '' } },
   data() {
-    return{
-      currProd: 0
-    }
+    return{ }
   },
 
   computed: {
-    ...mapGetters('product', ['PRODS']),
-    doors() { return this.imgArr() }
+    ...mapGetters('product', ['PROD']),
+    currProd() { return this.PROD(this.doorId) },
+    doors() { return this.makeImgArr() }
   },
 
   methods: {
     ...mapActions('common', ['SET_MODAL']),
-    close() { this.SET_MODAL(false) },
+    close() { this.SET_MODAL({ idx: this.idPreview, isOn: false }) },
 
-    imgArr() {
-      const arts = this.PRODS[0].arts
+    makeImgArr() {
+      const arts = this.currProd.arts
       let arr = []
       for (const it in arts) {
         const unt = { art: '', src1: '', src2: '' }
@@ -100,6 +98,7 @@ export default {
           pageUpDown: true
         },
         grabCursor: true,
+        thumbs: { swiper: this.$refs.thumbs }
       }
       Object.assign(main, setts)
       main.initialize()

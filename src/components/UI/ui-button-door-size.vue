@@ -20,6 +20,7 @@ import { mapGetters } from 'vuex'
 export default {
   components: { uiButtonBase },
   name: 'ui-button-door-size',
+  props: { doorId: { type: Number, default: 0 } },
   data() {
     return{
       isChanged: false
@@ -29,8 +30,9 @@ export default {
     toggle() { this.isChanged = !this.isChanged }
   },
   computed: {
-    ...mapGetters('product', ['SETTS']),
-    txt () { return this.isChanged ? this.SETTS.sz.lg + 'mm' : this.SETTS.sz.sm + 'mm' }
+    ...mapGetters('product', ['PROD']),
+    currProd() { return this.PROD(this.doorId) },
+    txt () { return this.isChanged ? this.currProd.sz.lg + 'mm' : this.currProd.sz.sm + 'mm' }
   }
 
 }

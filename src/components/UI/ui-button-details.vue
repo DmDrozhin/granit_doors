@@ -27,7 +27,7 @@ export default {
     }
   },
   computed: {
-    direction() { return this.isRolled ? 90 : -90 }
+    direction() { return this.isRolled ? -90 : 90 }
   }
 
 }

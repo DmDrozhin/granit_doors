@@ -1,7 +1,4 @@
 <template>
-  <comp-prod-preview
-    :doorId="doorId"
-  ></comp-prod-preview>
   <section class="comp-product-section prod">
     <div class="prod__wrap">
       <div class="prod__carousel">
@@ -30,14 +27,14 @@
 </template>
 
 <script>
-import compProdPreview from '@/components/comp-prod-preview.vue'
 import compProdSlider from '@/components/comp-prod-slider.vue'
 import compProdInfo from '@/components/comp-prod-info.vue'
 import compProdOrderBlock from '@/components/comp-prod-order-block.vue'
 import uiPaginationBlock from '@/components/UI/ui-pagination-block.vue'
+
 export default {
   name: 'comp-product-section',
-  components: { compProdPreview, compProdSlider, compProdInfo, compProdOrderBlock, uiPaginationBlock },
+  components: { compProdSlider, compProdInfo, compProdOrderBlock, uiPaginationBlock },
   props: { doorId: { type: Number, default: undefined } },
   data() {
     return{

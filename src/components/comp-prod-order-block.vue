@@ -10,14 +10,14 @@
 
       <template #price>
         <ui-price
-          :price="artDt.price"
+          :price="price"
           :sale="sale"
         ></ui-price>
       </template>
 
       <template #inStock>
         <ui-in-stock-block
-          :stock="artDt.stock"
+          :stock="stock"
         ></ui-in-stock-block>
       </template>
 
@@ -41,15 +41,25 @@ export default {
   components: { uiPriceBlockBase, uiSaleStar, uiInStockBlock, uiOrderButtonShopCart, uiPrice },
   props: { doorId: { type: Number, default: 1 } },
   data() {
-    return { }
+    return {
+      sale: null,
+      stock: null,
+      price: null
+    }
+  },
+  watch: {
+    currArt(v) { 
+      this.sale = this.SETTS.sale[v.data.sale] 
+      this.stock = v.data.stock
+      this.price = v.data.price
+    }
   },
   methods: { },
   computed: {
-    ...mapGetters('product', ['PROD', 'CURR_ARTICLE_DATA', 'SETTS']),
+    ...mapGetters('product', ['PROD', 'ART_DATA', 'SETTS']),
 
     prodDt() { return this.PROD(this.doorId) },
-    artDt() { return {...this.CURR_ARTICLE_DATA(this.doorId)} },
-    sale() { return this.SETTS.sale[this.artDt.sale] }
+    currArt() { return this.ART_DATA(this.doorId) },
   }
 }
 </script>

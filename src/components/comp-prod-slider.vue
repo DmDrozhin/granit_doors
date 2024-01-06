@@ -41,7 +41,7 @@
         >
           <swiper-slide
             class="slider__slide slide"
-            v-for="(it, idx) in artsArr"
+            v-for="(it, idx) in artsArray"
             :key="idx"
           >
             <button class="slide__content content">
@@ -67,30 +67,23 @@ export default {
     }
   },
   watch: {
-    getCurrSlide(v) {
-      if (v.doorId === this.doorId ) this.$refs.swap1.swiper.slideTo(v.currArtId, 300, false)
-    },
-    // currSlide(n, o) { 
-    //   console.log('Watch new ***', n)
-    //   console.log('Watch old ***', o)
-    //   this.handler(n)
-    // }
+    getCurrSlide(sl) {
+      if (sl.doorId === this.doorId ) this.$refs.swap1.swiper.slideTo(sl.currArtId, 300, false)
+    }
   },
   computed: {
     ...mapGetters('product', ['PROD', 'SLIDE_INFO', 'ARTS_ARR']),
-
-    artsArr() { return this.ARTS_ARR(this.doorId) }, // new
-    getCurrSlide() { return this.SLIDE_INFO(this.doorId) }, // new
-    currDoorData() { return this.PROD(this.doorId) }, // new
+    getCurrSlide() { return this.SLIDE_INFO(this.doorId) },
+    currDoorData() { return this.PROD(this.doorId) },
+    artsArray() { return this.ARTS_ARR(this.doorId) },
   },
 
   methods: {
-    ...mapActions('product', ['SET_CURR_ARTICLE']),
+    ...mapActions('product', ['SET_CURR_SLIDE']),
 
     handler(idx) {
-      const d = { doorId: this.doorId, currArtId: idx }
-      this.SET_CURR_ARTICLE(d)
-      // console.log('doorId', d )
+      const d = { doorId: this.doorId, currArtId: idx, currArt: this.artsArray[idx] }
+      this.SET_CURR_SLIDE(d)
     },
 
     setSl() {
