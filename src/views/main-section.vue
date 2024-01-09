@@ -1,10 +1,10 @@
 <template>
-  <main class="main">
+  <section class="main">
     <div class="main__container">
       <div class="main__wrap">
 
         <div class="main__sec1 sec1">
-          <aside-section class="sec1__aside"></aside-section>
+          <sidebar-section class="sec1__aside"></sidebar-section>
         </div>
 
         <div class="main__sec2 sec2">
@@ -17,18 +17,18 @@
         
       </div>
     </div>
-  </main>
+  </section>
 </template>
 
 <script>
-import asideSection from '../views/aside-section.vue'
+import sidebarSection from './sidebar-section.vue'
 import compProductSection from '@/components/comp-product-section.vue'
 
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'main-section',
-  components: { asideSection, compProductSection },
+  components: { sidebarSection, compProductSection },
   // components: { compFilter, slider },
   data() {
     return {
@@ -63,7 +63,8 @@ export default {
     @include media('min', 'lg') { @include fr; }
   }
   &__sec1, .sec1 {
-    flex: 0 0 236px; // width of aside 236px
+    @include media('min', 'sm') { }
+    @include media('min', 'lg') { flex: 0 0 236px; } // width of aside 236px
   }
   &__sec2, .sec2 {
     flex: 1 1 auto;

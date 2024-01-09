@@ -96,6 +96,10 @@
   @include fc-st;
   align-items: flex-start;
 }
+@mixin fc-st-c {
+  @include fc-st;
+  align-items: center;
+}
 // jc center
 @mixin fc-c {
   @include fc;

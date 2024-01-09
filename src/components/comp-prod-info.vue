@@ -122,7 +122,7 @@ export default {
     ...mapGetters('product', ['PROD', 'ART_DATA', 'SETTS']),
 
     prodDt() { return this.PROD(this.doorId) },
-    doorType() { return this.SETTS.typ[this.prodDt.typ] },
+    doorType() { return this.SETTS.type[this.prodDt.type] },
     artData() { return this.ART_DATA(this.doorId) },
 
   },

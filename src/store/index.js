@@ -5,14 +5,10 @@ import company from './modules/company.js'
 import product from './modules/product.js'
 
 export default createStore({
-  // state: {
-  // },
-  // getters: {
-  // },
-  // mutations: {
-  // },
-  // actions: {
-  // },
+  // state: {},
+  // getters: {},
+  // mutations: {},
+  // actions: {},
   modules: {
     common,
     slider,

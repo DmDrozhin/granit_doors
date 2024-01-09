@@ -1,9 +1,9 @@
 <template>
-  <div class="main-page">
+  <section class="main-page">
     <header-section></header-section>
     <main-section></main-section>
     <footer-section></footer-section>
-  </div>
+  </section>
 </template>
 
 <script>

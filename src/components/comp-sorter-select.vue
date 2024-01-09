@@ -1,10 +1,10 @@
 <template>
-  <div class="comp-filer-select select-block">
+  <div class="comp-sorter-select select-block">
     <div class="select-block__wrapper">
-      <select class="select-block__inp">
+      <select class="select-block__inp" v-model="sortBy">
         <option 
           class="select-block__option" 
-          v-for="(option, idx) in options" 
+          v-for="(option, idx) in options"
           :key="idx" 
           :value="option">{{ option }}
         </option>
@@ -18,34 +18,28 @@
 
 <script>
 export default {
-  name: 'comp-filter-select',
-  props: {
-    options: {
-      type: Array, default: () => [
-        'По убыванию цены',
-        'По возрастанию цены',
-        'По количеству предложений',
-        'По популярности',
-      ]
-    }
-  },
+  name: 'comp-sorter-select',
   data() {
     return {
-
+      sortBy: ''
     }
   },
-  methods: {
-
+  watch: {
+    sortBy(v) { this.$store.dispatch('product/SET_PROD_SORTER', v) },
   },
+  methods: {},
   computed: {
-
-  }
+    options () { return this.$store.state.product.setts.fltr }
+  },
+  mounted() {
+    this.sortBy = this.options[3]
+  },
 
 }
 </script>
 
 <style lang="scss" scoped>
-.comp-filer-select,
+.comp-sorter-select,
 .select-block {
   // margin-left: auto;
   &__wrapper {

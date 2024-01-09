@@ -4,16 +4,15 @@
       <div 
         class="pag__bullet bullet"
         v-for="(it, idx) in artsArray"
-        :key="it"
+        :key="idx"
       >
         <input 
           class="bullet__inp" 
-          name="pagination" 
+          :name="`pagination-${doorId}`"
           type="radio"
           :id="it"
-          :value="idx"
           @change="goTo(idx)"
-          :checked="idx === cs"
+          :checked="idx === currSlide"
         >
         <label class="bullet__labe" :for="it"></label>
       </div>
@@ -28,12 +27,9 @@ export default {
   props: { doorId: { type: Number, default: 0 } },
   data() {
     return{
-      // currentSlideId: 0,
     }
   },
-  watch: {
-    // getCurrSlide(slide) { this.currentSlideId = slide.currArtId },
-  },
+
   methods: {
     ...mapActions('product', ['SET_CURR_SLIDE']),
 
@@ -43,18 +39,17 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('product', ['SLIDE_INFO', 'ARTS_ARR', 'PAGINATION_DATA']),
+    ...mapGetters('product', ['ARTS_ARR', 'PAGINATION_DATA']),
     artsArray() { return this.ARTS_ARR(this.doorId) },
-    // getCurrSlide() { return this.SLIDE_INFO(this.doorId) },
-    cs() { return {...this.PAGINATION_DATA[this.doorId]}.currArtId }
+    currSlide() { return {...this.PAGINATION_DATA[this.doorId]}.currArtId }
   },
 }
 </script>
 
 <style lang="scss" scoped>
 .ui-pagination, .pag {
-  // @include media('min', 'sm') { display: block; }
-  // @include media('min', 'lg') { display: none; }
+  @include media('min', 'sm') { display: block; }
+  @include media('min', 'lg') { display: none; }
   width: 100%;
   &__wrap {
     @include fr-ev-c;

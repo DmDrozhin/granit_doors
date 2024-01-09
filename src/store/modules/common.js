@@ -7,6 +7,7 @@ const common = {
   },
   getters: {
     SCREEN: (state) => state.screen,
+    DEVICE: (state) => state.screen >= state.breaks.lg ? 'desktop' : 'mobile',
     BREAKS: (state) => state.breaks,
     MODAL_STATUS: (state) => state.modal,
   },

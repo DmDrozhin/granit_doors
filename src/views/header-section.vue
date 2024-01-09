@@ -1,6 +1,6 @@
 <template>
   <menuSection></menuSection>
-  <header class="header">
+  <section class="header">
     <div class="header__container">
       <div class="header__slider slider">
         <comp-carousel :go="sliderGo" @goTo="goToSlide($event)"></comp-carousel>
@@ -8,8 +8,10 @@
       <div class="header__wrap">
         <div class="header__l l">
           <div class="l__titles titles">
-            <h1 class="titles__t1">лучшие предложения <br/> на рынке дверей</h1>
-            <p class="titles__t2">от известных производителей</p>
+            <hgroup>
+              <h1 class="titles__t1">лучшие предложения <br/> на рынке дверей</h1>
+              <p class="titles__t2">от известных производителей</p>
+            </hgroup>
           </div>
           <div class="l__nav nav">
             <ui-nav-buttons
@@ -35,20 +37,20 @@
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <div class="prod-filter">
-    <compFilter></compFilter>
+    <compSorter></compSorter>
   </div>
 </template>
 
 <script>
 import menuSection from '@/components/comp-menu.vue'
 import compCarousel from '@/components/comp-slider-header.vue'
-import compFilter from '@/components/comp-filter-select.vue'
+import compSorter from '@/components/comp-sorter-select.vue'
 export default {
   name: 'header-section',
-  components: { menuSection, compCarousel, compFilter },
+  components: { menuSection, compCarousel, compSorter },
   data() {
     return {
       title1: 'лучшие предложения на рынке дверей',

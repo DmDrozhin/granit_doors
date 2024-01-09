@@ -32,7 +32,7 @@ export default {
   computed: {
     ...mapGetters('product', ['PROD']),
     currProd() { return this.PROD(this.doorId) },
-    txt () { return this.isChanged ? this.currProd.sz.lg + 'mm' : this.currProd.sz.sm + 'mm' }
+    txt () { return this.isChanged ? this.currProd.size.lg + 'mm' : this.currProd.size.sm + 'mm' }
   }
 
 }

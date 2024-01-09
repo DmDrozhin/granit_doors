@@ -1,8 +1,5 @@
 <template>
-  <button 
-    class="ui-button-base base"
-    @click="this.$emit('clicked')"
-  >
+  <div class="ui-button-base base">
     <div class= "base__wrapper">
       <div class= "base__icon">
         <slot name="icon"></slot>
@@ -11,7 +8,7 @@
         <slot name="txt"></slot>
       </div>
     </div>
-  </button>
+  </div>
 </template>
 
 <script>
@@ -20,20 +17,14 @@ export default {
   name: 'ui-button-base',
   data() {
     return {}
-  },
-  methods: { },
-  computed: {
-    // ...mapGetters('common', ['scrw']),
-  },
-  watch: { },
-
-  mounted() { }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .ui-button-base,
 .base {
+  pointer-events: none;
   $r: 10px;
   $h: 43px;
   height: $h;

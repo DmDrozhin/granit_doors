@@ -33,7 +33,7 @@ export default {
   computed: {
     ...mapGetters('product', ['PROD']),
     currProd() { return this.PROD(this.doorId) },
-    txt () { return this.isChanged ? this.currProd.osd.L : this.currProd.osd.R },
+    txt () { return this.isChanged ? this.currProd.side.L : this.currProd.side.R },
     side () { return this.isChanged ? -1 : 1 }
   }
 
