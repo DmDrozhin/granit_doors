@@ -9,9 +9,7 @@
           :value="option">{{ option }}
         </option>
       </select>
-      <div class="select-block__svg">
-        <img src="../assets/svg/select-filter.svg" alt="filter icon">
-      </div>
+      <div class="select-block__svg"></div>
     </div>
   </div>
 </template>
@@ -78,6 +76,9 @@ export default {
     width: 26px;
     height: 24px;
     z-index: -1;
+    background-image: url('@/assets/svg/select-filter.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
     @include media('min', 'sm') {
       left: 0;
       right: auto;

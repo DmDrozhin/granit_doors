@@ -159,7 +159,8 @@ export default {
   }
 }  
 .prod-filter {
-  padding-bottom: 23px;
+  @include media('min', 'sm') { padding-bottom: 20px; }
+  @include media('min', 'lg') { padding-bottom: 23px; }
 }
 </style>
 

@@ -8,7 +8,7 @@
           @currSlide="currSlide = $event"
         ></comp-prod-slider>
       </div>
-      <div class="prod__details">
+      <!-- <div class="prod__details">
         <comp-prod-info
           :doorId="doorId"
           
@@ -25,20 +25,21 @@
           :doorId="doorId"
           
         ></ui-pagination-block>
-      </div>
+      </div> -->
     </div>
   </article>
 </template>
 
 <script>
 import compProdSlider from '@/components/comp-prod-slider.vue'
-import compProdInfo from '@/components/comp-prod-info.vue'
-import compProdOrderBlock from '@/components/comp-prod-order-block.vue'
-import uiPaginationBlock from '@/components/UI/ui-pagination-block.vue'
+// import compProdInfo from '@/components/comp-prod-info.vue'
+// import compProdOrderBlock from '@/components/comp-prod-order-block.vue'
+// import uiPaginationBlock from '@/components/UI/ui-pagination-block.vue'
 
 export default {
   name: 'comp-product-section',
-  components: { compProdSlider, compProdInfo, compProdOrderBlock, uiPaginationBlock },
+  components: { compProdSlider },
+  // components: { compProdSlider, compProdInfo, compProdOrderBlock, uiPaginationBlock },
   props: { doorId: { type: Number, default: undefined } },
   data() {
     return{

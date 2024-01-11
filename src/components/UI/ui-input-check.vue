@@ -1,18 +1,18 @@
 <template>
-    <li class="ui-input-check check">
+    <li class="ui-input-check li-check">
       <input 
         type="checkbox"
-        class="check__inp" 
+        class="li-check__inp" 
         :id="setts.val" 
         :value="setts.val"
         :name="setts.name"
         @change="handle($event)"
         :checked="setts.isChecked"
       >
-      <div class="check__icon-wrap">
+      <div class="li-check__icon-wrap">
         <ui-icon-check></ui-icon-check>
       </div>
-      <label class="check__labe" :for="setts.val">{{ setts.val }}</label>
+      <label class="li-check__labe" :for="setts.val">{{ setts.labe }}</label>
     </li>
 </template>
 
@@ -42,7 +42,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ui-input-check, .check {
+.ui-input-check, 
+.li-check {
+  width: 100%;
   @include fr-st-c;
   position: relative;
   &__icon-wrap {
@@ -65,6 +67,7 @@ export default {
     background-color: $green-dk;
   }
   &__labe {
+    flex: 1;
     @include FT400-16;
     color: $dark-33;
   }

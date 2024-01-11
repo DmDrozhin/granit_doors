@@ -3,107 +3,112 @@
     <div class="filters__wrap">
 
       <div class="filters__main-btn">
-        <ui-button-filters></ui-button-filters>
+        <ui-button-filters
+          @titleButtonClick="isOpenBlock = !isOpenBlock"
+          :isRolled="isOpenBlock"
+        ></ui-button-filters>
       </div>
-
-      <form 
-        class="filters__form form" 
-        id="form-sizes" 
-        ref="sizes" 
-        autofocus  
-        @submit.prevent
-      >
-        <fieldset class="form__field" form="form-sizes">
-          <legend class="form__legend">Размеры</legend>
-          <ul>
-            <ui-input-check
-              class="form__check-inp"
-              :setts="{ name: 'sizes', val: 'Все размеры', isChecked: isAllSizes }"
-              @handleCheck="isAllSizes = !isAllSizes"
-            ></ui-input-check>
-            <ui-input-check
-              v-for="it in SETTS.size"
-              :key="it.id"
-              class="form__check-inp"
-              :setts="{ name: 'sizes', val: `${it} мм`, isChecked: undefined }"
-              @handleCheck="handleSizes($event, 'sizes')"
-            ></ui-input-check>
-          </ul>
-
-        </fieldset>
-      </form>
-        
-      <form 
-        class="filters__form form" 
-        id="form-add-options"  
-        @submit.prevent
-      >
-        <fieldset class="form__field purpose" form="form-add-options">
-          <legend class="form__legend">Назначение двери</legend>
-          <ul>
-            <ui-input-check
-              class="form__check-inp"
-              :setts="{ name: 'purposes', val: SETTS.purp.hm, isChecked: undefined }"
-              @handleCheck="handleCheck($event, 'purpose')"
-            ></ui-input-check>
-            <ui-input-check
-              class="form__check-inp"
-              :setts="{ name: 'purposes', val: SETTS.purp.out, isChecked: undefined }"
-              @handleCheck="handleCheck($event, 'purpose')"
-            ></ui-input-check>
-          </ul>
-        </fieldset>
-
-        <fieldset class="form__field contour" form="form-add-options">
-          <legend class="form__legend">Контуров уплотнения</legend>
-          <ul>
-            <ui-input-check
-              class="form__check-inp"
-              :setts="{ name: 'purposes', val: SETTS.cont[0], isChecked: undefined }"
-              @handleCheck="handleCheck($event, 'contour')"
-            ></ui-input-check>
-            <ui-input-check
-              class="form__check-inp"
-              :setts="{ name: 'purposes', val: SETTS.cont[1], isChecked: undefined }"
-              @handleCheck="handleCheck($event, 'contour')"
-            ></ui-input-check>
-          </ul>
-        </fieldset>
-
-        <fieldset class="form__field mirror" form="form-add-options">
-          <div class="form__toggle-block toggle">
-            <label for="toggle">С зеркалом</label>
-            <ui-button-toggle
-              :setts="{ name: 'purposes', val: SETTS.adds.mirr, isOn: hasMirror }"
-              @toggled="toggle($event)"
-            ></ui-button-toggle>
-          </div>
-        </fieldset>
-
-        <fieldset class="form__field defects" form="form-add-options">
-          <legend class="form__legend">Дополнительные особенности</legend>
-          <ul>
-            <ui-input-check
-              class="form__check-inp"
-              v-for="(it, idx) in SETTS.dfct"
-              :key="idx"
-              :setts="{ name: 'add-options', val: it, isChecked: undefined }"
-              @handleCheck="handleCheck($event, 'adds')"
-            ></ui-input-check>
-          </ul>
-        </fieldset>
-
-        <fieldset class="form__field submit">
-          <div class="submit__ui-btn">
-            <ui-button-filters-run
-              @clicked="handleForm()"
-            ></ui-button-filters-run>
-          </div>
-          <div class="submit__reset">
-            <input type="reset" class="submit__reset-inp" @click="resetAll()">
-          </div>
-        </fieldset>
-      </form>
+      <div class="filters__forms-wrapper" v-show="isOpenBlock">
+        <form 
+          class="filters__form form"
+          id="form-sizes" 
+          ref="sizes"
+          autofocus  
+          @submit.prevent
+        >
+          <fieldset class="form__field size" form="form-sizes">
+            <legend class="form__legend">Размеры</legend>
+            <ul class="form__filter-ul">
+              <ui-input-check
+                class="form__check-inp"
+                :setts="{ name: 'sizes', val: 'all', labe: 'Все размеры', isChecked: isAllSizes }"
+                @handleCheck="isAllSizes = !isAllSizes"
+              ></ui-input-check>
+              <ui-input-check
+                v-for="it in SETTS.size"
+                :key="it.id"
+                class="form__check-inp"
+                :setts="{ name: 'sizes', val: it, labe: `${it} мм`, isChecked: undefined }"
+                @handleCheck="handleSizes($event, 'sizes')"
+              ></ui-input-check>
+            </ul>
+  
+          </fieldset>
+        </form>
+          
+        <form 
+          class="filters__form form" 
+          id="form-add-options"  
+          @submit.prevent
+        >
+          <fieldset class="form__field purpose" form="form-add-options">
+            <legend class="form__legend">Назначение двери</legend>
+            <ul class="form__filter-ul">
+              <ui-input-check
+                class="form__check-inp"
+                :setts="{ name: 'purposes', val: Object.keys(SETTS.purp)[0], labe: SETTS.purp.hm, isChecked: undefined }"
+                @handleCheck="handleCheck($event, 'purpose')"
+              ></ui-input-check>
+              <ui-input-check
+                class="form__check-inp"
+                :setts="{ name: 'purposes', val: Object.keys(SETTS.purp)[1], labe: SETTS.purp.out, isChecked: undefined }"
+                @handleCheck="handleCheck($event, 'purpose')"
+              ></ui-input-check>
+            </ul>
+          </fieldset>
+  
+          <fieldset class="form__field contour" form="form-add-options">
+            <legend class="form__legend">Контуров уплотнения</legend>
+            <ul class="form__filter-ul">
+              <ui-input-check
+                class="form__check-inp"
+                :setts="{ name: 'purposes', val: SETTS.cont[0], labe: SETTS.cont[0], isChecked: undefined }"
+                @handleCheck="handleCheck($event, 'contour')"
+              ></ui-input-check>
+              <ui-input-check
+                class="form__check-inp"
+                :setts="{ name: 'purposes', val: SETTS.cont[1], labe: SETTS.cont[1], isChecked: undefined }"
+                @handleCheck="handleCheck($event, 'contour')"
+              ></ui-input-check>
+            </ul>
+          </fieldset>
+  
+          <fieldset class="form__field mirror" form="form-add-options">
+            <div class="form__toggle-block toggle">
+              <label :for="SETTS.adds.mirr" class="toggle__labe">С зеркалом</label>
+              <ui-button-toggle
+                class="toggle__btn"
+                :setts="{ name: 'purposes', val: SETTS.adds.mirr, isOn: hasMirror }"
+                @toggled="toggle($event)"
+              ></ui-button-toggle>
+            </div>
+          </fieldset>
+  
+          <fieldset class="form__field defects" form="form-add-options">
+            <legend class="form__legend">Дополнительные особенности</legend>
+            <ul class="form__filter-ul">
+              <ui-input-check
+                class="form__check-inp"
+                v-for="(it, key, id) in SETTS.dfct"
+                :key="key"
+                :setts="{ name: 'add-options', val: Object.keys(SETTS.dfct)[id], labe: it, isChecked: undefined }"
+                @handleCheck="handleCheck($event, 'adds')"
+              ></ui-input-check>
+            </ul>
+          </fieldset>
+  
+          <fieldset class="form__field submit">
+            <div class="submit__ui-btn">
+              <ui-button-filters-run
+                @clicked="handleForm()"
+              ></ui-button-filters-run>
+            </div>
+            <div class="submit__reset">
+              <input type="reset" class="submit__reset-inp" @click="resetAll()">
+            </div>
+          </fieldset>
+        </form>
+      </div>
 
     </div>
   
@@ -125,6 +130,7 @@ export default {
   props: { doorId: { type: Number, default: undefined } },
   data() {
     return{
+      isOpenBlock: true,
       isAllSizes: true, // 1) if true, ignore - pickedSizes array
       sizes: [], // 1) picked out sizes
       purpose: [], // 2) for flat of for house
@@ -139,10 +145,13 @@ export default {
         this.sizes = []
         this.$refs.sizes.reset()
       }
-    }
+    },
+    isDesktop(v) { v ? this.isOpenBlock = true : this.isOpenBlock = false }
   },
   computed: {
-    ...mapGetters('product', ['SETTS'])
+    ...mapGetters('product', ['SETTS']),
+    ...mapGetters('common', ['DEVICE']),
+    isDesktop() { return this.DEVICE === 'desktop'},
     // keyId() { return Math.random().toString(16).slice (2) }
   },
   methods: {
@@ -174,49 +183,66 @@ export default {
     handleForm() {
       const isNot0 = [] // for arrays
       const isVal = [] // for booleans
-      for(const it in this.$data) {
+      const {isOpenBlock, ...data} = { ...this.$data }
+      isOpenBlock
+      for(const it in data) {
         const vl = this.$data[it]
+  
         if (Array.isArray(vl)) !vl.length ? isNot0.push(false) : isNot0.push(true)
         if (typeof vl === 'boolean') isVal.push(vl)
       }
-      if (isNot0.includes(true) || isVal.includes(true)) {
-        const setts = {...this.$data}
-        this.SET_RPOD_FILTER(setts)
+      if (isNot0.includes(true) || isVal.includes(true)) {        
+        this.SET_RPOD_FILTER(data)
         // console.log('OK')
-      } else alert('There is nothing to filter')
+      } else alert('Не выбраны опции фильтра товаров!')
     }
   },
+  mounted() {
+    this.handleForm()
+    if (!this.isDesktop) this.isOpenBlock = false
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .comp-filter-block, .filters {
+  width: 100%;
+  // background-color: #d5f5e9; // tech
   &__wrap {
     // @include media('min', 'sm') { @include fc; }
     // @include media('min', 'lg') { @include fr; }
   }
   &__main-btn {
-    margin-bottom: 26px;
+    @include media('min', 'sm') { pointer-events: all; }
+    @include media('min', 'lg') { pointer-events: none; }
+  }
+  &__forms-wrapper {
+    @include media('min', 'sm') { margin-top: 14px; }
+    @include media('min', 'lg') { margin-top: 26px; }
   }
   &__form, .form {
+    width: 100%;
+    &__field.size {
+      @include media('min', 'sm') { margin-bottom: 16px; }
+      @include media('min', 'lg') { margin-bottom: 23px; }
+    }
     &__field {
-      margin-bottom: 23px;
+      width: 100%;
+      @include media('min', 'sm') { margin-bottom: 16px; }
+      @include media('min', 'lg') { margin-bottom: 40px; }
     }
-    &__field.purpose {
-      margin-bottom: 40px;
-    }
-    &__field.contour {
-      margin-bottom: 40px;
-    }
-    &__field.mirror {
-      margin-bottom: 40px;
-    }
+    // &__field.contour { }
+    // &__field.mirror { }
     &__field.defects {
-      margin-bottom: 40px;
+      @include media('min', 'sm') { margin-bottom: 24px; }
+      @include media('min', 'lg') { margin-bottom: 40px; }
     }
     &__legend {
       @include FT450-16;
       margin-bottom: 13px;
+    }
+    &__filter-ul {
+      width: 100%;
     }
     &__check-inp {
       margin-bottom: 13px;
@@ -224,22 +250,19 @@ export default {
     &__check-inp:last-child {
       margin-bottom: 0;
     }
-    &__toggle-block, .toggle {
+    &__toggle-block, 
+    .toggle {
+      width: 100%;
       @include fr-sb-c;
-      &__labe {
-
-      }
-      &__btn {
-        width: 39px;
-        height: 22px;
-        border-radius: 23px;
-      }
+      &__labe {  flex: 1; }
+      &__btn {  }
     }
     &__field, .submit {
       width: 100%;
-      @include media('min', 'sm') { @include fr-sb-c; gap: auto; }
+      @include media('min', 'sm') { @include fr-sb-c; gap: 18px; }
       @include media('min', 'lg') { display: block; }
       &__ui-btn {
+        @include media('min', 'sm') { flex: 1; }
         margin-bottom: 6px;
       }
       &__reset {

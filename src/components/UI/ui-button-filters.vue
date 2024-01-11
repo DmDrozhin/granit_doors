@@ -1,13 +1,13 @@
 <template>
-  <button class="ui-button-filters btn">
-    <div class="btn__wrap">
-      <div class="btn__icon-wrap">
+  <button class="ui-button-filters filters-btn" @click="handleClick" :class="{'grey-bg': isRolled }">
+    <div class="filters-btn__wrap">
+      <div class="filters-btn__icon-wrap">
         <ui-icon-filter
-          class="btn__icon"
+          class="filters-btn__icon"
           :setts="{ col: icon }"
         ></ui-icon-filter>
       </div>
-      <p class="btn__txt">Фильтр моделей</p>
+      <p class="filters-btn__txt">Фильтр моделей</p>
     </div>
   </button>
   
@@ -19,23 +19,26 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'ui-button-filters',
   components: { uiIconFilter, },
+  props: { isRolled: { type: Boolean, default: false } },
   data() {
-    return{
-
+    return{ }
+  },
+  methods: {
+    handleClick() {
+      if (!this.isDesktop) this.$emit('titleButtonClick')
     }
   },
-  methods: { },
   computed: {
     ...mapGetters('common', ['DEVICE']),
-    icon() { return this.DEVICE === 'desktop' ? '#C3C3C3' : '#FFF' }
-
+    isDesktop() { return this.DEVICE === 'desktop'},
+    icon() { return this.isDesktop ? '#C3C3C3' : '#FFF' },
   }
-
 }
 </script>
 
 <style lang="scss" scoped>
-.ui-button-filters, .btn {
+.ui-button-filters, 
+.filters-btn {
   width: 100%;
   height: 49px;
   border-radius: 6px;
@@ -66,5 +69,9 @@ export default {
     @include media('min', 'sm') { color: $light; }
     @include media('min', 'lg') { color: $dark-33; }
   }
+}
+.grey-bg {
+  @include media('min', 'sm') { background-color: $grey-58; }
+  @include media('min', 'lg') { background-color: transparent; }
 }
 </style>

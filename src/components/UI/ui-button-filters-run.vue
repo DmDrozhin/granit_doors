@@ -47,8 +47,8 @@ export default {
     text-align: left;
     @include button-txt;
     font-size: 0.875rem; // 14
-    @include media('min', 'sm') { padding-left: 55px; }
-    @include media('min', 'lg') { padding-left: 15px; }
+    @include media('min', 'sm') { padding-left: 26px; }
+    @include media('min', 'lg') { padding-left: 14px; }
     color: #fff;
   }
 

@@ -40,8 +40,8 @@ export default {
     doBtn() { this.SET_MDW(true) }
   },
   computed: {
-    ...mapGetters('product', ['PRODS']),
-    prodsArrLength() { return this.PRODS.length}
+    ...mapGetters('product', ['FILTERED']),
+    prodsArrLength() { return this.FILTERED.length }
   }
 }
 </script>
@@ -63,7 +63,7 @@ export default {
     @include media('min', 'lg') { @include fr; }
   }
   &__sec1, .sec1 {
-    @include media('min', 'sm') { }
+    @include media('min', 'sm') { flex: 0 1 auto; }
     @include media('min', 'lg') { flex: 0 0 236px; } // width of aside 236px
   }
   &__sec2, .sec2 {

@@ -1,6 +1,6 @@
 <template>
-  <div class="ui-button-opening opening">
-    <ui-button-base @clicked="toggle">
+  <button class="ui-button-opening opening" @click="toggle">
+    <ui-button-base>
       <template #icon>
         <ui-icon-door
           class="opening__icon"
@@ -11,7 +11,7 @@
         <p class="opening__txt">{{ txt }}</p>
       </template>
     </ui-button-base>
-  </div>
+  </button>
   
 </template>
 
