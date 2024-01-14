@@ -8,6 +8,7 @@
           :isRolled="isOpenBlock"
         ></ui-button-filters>
       </div>
+
       <div class="filters__forms-wrapper" v-show="isOpenBlock">
         <form 
           class="filters__form form"
@@ -16,20 +17,24 @@
           autofocus  
           @submit.prevent
         >
+
           <fieldset class="form__field size" form="form-sizes">
             <legend class="form__legend">Размеры</legend>
             <ul class="form__filter-ul">
               <ui-input-check
+                :key="56569131"
                 class="form__check-inp"
-                :setts="{ name: 'sizes', val: 'all', labe: 'Все размеры', isChecked: isAllSizes }"
-                @handleCheck="isAllSizes = !isAllSizes"
+                :setts="{ name: 'sizes', val: 1, labe: 'Все размеры' }"
+                :isChecked="isAll"
+                @handleCheck="resetSizes()"
               ></ui-input-check>
               <ui-input-check
                 v-for="it in SETTS.size"
                 :key="it.id"
                 class="form__check-inp"
-                :setts="{ name: 'sizes', val: it, labe: `${it} мм`, isChecked: undefined }"
-                @handleCheck="handleSizes($event, 'sizes')"
+                :setts="{ name: 'sizes', val: it, labe: `${it} мм` }"
+                :isChecked="false"
+                @handleCheck="handleCheck($event, 'sizes')"
               ></ui-input-check>
             </ul>
   
@@ -38,7 +43,8 @@
           
         <form 
           class="filters__form form" 
-          id="form-add-options"  
+          id="form-add-options"
+          ref="addOptions"
           @submit.prevent
         >
           <fieldset class="form__field purpose" form="form-add-options">
@@ -46,12 +52,14 @@
             <ul class="form__filter-ul">
               <ui-input-check
                 class="form__check-inp"
-                :setts="{ name: 'purposes', val: Object.keys(SETTS.purp)[0], labe: SETTS.purp.hm, isChecked: undefined }"
+                :setts="{ name: 'purposes', val: Object.keys(SETTS.purp)[0], labe: SETTS.purp.hm }"
+                :isChecked="false"
                 @handleCheck="handleCheck($event, 'purpose')"
               ></ui-input-check>
               <ui-input-check
                 class="form__check-inp"
-                :setts="{ name: 'purposes', val: Object.keys(SETTS.purp)[1], labe: SETTS.purp.out, isChecked: undefined }"
+                :setts="{ name: 'purposes', val: Object.keys(SETTS.purp)[1], labe: SETTS.purp.out }"
+                :isChecked="false"
                 @handleCheck="handleCheck($event, 'purpose')"
               ></ui-input-check>
             </ul>
@@ -62,12 +70,14 @@
             <ul class="form__filter-ul">
               <ui-input-check
                 class="form__check-inp"
-                :setts="{ name: 'purposes', val: SETTS.cont[0], labe: SETTS.cont[0], isChecked: undefined }"
+                :setts="{ name: 'purposes', val: SETTS.cont[0], labe: `${SETTS.cont[0]} контура` }"
+                :isChecked="false"
                 @handleCheck="handleCheck($event, 'contour')"
               ></ui-input-check>
               <ui-input-check
                 class="form__check-inp"
-                :setts="{ name: 'purposes', val: SETTS.cont[1], labe: SETTS.cont[1], isChecked: undefined }"
+                :setts="{ name: 'purposes', val: SETTS.cont[1], labe: `${SETTS.cont[1]} контура` }"
+                :isChecked="false"
                 @handleCheck="handleCheck($event, 'contour')"
               ></ui-input-check>
             </ul>
@@ -78,8 +88,8 @@
               <label :for="SETTS.adds.mirr" class="toggle__labe">С зеркалом</label>
               <ui-button-toggle
                 class="toggle__btn"
-                :setts="{ name: 'purposes', val: SETTS.adds.mirr, isOn: hasMirror }"
-                @toggled="toggle($event)"
+                :setts="{ name: 'purposes', val: door.hasMirror }"
+                v-model:isOn="door.hasMirror"
               ></ui-button-toggle>
             </div>
           </fieldset>
@@ -91,8 +101,9 @@
                 class="form__check-inp"
                 v-for="(it, key, id) in SETTS.dfct"
                 :key="key"
-                :setts="{ name: 'add-options', val: Object.keys(SETTS.dfct)[id], labe: it, isChecked: undefined }"
-                @handleCheck="handleCheck($event, 'adds')"
+                :setts="{ name: 'add-options', val: Object.keys(SETTS.dfct)[id], labe: it }"
+                :isChecked="false"
+                @handleCheck="handleCheck($event, 'defects')"
               ></ui-input-check>
             </ul>
           </fieldset>
@@ -100,11 +111,11 @@
           <fieldset class="form__field submit">
             <div class="submit__ui-btn">
               <ui-button-filters-run
-                @clicked="handleForm()"
+                @clicked="handleForm"
               ></ui-button-filters-run>
             </div>
             <div class="submit__reset">
-              <input type="reset" class="submit__reset-inp" @click="resetAll()">
+              <input type="reset" class="submit__reset-inp" @click="resetAll">
             </div>
           </fieldset>
         </form>
@@ -127,78 +138,71 @@ export default {
   name: 'comp-filter-block',
 
   components: { uiButtonFilters, uiInputCheck, uiButtonToggle, uiButtonFiltersRun },
-  props: { doorId: { type: Number, default: undefined } },
   data() {
     return{
       isOpenBlock: true,
-      isAllSizes: true, // 1) if true, ignore - pickedSizes array
-      sizes: [], // 1) picked out sizes
-      purpose: [], // 2) for flat of for house
-      contour: [], // 3) qt of conturs of 
-      hasMirror: false, // 4) if true, mirror option is picked out
-      adds: [] // 5) picked out add options
+      door: {
+        sizes: [], // 1) picked sizes
+        purpose: [], // 2) for flat of for house
+        contour: [], // 3) qt of contours in door
+        hasMirror: false, // 4) if true, has mirror option
+        defects: [] // 5) door defects
+      }
     }
   },
   watch: {
-    isAllSizes(v) {
-      if (v) { 
-        this.sizes = []
-        this.$refs.sizes.reset()
-      }
-    },
     isDesktop(v) { v ? this.isOpenBlock = true : this.isOpenBlock = false }
   },
   computed: {
     ...mapGetters('product', ['SETTS']),
     ...mapGetters('common', ['DEVICE']),
     isDesktop() { return this.DEVICE === 'desktop'},
-    // keyId() { return Math.random().toString(16).slice (2) }
+    isAll() { return this.door.sizes && this.door.sizes.length > 0 ? false : true }
   },
   methods: {
-    ...mapActions('product', ['SET_RPOD_FILTER']),
+    ...mapActions('product', ['SET_PROD_FILTER', 'SAVE_FILTERED_PRODS']),
 
-    toggle(ev) { this.hasMirror = ev },
-
-    handleSizes(dt) {
-      const arr = this.sizes
-      if (!arr.includes(dt.val) && dt.isChecked ) {
-        arr.push(dt.val)
-        this.isAllSizes = false
-      }
-      if (arr.includes(dt.val) && !dt.isChecked) arr.splice(arr.indexOf(dt.val), 1)
-      if (arr.length === 0) this.isAllSizes = true
-    },
     handleCheck(dt, name) {
-      const arr = this[name]
+      const arr = this.door[name]
       if (!arr.includes(dt.val) && dt.isChecked ) arr.push(dt.val)
       if (arr.includes(dt.val) && !dt.isChecked) arr.splice(arr.indexOf(dt.val), 1)
     },
-    clearArr(ar) { ar.forEach(it => this[it] = []) },
+    resetSizes() {
+      this.door.sizes = []
+      this.$refs.sizes.reset()
+    },
     resetAll() {
       this.$refs.sizes.reset()
-      this.clearArr(['sizes', 'purpose', 'contour', 'adds'])
-      this.hasMirror = false
-      this.isAllSizes = true
+      this.$refs.addOptions.reset()
+      for(const it in this.door) {
+        let vl = this.door[it]
+        if (Array.isArray(vl)) this.door[it] = []
+        else if (typeof vl === 'boolean') this.door[it] = false
+      }
+      this.handleForm()
     },
-    handleForm() {
+    validateForm() {
       const isNot0 = [] // for arrays
       const isVal = [] // for booleans
-      const {isOpenBlock, ...data} = { ...this.$data }
-      isOpenBlock
-      for(const it in data) {
-        const vl = this.$data[it]
-  
+      const dr = this.door
+      for (const it in dr) {
+        let vl = dr[it]
         if (Array.isArray(vl)) !vl.length ? isNot0.push(false) : isNot0.push(true)
         if (typeof vl === 'boolean') isVal.push(vl)
       }
-      if (isNot0.includes(true) || isVal.includes(true)) {        
-        this.SET_RPOD_FILTER(data)
-        // console.log('OK')
-      } else alert('Не выбраны опции фильтра товаров!')
+      if (isNot0.includes(true) || isVal.includes(true)) return true
+      else return false
+    },
+
+    handleForm() {
+      const setts = JSON.parse(JSON.stringify(this.door))
+      this.SET_PROD_FILTER(setts)
+      this.SAVE_FILTERED_PRODS(setts)
+
     }
   },
   mounted() {
-    this.handleForm()
+    // this.handleForm()
     if (!this.isDesktop) this.isOpenBlock = false
   }
 }

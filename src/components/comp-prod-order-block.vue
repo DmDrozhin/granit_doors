@@ -4,20 +4,19 @@
 
       <template #sale>
         <ui-sale-star
-          :sale="sale"
+          :sale="slideData.saleNum"
         ></ui-sale-star>
       </template>
 
       <template #price>
         <ui-price
-          :price="price"
-          :sale="sale"
+          :setts="{ price: slideData.price, salePrice: slideData.salePrice }"
         ></ui-price>
       </template>
 
       <template #inStock>
         <ui-in-stock-block
-          :stock="stock"
+          :stock="slideData.stock"
         ></ui-in-stock-block>
       </template>
 
@@ -39,33 +38,34 @@ import uiSaleStar from '@/components/UI/ui-sale-star.vue'
 export default {
   name: 'comp-prod-order-block',
   components: { uiPriceBlockBase, uiSaleStar, uiInStockBlock, uiOrderButtonShopCart, uiPrice },
-  props: { doorId: { type: Number, default: 1 } },
+  props: {
+    doorId: { type: Number, default: undefined },
+    prod: { type: Object, default: () => {} } 
+  },
   data() {
     return {
-      sale: null,
-      stock: null,
-      price: null
+      currSlide: ''
     }
   },
   watch: {
-    currArt(v) { 
-      this.sale = this.SETTS.sale[v.data.sale] 
-      this.stock = v.data.stock
-      this.price = v.data.price
-    }
+    activity(slide) {
+      this.currSlide = slide.currArtId
+    },
   },
   methods: { },
   computed: {
-    ...mapGetters('product', ['PROD', 'ART_DATA', 'SETTS']),
+    ...mapGetters('product', ['SETTS', 'SLIDE_INFO']),
+    activity() { return this.SLIDE_INFO(this.doorId) },
+    slideData() { return { ...this.prod.arts[this.currSlide] } },
+    // slideData() { return this.prod.arts[this.currSlide] }, // bad
 
-    prodDt() { return this.PROD(this.doorId) },
-    currArt() { return this.ART_DATA(this.doorId) },
+  },
+  mounted() {
+    this.currSlide = this.SLIDE_INFO(this.doorId)
   }
 }
 </script>
 
 <style lang="scss" scoped>
-// .comp-prod-order-block, .ord {
-
-// }
+// .comp-prod-order-block, .ord { }
 </style>

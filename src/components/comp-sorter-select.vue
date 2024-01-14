@@ -4,7 +4,7 @@
       <select class="select-block__inp" v-model="sortBy">
         <option 
           class="select-block__option" 
-          v-for="(option, idx) in options"
+          v-for="(option, idx) in setts"
           :key="idx" 
           :value="option">{{ option }}
         </option>
@@ -19,18 +19,22 @@ export default {
   name: 'comp-sorter-select',
   data() {
     return {
-      sortBy: ''
+      sortBy: '',
+      setts: []
     }
   },
   watch: {
-    sortBy(v) { this.$store.dispatch('product/SET_PROD_SORTER', v) },
+    sortBy(v) {
+      this.$store.dispatch('product/SET_PROD_SORTER', v) 
+      this.$store.dispatch('product/SAVE_SORTED_PRODS', v)
+    },
   },
   methods: {},
-  computed: {
-    options () { return this.$store.state.product.setts.fltr }
-  },
+  computed: {},
+
   mounted() {
-    this.sortBy = this.options[3]
+    this.setts = this.$store.getters['product/SETTS'].fltr
+    this.sortBy = this.setts[3]
   },
 
 }

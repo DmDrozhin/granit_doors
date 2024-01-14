@@ -9,9 +9,10 @@
 
         <div class="main__sec2 sec2">
           <comp-product-section
-            v-for="(it, idx) in prodsArrLength"
-            :key="idx"
+            v-for="(it, idx) in filtered"
+            :key="it.id"
             :doorId="idx"
+            :prod="it"
           ></comp-product-section>
         </div>
         
@@ -24,24 +25,19 @@
 import sidebarSection from './sidebar-section.vue'
 import compProductSection from '@/components/comp-product-section.vue'
 
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'main-section',
   components: { sidebarSection, compProductSection },
-  // components: { compFilter, slider },
   data() {
     return {
-
     }
   },
-  methods: {
-    ...mapActions('common', ['SET_MDW']),
-    doBtn() { this.SET_MDW(true) }
-  },
+  methods: { },
   computed: {
     ...mapGetters('product', ['FILTERED']),
-    prodsArrLength() { return this.FILTERED.length }
+    filtered() { return this.$store.getters['product/FILTERED'] }
   }
 }
 </script>

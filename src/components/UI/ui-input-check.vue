@@ -6,8 +6,8 @@
         :id="setts.val" 
         :value="setts.val"
         :name="setts.name"
-        @change="handle($event)"
-        :checked="setts.isChecked"
+        @input="handle($event)"
+        :checked="isChecked"
       >
       <div class="li-check__icon-wrap">
         <ui-icon-check></ui-icon-check>
@@ -21,7 +21,7 @@ import uiIconCheck from '@/components/UI/svg-icons/ui-icon-check.vue'
 export default {
   name: 'ui-input-check',
   components: { uiIconCheck },
-  props: { setts: { type: Object, default: () => {} } },
+  props: { setts: { type: Object, default: () => {} }, isChecked: { type: Boolean, default: false } },
   data() {
     return{
 

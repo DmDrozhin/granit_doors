@@ -1,11 +1,7 @@
 <template>
   <div class="ui-price price">
-    <div class="price__sale">
-      {{ salePrice }}
-    </div>
-    <div class="price__net">
-      {{ netPrice }}
-    </div>
+    <div class="price__sale">{{ salePrice }}</div>
+    <div class="price__net">{{ price }}</div>
   </div>
   
 </template>
@@ -13,11 +9,9 @@
 <script>
 export default {
   name: 'ui-price',
-  props: { price: { type: Number, default: 27134 }, sale: { type: Number, default: 0.5 } },
+  props: { setts: { type: Object, default: () => {} } },
   data() {
     return{
-      // price: 27134,
-      // sale: 0.5
     }
   },
   methods: {
@@ -30,10 +24,9 @@ export default {
     }
   },
   computed: {
-    salePrice() { return this.toCurrency(this.price * (1 - this.sale)) },
-    netPrice() { return this.toCurrency(this.price) }
+    salePrice() { return this.toCurrency(this.setts.salePrice) },
+    price() { return this.toCurrency(this.setts.price) }
   }
-
 }
 </script>
 
@@ -54,7 +47,5 @@ export default {
     @include media('min', 'sm') { font-size: 1.5625rem; } // 25
     @include media('min', 'lg') { font-size: 1.875rem; } // 30
   }
-
 }
-
 </style>

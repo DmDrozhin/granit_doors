@@ -4,54 +4,51 @@
       <div class="prod__carousel">
         <comp-prod-slider
           :doorId="doorId"
-          
-          @currSlide="currSlide = $event"
+          :prod="prod"
         ></comp-prod-slider>
       </div>
-      <!-- <div class="prod__details">
+      <div class="prod__details">
         <comp-prod-info
           :doorId="doorId"
-          
+          :prod="prod"
         ></comp-prod-info>
       </div>
       <div class="prod__order">
         <comp-prod-order-block
           :doorId="doorId"
-          
+          :prod="prod"
         ></comp-prod-order-block>
       </div>
       <div class="prod__pagination">
         <ui-pagination-block
           :doorId="doorId"
-          
+          :prod="prod"
         ></ui-pagination-block>
-      </div> -->
+      </div>
     </div>
   </article>
 </template>
 
 <script>
 import compProdSlider from '@/components/comp-prod-slider.vue'
-// import compProdInfo from '@/components/comp-prod-info.vue'
-// import compProdOrderBlock from '@/components/comp-prod-order-block.vue'
-// import uiPaginationBlock from '@/components/UI/ui-pagination-block.vue'
+import compProdInfo from '@/components/comp-prod-info.vue'
+import compProdOrderBlock from '@/components/comp-prod-order-block.vue'
+import uiPaginationBlock from '@/components/UI/ui-pagination-block.vue'
 
 export default {
   name: 'comp-product-section',
-  components: { compProdSlider },
-  // components: { compProdSlider, compProdInfo, compProdOrderBlock, uiPaginationBlock },
-  props: { doorId: { type: Number, default: undefined } },
+  components: { compProdSlider, compProdInfo, compProdOrderBlock, uiPaginationBlock },
+  props: {
+    doorId: { type: Number, default: 0 },
+    prod: { type: Object, default: () => {} }
+  },
   data() {
-    return{
-      // keyId: ''
-    }
+    return{ }
   },
   methods: { 
     // makeId() { return Math.random().toString(16).slice (2) },
   },
-  computed: { 
-    // keyId() { return Math.random().toString(16).slice (2) }
-  },
+  computed: { },
 }
 </script>
 

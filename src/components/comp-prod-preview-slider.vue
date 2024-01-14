@@ -6,7 +6,7 @@
         <button class="nav__l" ref="btnL">
           <ui-icon-nav-arrow :setts="{ col: '#fff', rot: 180 }"/>
         </button>
-        <button class="nav__r" ref="btnR" >
+        <button class="nav__r" ref="btnR">
           <ui-icon-nav-arrow :setts="{ col: '#fff', rot: 0 }"/>
         </button>
       </div>
@@ -14,7 +14,11 @@
       <div class="slider__wrap">
 
         <div class="slider__close-wrap close">
-          <button class="close__btn" @click="close"><ui-icon-close/></button>
+          <button 
+            class="close__btn" 
+            @click="close"
+          ><ui-icon-close/>
+          </button>
         </div>
 
         <swiper-container
@@ -24,12 +28,16 @@
         >
           <swiper-slide
             class="door-show__slide slide"
-            v-for="(it, idx) in doors"
-            :key="idx"
+            v-for="it in prod.arts"
+            :key="it.id"
           >
             <div class="slide__content content">
-              <ui-art :setts="it.art" class="content__art"></ui-art>
-              <img class="content__pic" :src="it.src1">
+              <ui-art :setts="`Арт. ${it.art.slice(1)}`" class="content__art"></ui-art>
+              <img 
+                class="content__pic" 
+                :src="it.src1"
+                :alt="`Наружная сторона. ${prod.name} Арт.${it.art.slice(1)}`"
+              >
             </div>
           </swiper-slide>
         </swiper-container>
@@ -41,10 +49,14 @@
         >
           <swiper-slide
             class="door-thumbs__slide"
-            v-for="(it, idx) in doors"
-            :key="idx"
+            v-for="it in prod.arts"
+            :key="it.id"
           >
-            <img class="door-thumbs__pic" :src="it.src1">
+            <img 
+              class="door-thumbs__pic" 
+              :src="it.src1"
+              :alt="`Миниатюра. Наружная сторона. ${prod.name} Арт.${it.art.slice(1)}`"
+            >
           </swiper-slide>
         </swiper-container>
       </div>
@@ -54,37 +66,25 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'comp-preview-slider',
-  props: { doorId: { type: Number,  default: 0 }, idPreview: { type: String, default: '' } },
+  props: {
+    doorId: { type: Number,  default: 0 },
+    unID: { type: String, default: '' },
+    prod: { type: Object, default: () => {} }
+  },
   data() {
     return{ }
   },
 
-  computed: {
-    ...mapGetters('product', ['PROD']),
-    currProd() { return this.PROD(this.doorId) },
-    doors() { return this.makeImgArr() }
-  },
+  computed: { },
 
   methods: {
     ...mapActions('common', ['SET_MODAL']),
-    close() { this.SET_MODAL({ idx: this.idPreview, isOn: false }) },
+    close() { this.SET_MODAL({ idx: this.unID, isOn: false }) },
 
-    makeImgArr() {
-      const arts = this.currProd.arts
-      let arr = []
-      for (const it in arts) {
-        const unt = { art: '', src1: '', src2: '' }
-        unt.art = 'Арт. ' + it.slice(1)
-        unt.src1 = arts[it].src1.join(', ')
-        unt.src2 = arts[it].src2.join(', ')
-        arr.push(unt)
-      }
-      return arr
-    },
     setSlider() {
       const main = this.$refs.main
       const setts = {
@@ -115,9 +115,7 @@ export default {
       thumbs.initialize()
     }
   },
-  mounted() {
-    this.setSlider()
-  },
+  mounted() { this.setSlider() },
 }
 </script>
 
@@ -145,8 +143,8 @@ $pic-h-lg: min(607px, 80vh);
     height: min(100%, 95vh);
     @include media('min', 'sm') { width: $w-sm; }
     @include media('min', 'lg') { width: $w-lg; }
-    position: relative;
     @include fc-sb-c;
+    position: relative;
     .door-show {
       flex: 1;
       // background-color: #c2d5db; // **tech

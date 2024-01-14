@@ -7,8 +7,7 @@
 <script>
 export default {
   computed: { },
-  mounted() { console.log(window.devicePixelRatio) },
-  methods: { }
+  created() { this.$store.dispatch('product/SAVE_INCOMING_DATA') }
 }
 </script>
 

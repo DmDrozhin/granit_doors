@@ -17,11 +17,13 @@
 
 <script>
 import uiButtonBase from './ui-button-base.vue'
-import { mapGetters } from 'vuex'
 export default {
   components: { uiButtonBase },
   name: 'ui-button-opening',
-  props: { doorId: { type: Number, default: 0 } },
+  props: { 
+    doorId: { type: Number, default: undefined }, 
+    prod: { type: Object, default: () => {} } 
+  },
   data() {
     return{
       isChanged: false
@@ -31,12 +33,9 @@ export default {
     toggle() { this.isChanged = !this.isChanged }
   },
   computed: {
-    ...mapGetters('product', ['PROD']),
-    currProd() { return this.PROD(this.doorId) },
-    txt () { return this.isChanged ? this.currProd.side.L : this.currProd.side.R },
+    txt () { return this.isChanged ? this.prod.side.L : this.prod.side.R },
     side () { return this.isChanged ? -1 : 1 }
   }
-
 }
 </script>
 

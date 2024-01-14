@@ -3,7 +3,7 @@
     <div class="pag__wrap">
       <div 
         class="pag__bullet bullet"
-        v-for="(it, idx) in artsArray"
+        v-for="(it, idx) in prod.arts"
         :key="idx"
       >
         <input 
@@ -12,7 +12,7 @@
           type="radio"
           :id="it"
           @change="goTo(idx)"
-          :checked="idx === currSlide"
+          :checked="idx === currSlideId"
         >
         <label class="bullet__labe" :for="it"></label>
       </div>
@@ -24,25 +24,35 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'ui-pagination-block',
-  props: { doorId: { type: Number, default: 0 } },
+  props: {
+    doorId: { type: Number, default: undefined },
+    prod: { type: Object, default: () => {} } 
+  },
   data() {
     return{
+      currSlideId: '',
     }
   },
-
+  watch: {
+    activity(slide) { this.currSlideId = slide.currArtId }
+  },
+  computed: {
+    ...mapGetters('product', ['SLIDE_INFO']),
+    activity() { return this.SLIDE_INFO(this.doorId) }
+  },
   methods: {
     ...mapActions('product', ['SET_CURR_SLIDE']),
-
     goTo(idx) {
-      const d = { doorId: this.doorId, currArtId: idx, currArt: this.artsArray[idx] }
+      const d = {
+        doorId: this.doorId,
+        currArtId: idx,
+        currArt: this.prod.arts[idx].art,
+        currRal: this.prod.arts[idx].col1
+      }
       this.SET_CURR_SLIDE(d)
     }
   },
-  computed: {
-    ...mapGetters('product', ['ARTS_ARR', 'PAGINATION_DATA']),
-    artsArray() { return this.ARTS_ARR(this.doorId) },
-    currSlide() { return {...this.PAGINATION_DATA[this.doorId]}.currArtId }
-  },
+  mounted() { this.currSlideId = this.SLIDE_INFO(this.doorId).currArtId }
 }
 </script>
 

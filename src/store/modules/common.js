@@ -10,6 +10,7 @@ const common = {
     DEVICE: (state) => state.screen >= state.breaks.lg ? 'desktop' : 'mobile',
     BREAKS: (state) => state.breaks,
     MODAL_STATUS: (state) => state.modal,
+    REND_ID: () =>  Math.random().toString(16).slice (2)
   },
   mutations: {
     SET_W: (state, w) => state.screen = w,

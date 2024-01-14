@@ -4,7 +4,7 @@
     <div class="prod__wrap">
       <div class="prod__swp-1 swp-1">
         <h2 class="swp-1__title">
-          {{ currDoorData.name }}
+          {{ prod.name }}
         </h2>
         <swiper-container 
           class="swp-1__slider" 
@@ -13,16 +13,22 @@
         >
           <swiper-slide 
             class="swp-1__slide content" 
-            v-for="(it, idx) in currDoorData.arts"
+            v-for="(it, idx) in prod.arts"
             :key="idx"
           >
             <div class="content__wrap">
               <div class="content__drs drs">
                 <div class="drs__dr1">
-                  <img :src="it.src1" :alt="`Наружная сторона. ${currDoorData.name} Арт.${idx.slice(1)}`">
+                  <img 
+                    :src="it.src1" 
+                    :alt="`Наружная сторона. ${prod.name} Арт.${it.art.slice(1)}`"
+                  >
                 </div>
                 <div class="drs__dr2">
-                  <img :src="it.src2" :alt="`Внутренняя сторона. ${currDoorData.name} Арт.${idx.slice(1)}`">
+                  <img 
+                    :src="it.src2" 
+                    :alt="`Внутренняя сторона. ${prod.name} Арт.${it.art.slice(1)}`"
+                  >
                 </div>
               </div>
               <div class="content__desc">
@@ -41,11 +47,11 @@
         >
           <swiper-slide
             class="slider__slide slide"
-            v-for="(it, idx) in artsArray"
+            v-for="(it, idx) in prod.arts"
             :key="idx"
           >
             <button class="slide__content content">
-              <p class="content__txt">Арт. {{ it.slice(1) }}</p>
+              <p class="content__txt">Арт. {{ it.art.slice(1) }}</p>
             </button>
           </swiper-slide>
         </swiper-container>
@@ -60,10 +66,13 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'comp-prod-slider',
-  props: { doorId: { type: Number, default: 1 } },
+  props: {
+    doorId: { type: Number, default: undefined },
+    prod: { type: Object, default: () => {} } 
+  },
   data() {
     return {
-      currSlide: ''
+      currSlide: '',
     }
   },
   watch: {
@@ -72,23 +81,33 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('product', ['PROD', 'SLIDE_INFO', 'ARTS_ARR']),
+    ...mapGetters('product', ['SLIDE_INFO', 'FILTERED']),
+    theDoor() { return this.FILTERED[this.doorId].arts },
+    // ...mapGetters('product', ['FILTERED', 'SLIDE_INFO']),
     getCurrSlide() { return this.SLIDE_INFO(this.doorId) },
-    currDoorData() { return this.PROD(this.doorId) },
-    artsArray() { return this.ARTS_ARR(this.doorId) },
+    // currDoorData() { return this.PROD(this.doorId) },
+    // currDoor() { return this.FILTERED[this.doorId] },
+    // artsArray() { return this.ARTS_ARR(this.doorId) },
   },
 
   methods: {
     ...mapActions('product', ['SET_CURR_SLIDE']),
 
     handler(idx) {
-      const d = { doorId: this.doorId, currArtId: idx, currArt: this.artsArray[idx] }
+      const d = {
+        doorId: this.doorId,
+        currArtId: idx,
+        currArt: this.prod.arts[idx].art,
+        currRal: this.prod.arts[idx].col1
+      }
       this.SET_CURR_SLIDE(d)
     },
 
     setSl() {
       const slider = this.$refs.swap1
       const setts = {
+        observer: true,
+        observeParents: true,
         slidesPerView: 1,
         spaceBetween: 20,
         grabCursor: true,
@@ -113,6 +132,8 @@ export default {
     setThumbs() {
       const control = this.$refs.swap2
       const setts = {
+        observer: true,
+        observeParents: true,
         breakpoints: {
           100: {
             direction: 'horizontal',

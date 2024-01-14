@@ -16,11 +16,13 @@
 
 <script>
 import uiButtonBase from './ui-button-base.vue'
-import { mapGetters } from 'vuex'
 export default {
   components: { uiButtonBase },
   name: 'ui-button-door-size',
-  props: { doorId: { type: Number, default: 0 } },
+  props: { 
+    doorId: { type: Number, default: undefined }, 
+    prod: { type: Object, default: () => {} } 
+  },
   data() {
     return{
       isChanged: false
@@ -29,12 +31,9 @@ export default {
   methods: {
     toggle() { this.isChanged = !this.isChanged }
   },
-  computed: {
-    ...mapGetters('product', ['PROD']),
-    currProd() { return this.PROD(this.doorId) },
-    txt () { return this.isChanged ? this.currProd.size.lg + 'mm' : this.currProd.size.sm + 'mm' }
+  computed: {    
+    txt () { return this.isChanged ? this.prod.size.lg + 'mm' : this.prod.size.sm + 'mm' }
   }
-
 }
 </script>
 

@@ -20,19 +20,19 @@
 // :setts="{ name: 'purposes', val: SETTS.ads.mirr, isOn: undefined }"
 export default {
   name: 'ui-button-toggle',
-  props: { setts: { type: Object, default: () => {} } },
+  props: { setts: { type: Object, default: () => {} }, isOn: { type: Boolean, default: false } },
   data() {
     return {
       isChanged: false
     }
   },
   watch: {
-    setts(v) { this.isChanged = v.isOn },
+    isOn(v) { this.isChanged = v },
   },
   methods: {
     toggle() { 
       this.isChanged = !this.isChanged
-      this.$emit('toggled', this.isChanged)
+      this.$emit('update:isOn', this.isChanged)
     }
   },
   computed: {

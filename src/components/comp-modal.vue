@@ -1,7 +1,7 @@
 <template>
   <transition name="modal">
-    <div 
-      class="comp-modal modal" 
+    <div
+      class="comp-modal modal"
       v-if="isOn"
       v-body-hidden="isOn"
       @click.capture="click($event)"
@@ -9,7 +9,6 @@
       <div class="modal__slot">
         <slot></slot>
       </div>
-    
   </div>
   </transition>
 
@@ -20,28 +19,26 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'comp-modal',
-  props: { idPreview: { type: String, default: '' } },
+  props: { unID: { type: String, default: '' } },
   data() {
     return{
       exceptions: ['modal__slot'],
-      isStatusOpen: false
+      isStatusOpen: false,
     }
   },
   methods: {
     ...mapActions('common', ['SET_MODAL']),
 
-    except(v) { return this.exceptions.includes(v) },
+    isException(v) { return this.exceptions.includes(v) },
 
-    click(ev) {if (this.except(ev.target.className)) this.SET_MODAL({ idx: this.idPreview, isOn: false }) },
-    keyHandle(ev) { if (ev.key === 'Escape') this.SET_MODAL({ idx: this.idPreview, isOn: false }) }
+    click(ev) {if (this.isException(ev.target.className)) this.SET_MODAL({ idx: this.unID, isOn: false }) },
+    close() { this.SET_MODAL({ idx: this.unID, isOn: false }) },
+    lg(ev) { console.log(ev)}
   },
   computed: {
     ...mapGetters('common', ['MODAL_STATUS']),
-    isOn() { return this.MODAL_STATUS.idx === this.idPreview ? this.MODAL_STATUS.isOn : false }
-  },
-
-  mounted() { window.addEventListener('keydown', (ev) => this.keyHandle(ev)) },
-  beforeUnmount() {  window.removeEventListener('keydown', this.keyHandle()) }
+    isOn() { return this.MODAL_STATUS.idx === this.unID ? this.MODAL_STATUS.isOn : false },
+  }
 }
 </script>
 

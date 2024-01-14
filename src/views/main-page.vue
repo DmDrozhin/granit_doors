@@ -21,10 +21,8 @@ export default {
   },
   mounted() {
     this.$store.dispatch('common/SET_W', window.innerWidth),
-    window.addEventListener('resize', (e) => {
-      this.$store.dispatch('common/SET_W', e.target.innerWidth)
-      // console.log(e.target.innerWidth)
-    })
+    window.addEventListener('resize', (e) => { this.$store.dispatch('common/SET_W', e.target.innerWidth) })
+    // window.addEventListener('focus', (e) => { console.log(e.target) }, true)
   },
   onBeforeUnmount() {
     removeEventListener('resize')

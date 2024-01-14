@@ -1,11 +1,6 @@
 <template>
   <div class="comp-prod-info info">
-    <div class="info__prod-preview">
-      <comp-prod-preview
-        :doorId="doorId"
-        :idPreview="idPreview"
-    ></comp-prod-preview>
-    </div>
+    <!-- <prod info content -->
     <div class="info__wrap">
       <div class="info__sec1 sec1">
         <div class="sec1__btn btn">
@@ -16,15 +11,19 @@
           ></ui-button-details>
 
           <div class="btn__wrap">
+
             <ui-button-door-size
               class="btn__size"
               :doorId="doorId"
+              :prod="prod"
             ></ui-button-door-size>
 
             <ui-button-opening
               class="btn__opening"
               :doorId="doorId"
+              :prod="prod"
             ></ui-button-opening>
+
           </div>
         </div>
         
@@ -32,31 +31,31 @@
           name="roll_out" 
           appear
         >
-          <ul class="sec2__tech-list tech-list" v-if="isRolledOut">
+          <ul class="sec2__tech-list tech-list" v-show="isRolledOut">
             <li class="tech-list__item item">
               <span class="item__l">Основной замок:</span>
               <span class="item__c"></span>
-              <span class="item__r" v-bool-to-string>{{ prodDt.lock1 }}</span>
+              <span class="item__r" v-bool-to-string>{{ prod.lock1 }}</span>
             </li>
             <li class="tech-list__item item">
               <span class="item__l">Дополнительный замок:</span>
               <span class="item__c"></span>
-              <span class="item__r" v-bool-to-string>{{ prodDt.lock2 }}</span>
+              <span class="item__r" v-bool-to-string>{{ prod.lock2 }}</span>
             </li>
             <li class="tech-list__item item">
               <span class="item__l">Толщина дверного полотна:</span>
               <span class="item__c"></span>
-              <span class="item__r">{{ prodDt.d }}mm</span>
+              <span class="item__r">{{ prod.d }}mm</span>
             </li>
             <li class="tech-list__item item">
               <span class="item__l">Количество контуров уплотнения:</span>
               <span class="item__c"></span>
-              <span class="item__r">{{ prodDt.cont }}</span>
+              <span class="item__r">{{ prod.cont }}</span>
             </li>
             <li class="tech-list__item item">
               <span class="item__l">Цвет покраски:</span>
               <span class="item__c"></span>
-              <span class="item__r">{{ decor }}</span>
+              <span class="item__r">{{ currSlide.currRal }}</span>
               <!-- <span class="item__r" ref="ral">UUU</span> -->
             </li>
             <li class="tech-list__item item">
@@ -67,7 +66,7 @@
             <li class="tech-list__item item">
               <span class="item__l">Наличие зеркала:</span>
               <span class="item__c"></span>
-              <span class="item__r" v-bool-to-string>{{ prodDt.mirr }}</span>
+              <span class="item__r" v-bool-to-string>{{ prod.mirr }}</span>
             </li>
           </ul>
         </transition>
@@ -75,9 +74,22 @@
 
       <div class="info__sec2 sec2">
         <!-- <transition-group name="slide_up" appear> -->
+          <div 
+            class="info__prod-preview" 
+            v-if="isActive"
+            tabindex="0"
+            @keydown.esc.capture.stop="closePreview"
+          >
+            <comp-prod-preview
+              :doorId="doorId"
+              :unID="unID"
+              :prod="prod"
+            ></comp-prod-preview>
+          </div>
           <ui-button-open-slider
             class="sec2__ui-button" 
             @click="openPreview"
+            @keydown.esc="closePreview"
           ></ui-button-open-slider>
           <p class="sec2__desc">
             Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam
@@ -101,32 +113,45 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'comp-prod-info',
   components: { compProdPreview, uiButtonOpening, uiButtonDoorSize, uiButtonDetails, uiButtonOpenSlider },
-  props: { doorId: { type: Number, default: 0 } },
+  props: {
+    doorId: { type: Number, default: undefined },
+    prod: { type: Object, default: () => {} } 
+  },
   data() {
     return{
       isRolledOut: true,
-      idPreview: '',
-      decor: ''
+      unID: '',
+      currSlide: '',
+      isActive: false
     }
   },
   watch: {
-    artData(v) { this.decor = v.data.col1 }
+    activity(v) { this.currSlide = v }
   },
   methods: {
     ...mapActions('common', ['SET_MODAL']),
-    makeId() { return Math.random().toString(16).slice (2) },
-    openPreview() { this.SET_MODAL({ idx: this.idPreview, isOn: true }) },
+
+    openPreview() {
+      this.isActive = true
+      this.SET_MODAL({ idx: this.unID, isOn: true })
+    },
+    closePreview() {
+      this.isActive = false
+      this.SET_MODAL({ idx: this.unID, isOn: false }) 
+    },
     toRollOut() { this.isRolledOut = !this.isRolledOut },
+
+    lg(ev) { console.log(ev)}
   },
   computed: {
-    ...mapGetters('product', ['PROD', 'ART_DATA', 'SETTS']),
+    ...mapGetters('product', ['SETTS', 'SLIDE_INFO']),
 
-    prodDt() { return this.PROD(this.doorId) },
-    doorType() { return this.SETTS.type[this.prodDt.type] },
-    artData() { return this.ART_DATA(this.doorId) },
-
+    doorType() { return this.SETTS.type[this.prod.type] },
+    activity() { return this.SLIDE_INFO(this.doorId) }
   },
-  created() { this.idPreview = this.makeId() }
+
+  created() { this.unID = Math.random().toString(16).slice (2) },
+  mounted() { this.currSlide = this.SLIDE_INFO(this.doorId) }
 }
 </script>
 

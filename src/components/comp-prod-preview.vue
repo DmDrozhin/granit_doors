@@ -1,13 +1,14 @@
 <template>
   <div class="comp-prod-preview prev">
-    <comp-modal 
+    <comp-modal
       class="prev__modal"
-      :idPreview="idPreview"
+      :unID="unID"
     >
       <comp-preview-slider
         class="prev__slider"
         :doorId="doorId"
-        :idPreview="idPreview"
+        :unID="unID"
+        :prod="prod"
       />
     </comp-modal>
   </div>
@@ -19,22 +20,20 @@ import compPreviewSlider from '@/components/comp-prod-preview-slider.vue'
 export default {
   name: 'comp-prod-preview',
   components: { compModal, compPreviewSlider },
-  props: { doorId: { type: Number, default: 0 }, idPreview: { type: String, default: '' } },
+  props: {
+    doorId: { type: Number, default: 0 },
+    unID: { type: String, default: '' },
+    prod: { type: Object, default: () => {} }
+  },
   data() {
     return{ }
-  },
-  methods: { },
-  computed: { }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.comp-prod-preview, .prev{
-  // &__modal {
-  // }
-  // &__slider {
-  // }
-
-}
-
+// .comp-prod-preview, .prev{
+  // &__modal { }
+  // &__slider { }
+// }
 </style>
