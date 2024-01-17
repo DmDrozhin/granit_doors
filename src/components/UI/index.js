@@ -10,6 +10,9 @@ import uiIconSale from '@/components/UI/svg-icons/ui-icon-sale.vue'
 import uiIconInStock from '@/components/UI/svg-icons/ui-icon-inStock.vue'
 import uiIconPhoneLg from '@/components/UI/svg-icons/ui-icon-phone-lg.vue'
 import uiIconShpCart from '@/components/UI/svg-icons/ui-icon-shop-cart.vue'
+import uiIconFacebook from '@/components/UI/svg-icons/ui-icon-facebook.vue'
+import uiIconTelegram from '@/components/UI/svg-icons/ui-icon-telegram.vue'
+import uiIconViber from '@/components/UI/svg-icons/ui-icon-viber.vue'
 
 export default [
   uiIconLogo,
@@ -24,4 +27,7 @@ export default [
   uiIconInStock,
   uiIconPhoneLg,
   uiIconShpCart,
+  uiIconFacebook,
+  uiIconTelegram,
+  uiIconViber,
 ]

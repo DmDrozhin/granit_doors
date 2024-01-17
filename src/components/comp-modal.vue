@@ -2,42 +2,41 @@
   <transition name="modal">
     <div
       class="comp-modal modal"
+      ref="esc"
+      tabindex="0"
       v-if="isOn"
       v-body-hidden="isOn"
       @click.capture="click($event)"
+      @keyup.esc="close"
     >
       <div class="modal__slot">
-        <slot></slot>
+        <slot name="preview"></slot>
+        <slot name="callback"></slot>
+        <slot name="order"></slot>
       </div>
   </div>
   </transition>
-
-  
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   name: 'comp-modal',
-  props: { unID: { type: String, default: '' } },
+  props: { isOn: { type: Boolean, default: false } },
   data() {
     return{
       exceptions: ['modal__slot'],
-      isStatusOpen: false,
     }
+  },
+  watch: {
+    isOn(active) { if(active) { this.$nextTick(() => this.$refs.esc.focus() ) } }
   },
   methods: {
     ...mapActions('common', ['SET_MODAL']),
-
     isException(v) { return this.exceptions.includes(v) },
-
-    click(ev) {if (this.isException(ev.target.className)) this.SET_MODAL({ idx: this.unID, isOn: false }) },
-    close() { this.SET_MODAL({ idx: this.unID, isOn: false }) },
-    lg(ev) { console.log(ev)}
-  },
-  computed: {
-    ...mapGetters('common', ['MODAL_STATUS']),
-    isOn() { return this.MODAL_STATUS.idx === this.unID ? this.MODAL_STATUS.isOn : false },
+    click(ev) {if (this.isException(ev.target.className)) this.SET_MODAL(false) },
+    close() { this.SET_MODAL(false) },
+    // lg(ev) { console.log(ev) }
   }
 }
 </script>
@@ -51,24 +50,27 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   pointer-events: none;
   overflow: hidden;
   @include modal;
   
   &__slot {
+    overflow-y: auto;
     width: 100%;
-    height: 100vh;
-    // border: 5px dotted rgb(217, 238, 27);
+    height: 100%;
+    // border: 5px dotted rgb(217, 238, 27); // tech
+    // position: relative;
+    // z-index: 10;
     pointer-events: auto;
-    position: relative;
+    user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
-    user-select: none;
-    z-index: 10;
-    @include gpc;
+    display: grid;
+  justify-content: center;
+  align-items: center;
+    // @include fr-c-c;
   }
-
 }
 .modal-enter-from,
 .modal-leave-to {

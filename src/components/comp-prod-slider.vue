@@ -22,12 +22,14 @@
                   <img 
                     :src="it.src1" 
                     :alt="`Наружная сторона. ${prod.name} Арт.${it.art.slice(1)}`"
+                    @error="$event.target.src = altImg"
                   >
                 </div>
                 <div class="drs__dr2">
                   <img 
                     :src="it.src2" 
                     :alt="`Внутренняя сторона. ${prod.name} Арт.${it.art.slice(1)}`"
+                    @error="$event.target.src = altImg"
                   >
                 </div>
               </div>
@@ -73,6 +75,7 @@ export default {
   data() {
     return {
       currSlide: '',
+      altImg: require('@/assets/images/door/placeholder.webp')
     }
   },
   watch: {
@@ -83,11 +86,7 @@ export default {
   computed: {
     ...mapGetters('product', ['SLIDE_INFO', 'FILTERED']),
     theDoor() { return this.FILTERED[this.doorId].arts },
-    // ...mapGetters('product', ['FILTERED', 'SLIDE_INFO']),
     getCurrSlide() { return this.SLIDE_INFO(this.doorId) },
-    // currDoorData() { return this.PROD(this.doorId) },
-    // currDoor() { return this.FILTERED[this.doorId] },
-    // artsArray() { return this.ARTS_ARR(this.doorId) },
   },
 
   methods: {
@@ -157,11 +156,11 @@ export default {
           draggable: true
         },        
         injectStyles: [` .swiper-scrollbar-drag { background-color: #C3C3C3; } `],
-        // mousewheel: {
-        //   eventsTarget: '.swp-2__slider',
-        //   thresholdTime: 100,
-        //   forceToAxis: true
-        // },
+        mousewheel: {
+          eventsTarget: '.swp-2__slider',
+          thresholdTime: 100,
+          forceToAxis: true
+        },
       }
       Object.assign(control, setts)
       control.initialize()

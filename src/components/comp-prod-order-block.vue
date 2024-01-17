@@ -21,7 +21,10 @@
       </template>
 
       <template #button>
-        <ui-order-button-shop-cart></ui-order-button-shop-cart>
+        <ui-order-button-shop-cart
+          @order="startOrder()"
+          :stock="slideData.stock"
+        ></ui-order-button-shop-cart>
       </template>
       
     </ui-price-block-base>
@@ -52,7 +55,15 @@ export default {
       this.currSlide = slide.currArtId
     },
   },
-  methods: { },
+  methods: { 
+    startOrder() {
+      const {arts, ...order} = { ...this.prod }
+      arts
+      order.art = this.slideData
+      this.$emit('update:order', order)
+      this.$emit('order')
+    }
+  },
   computed: {
     ...mapGetters('product', ['SETTS', 'SLIDE_INFO']),
     activity() { return this.SLIDE_INFO(this.doorId) },

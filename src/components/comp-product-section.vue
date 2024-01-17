@@ -11,12 +11,15 @@
         <comp-prod-info
           :doorId="doorId"
           :prod="prod"
+          v-model:details="chosenDetails"
         ></comp-prod-info>
       </div>
       <div class="prod__order">
         <comp-prod-order-block
           :doorId="doorId"
           :prod="prod"
+          v-model:order="chosenProd"
+          @order="startOrder"
         ></comp-prod-order-block>
       </div>
       <div class="prod__pagination">
@@ -43,10 +46,18 @@ export default {
     prod: { type: Object, default: () => {} }
   },
   data() {
-    return{ }
+    return{
+      chosenProd: {},
+      chosenDetails: {}
+    }
   },
-  methods: { 
-    // makeId() { return Math.random().toString(16).slice (2) },
+  methods: {
+    startOrder() {
+      const { ...order } = { ...this.chosenProd }
+      order.options = this.chosenDetails
+      // console.log(order)
+      this.$store.dispatch('common/SET_ORDER_POP', { isOn: true, order } )
+    }
   },
   computed: { },
 }

@@ -2,7 +2,6 @@
 // $breaks: ("sm":320px, "md":768px, "lg":1140px);
 $breaks: ("sm":0px, "lg":1440px);
 
-
 @mixin media($min-max, $media) {
   @each $size, $resolution in $breaks {
     @if $media == $size {
@@ -12,7 +11,6 @@ $breaks: ("sm":0px, "lg":1440px);
     }
   }
 }
-
 // The page
 @mixin general-width {
   @include media('min', 'sm') { width: 320px; }
@@ -27,53 +25,6 @@ $breaks: ("sm":0px, "lg":1440px);
   @include media('min', 'sm') { padding: 0 10px; }
   @include media('min', 'lg') { padding: 0 20px; }
 }
-
-
-// *** Footer ***
-// @mixin container-footer {
-//   @include media('min', 'sm') { width: 300px; }
-//   @include media('min', 'lg') { width: 1396px; }
-// }
-
-@mixin footer {
-
-  @include media('min', 'sm') { 
-    flex: 0 0 568px;
-    width: 320px;
-    height: 568px;
-    margin-left: -10px;
-    margin-right: -10px;
-  }
-  @include media('min', 'lg') {
-    flex: 0 0 146px;
-    height: 146px;
-    width: 1440px;
-    margin-left: -20px;
-    margin-right: -20px;
-  }
-}
-
-// Dynamic padding (if lack of vertical room)
-@mixin dyn-pd ($pd100, $pd80) {
-  $vph: 100vh;
-  $pd-df: $pd100 - $pd80;
-  $pd-prcnt: percentage((($vph - 80vh) / (100vh - 80vh)));
-  padding: $pd80;
-  padding: calc(#{$pd80} + #{$pd-prcnt} * #{$pd-df});
-}
-
-// $hts: ("sm":0px, "lg":1440px);
-
-
-// @mixin media($min-max, $media) {
-//   @each $size, $resolution in $breaks {
-//     @if $media == $size {
-//       @media only screen and (#{$min-max}-width: $resolution) {
-//         @content;
-//       }
-//     }
-//   }
-// }
 
 // @include media('min', 'sm') { }
 // @include media('min', 'lg') { }

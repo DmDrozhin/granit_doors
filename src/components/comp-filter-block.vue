@@ -85,10 +85,10 @@
   
           <fieldset class="form__field mirror" form="form-add-options">
             <div class="form__toggle-block toggle">
-              <label :for="SETTS.adds.mirr" class="toggle__labe">С зеркалом</label>
+              <label for="toggle-mirror" class="toggle__labe">С зеркалом</label>
               <ui-button-toggle
                 class="toggle__btn"
-                :setts="{ name: 'purposes', val: door.hasMirror }"
+                :setts="{ name: 'purposes', val: door.hasMirror, idx: 'toggle-mirror' }"
                 v-model:isOn="door.hasMirror"
               ></ui-button-toggle>
             </div>
@@ -160,7 +160,7 @@ export default {
     isAll() { return this.door.sizes && this.door.sizes.length > 0 ? false : true }
   },
   methods: {
-    ...mapActions('product', ['SET_PROD_FILTER', 'SAVE_FILTERED_PRODS']),
+    ...mapActions('product', ['SAVE_FILTERED_PRODS']),
 
     handleCheck(dt, name) {
       const arr = this.door[name]
@@ -196,14 +196,15 @@ export default {
 
     handleForm() {
       const setts = JSON.parse(JSON.stringify(this.door))
-      this.SET_PROD_FILTER(setts)
       this.SAVE_FILTERED_PRODS(setts)
-
     }
   },
+  created() {
+  },
   mounted() {
-    // this.handleForm()
     if (!this.isDesktop) this.isOpenBlock = false
+    const setts = { sizes: [], purpose: [], contour: [], hasMirror: false, defects: [] }
+    this.$store.dispatch('product/SAVE_FILTERED_PRODS', setts)
   }
 }
 </script>

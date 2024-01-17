@@ -1,7 +1,7 @@
 <template>
   <div class="comp-sorter-select select-block">
     <div class="select-block__wrapper">
-      <select class="select-block__inp" v-model="sortBy">
+      <select class="select-block__inp" v-model="sortBy" id="sorter-select">
         <option 
           class="select-block__option" 
           v-for="(option, idx) in setts"
@@ -20,22 +20,22 @@ export default {
   data() {
     return {
       sortBy: '',
-      setts: []
+      setts: [],
     }
   },
   watch: {
     sortBy(v) {
-      this.$store.dispatch('product/SET_PROD_SORTER', v) 
       this.$store.dispatch('product/SAVE_SORTED_PRODS', v)
     },
   },
   methods: {},
   computed: {},
 
-  mounted() {
+  created() {
     this.setts = this.$store.getters['product/SETTS'].fltr
     this.sortBy = this.setts[3]
-  },
+    this.$store.dispatch('product/SAVE_SORTED_PRODS', this.sortBy)
+  }
 
 }
 </script>

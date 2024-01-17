@@ -12,17 +12,17 @@ const company = {
       email: 'info@corp.com',
     },
     socials: {
-      fb: 'fb. Lorem ipsum dolor sit amet consect.',
-      tg: 'tg. Lorem ipsum dolor sit amet consect.',
-      vb: 'vb. Lorem ipsum dolor sit amet consect.'
+      fb: 'Facebook. Двери гранит',
+      tg: 'Telegram. Двери гранит',
+      vb: 'Viber. Двери гранит'
     },
     links: {
-      l1: { txt: 'Квартирные двери', link: '#' },
-      l2: { txt: 'Двери для дачи', link: '#' },
-      l3: { txt: 'Двери для дачи', link: '#' },
-      l4: { txt: 'Квартирные двери', link: '#' },
-      l5: { txt: 'Двери для дачи', link: '#' },
-      l6: { txt: 'Двери для дачи', link: '#' },
+      l1: { txt: 'Квартирные двери', link: '#!' },
+      l2: { txt: 'Двери для дачи', link: '#!' },
+      l3: { txt: 'Двери для дачи', link: '#!' },
+      l4: { txt: 'Квартирные двери', link: '#!' },
+      l5: { txt: 'Двери для дачи', link: '#!' },
+      l6: { txt: 'Двери для дачи', link: '#!' },
     }
   
   },

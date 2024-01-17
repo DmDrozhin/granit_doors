@@ -1,4 +1,4 @@
-<template>
+<template>  
   <div class="app">
     <router-view/>
   </div>
@@ -7,7 +7,7 @@
 <script>
 export default {
   computed: { },
-  created() { this.$store.dispatch('product/SAVE_INCOMING_DATA') }
+  beforeCreate() { this.$store.dispatch('product/SAVE_INCOMING_DATA') }
 }
 </script>
 

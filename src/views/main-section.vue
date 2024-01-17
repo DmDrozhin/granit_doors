@@ -9,7 +9,7 @@
 
         <div class="main__sec2 sec2">
           <comp-product-section
-            v-for="(it, idx) in filtered"
+            v-for="(it, idx) in this.$store.getters['product/FILTERED']"
             :key="it.id"
             :doorId="idx"
             :prod="it"
@@ -25,8 +25,6 @@
 import sidebarSection from './sidebar-section.vue'
 import compProductSection from '@/components/comp-product-section.vue'
 
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'main-section',
   components: { sidebarSection, compProductSection },
@@ -35,10 +33,7 @@ export default {
     }
   },
   methods: { },
-  computed: {
-    ...mapGetters('product', ['FILTERED']),
-    filtered() { return this.$store.getters['product/FILTERED'] }
-  }
+  computed: { },
 }
 </script>
 

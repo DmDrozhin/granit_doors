@@ -10,11 +10,11 @@
           class="bullet__inp" 
           :name="`pagination-${doorId}`"
           type="radio"
-          :id="it"
+          :id="`bullet${idx}-${doorId}`"
           @change="goTo(idx)"
           :checked="idx === currSlideId"
         >
-        <label class="bullet__labe" :for="it"></label>
+        <label class="bullet__labe" :for="`bullet${idx}-${doorId}`"></label>
       </div>
     </div>
   </div>

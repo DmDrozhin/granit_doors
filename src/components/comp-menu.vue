@@ -2,7 +2,7 @@
   <menu class="menu-section menu">
     <div class="menu__container">
       <div class="menu__name-block name-block">
-        <div class="name-block__wrapper">
+        <a class="name-block__wrapper" href="#!">
           <div class="name-block__logo">
             <ui-icon-logo :setts="logo"></ui-icon-logo>
           </div>
@@ -12,7 +12,7 @@
               <span class="title__t2">{{ title.logo[1] }}</span>
             </span>
           </div>
-        </div>
+        </a>
       </div>
       <div class="menu__contacts contacts">
         <a :href="`tel:${contacts.tel}`">
@@ -40,7 +40,8 @@
           ></ui-comp-info>
         </a>
         <div class="contacts__order-btn">
-          <ui-order-button-head></ui-order-button-head>
+          <ui-order-button-head 
+            @clicked="this.$store.dispatch('common/SET_CALLBACK_POP', { isOn: true, client: '' })"></ui-order-button-head>
         </div>
       </div>
     </div>

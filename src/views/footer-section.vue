@@ -4,20 +4,20 @@
       <div class="footer__wrapper">
         <div class="footer__side-l side-l">
           <div class="side-l__title-block title-block">
-            <div class="title-block__wrapper">
+            <a class="title-block__wrapper" href="#!">
 
               <div class="title-block__logo">
                 <ui-icon-logo :setts="logo"></ui-icon-logo>
               </div>
 
-              <h2 class="title-block__site-title title">
+              <div class="title-block__site-title title">
                 <span class="title__wrapper">
                   <span class="title__part-1">{{ title.logo[0] }}</span>
                   <span class="title__part-2">{{ title.logo[1] }}</span>
                 </span>
-              </h2>
+              </div>
 
-            </div>
+            </a>
             <p class="title-block__txt">{{ title.txt }}</p>
 
           </div>
@@ -61,13 +61,30 @@
             </a>
 
             <div class="contacts__order-btn">
-              <ui-order-button-footer></ui-order-button-footer>
+              <ui-order-button-footer
+                @clicked="this.$store.dispatch('common/SET_CALLBACK_POP', { isOn: true, client: '' })"
+              ></ui-order-button-footer>
             </div>
           </div>
           <ul class="side-r__socials socials">
-            <li class="socials__1"><a href="#">{{ socials.fb }}</a></li>
-            <li class="socials__2"><a href="#">{{ socials.tg }}</a></li>
-            <li class="socials__3"><a href="#">{{ socials.vb }}</a></li>
+            <li class="socials__1">
+              <a href="#" class="socials__link">
+                <div class="socials__icon"><ui-icon-facebook></ui-icon-facebook></div>
+                <p class="socials__name">{{ socials.fb }}</p>
+              </a>
+            </li>
+            <li class="socials__2">
+              <a href="#" class="socials__link">
+                <div class="socials__icon"><ui-icon-telegram></ui-icon-telegram></div>
+                <p class="socials__name">{{ socials.tg }}</p>
+              </a>
+            </li>
+            <li class="socials__3">
+              <a href="#" class="socials__link">
+                <div class="socials__icon"><ui-icon-viber></ui-icon-viber></div>
+                <p class="socials__name">{{ socials.vb }}</p>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -79,9 +96,10 @@
 <script>
 import uiOrderButtonFooter from '@/components/UI/ui-order-button-footer.vue'
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'footer-section',
-  components: { uiOrderButtonFooter },
+  components: { uiOrderButtonFooter, },
   data() {
     return {
       logo: { col1: '#fff', col2: '#fff', col3: '#fff' }
@@ -203,7 +221,20 @@ export default {
     .socials {
       @include media('min', 'sm') { display: block; }
       @include media('min', 'lg') { display: flex; gap: 26px; }
-      & li> a { @include footer-txt; }
+      & li {
+        @include media('min', 'sm') { margin-bottom: 14px; }
+        @include media('min', 'lg') { margin-bottom: 0; }
+      }
+      & li> a {
+        @include footer-txt; 
+        @include fr-st-c;
+        gap: 10px;
+      }
+      &__icon {
+        $r: 28px;
+        width: $r;
+        height: $r;
+      }
     }
   }
 }

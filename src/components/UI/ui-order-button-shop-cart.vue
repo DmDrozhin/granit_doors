@@ -1,7 +1,11 @@
 <template>
-  <div class="ui-order-button-shop-cart btn-shop-cart">
+  <button 
+    class="ui-order-button-shop-cart btn-shop-cart" 
+    @click="$emit('order')"
+    :disabled="!isActive"
+  >
     <ui-base-order-button
-    :setts="baseSetts"
+    :setts="currColorSet"
     >
       <template #icon>
         <ui-icon-shop-cart
@@ -13,7 +17,7 @@
         <p class="btn-shop-cart__txt" >{{ txt }}</p>
       </template>
     </ui-base-order-button>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -21,20 +25,26 @@ import uiBaseOrderButton from '@/components/UI/ui-base-order-button.vue'
 export default {
   name: 'ui-order-button-shop-cart',
   components: { uiBaseOrderButton },
+  props: { stock: { type: Number, default: 10 } },
   data() {
     return{
       txt: 'Заказать',
       baseSetts: { icnBg: '#137039', bg: '#12AB51' },
-      iconSetts: { icnCol: '#fff' }
+      inactiveSetts: { icnBg: '#636060', bg: '#B2B1B1' },
+      iconSetts: { col: '#fff' }
     }
   },
   methods: { },
-  computed: { }
+  computed: {
+    isActive() { return this.stock > 0 },
+    currColorSet() { return this.isActive ? this.baseSetts : this.inactiveSetts }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.ui-order-button-shop-cart, .btn-shop-cart {
+.ui-order-button-shop-cart,
+.btn-shop-cart {
   display: flex;
   &__icon {
     $w: 22px;
@@ -54,6 +64,9 @@ export default {
     @include media('min', 'lg') { padding-left: 33px; }
     color: #fff;
   }
-
+  & :disabled {
+    pointer-events: none;
+    cursor: auto;
+  }
 }
 </style>

@@ -20,7 +20,7 @@
 html {
   height: 100%;
   width: 100%;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable both-edges;
 }
 
 body {
@@ -30,7 +30,3 @@ body {
   height: -webkit-fill-available;
   scroll-behavior: smooth;
 }
-
-
-// @include media('min', 'sm') { }
-// @include media('min', 'lg') { }

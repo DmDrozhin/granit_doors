@@ -15,6 +15,8 @@ export default {
         door.saleNum = sale
         nArts.push(door)
       }
+      it.doorType = setts.type[it.type],
+      it.purpose = setts.purp[it.purp]
       it.arts = nArts
       return it
     })
@@ -22,15 +24,6 @@ export default {
     commit('SAVE_INCOMING_DATA', pl)
   },
 
-  SET_CURR_SLIDE({ commit }, pl) {
-    commit('SET_CURR_SLIDE', pl)
-  },
-  SET_PROD_FILTER({ commit }, pl) {
-    commit('SET_PROD_FILTER', pl)
-  },
-  SET_PROD_SORTER({ commit }, pl) {   
-    commit('SET_PROD_SORTER', pl)
-  },
   SAVE_SORTED_PRODS({ commit, state }, pl) {
     const EPs = state.enterData
     const HTL = pl === 'По убыванию цены'
@@ -57,11 +50,11 @@ export default {
       })
     }
     commit('SAVE_SORTED_PRODS', SPs)
+    commit('SET_PROD_SORTER', pl)
   },
 
   SAVE_FILTERED_PRODS({ commit, state }, ft) {
     const SPs = state.prodsSorted // sorted prods
-    
     // 1) filter for block size
     let FPs_1 = []
     if (ft.sizes.length) {
@@ -91,7 +84,6 @@ export default {
       FPs_5 = FPs_4.map(it => {
         const { arts, ...nIt } = { ...it }
         const ftArts = arts.filter(art => ft.defects.includes(art.dfct))
-        console.log(ftArts.length)
           nIt.arts = ftArts
           return nIt
       })
@@ -99,5 +91,15 @@ export default {
     // 5) filter for empty arts array
     let FPs_6 = FPs_5.filter(it => it.arts.length)
     commit('SAVE_FILTERED_PRODS', FPs_6)
+    commit('SET_PROD_FILTER', ft)
+  },
+
+  SET_CURR_SLIDE({ commit }, pl) {
+    commit('SET_CURR_SLIDE', pl)
+  },
+  SET_PREVIEW({ commit, dispatch, rootGetters, rootState }, pl ) {  
+    rootState, rootGetters, dispatch
+    commit('SET_PREVIEW', pl)
+    commit('common/SET_MODAL', true, { root: true })
   }
 }

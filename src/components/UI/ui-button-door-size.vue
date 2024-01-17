@@ -4,6 +4,7 @@
       <template #icon>
         <ui-icon-size
           class="size__icon"
+          :style="{ transform: `scaleX(${side})` }"
         ></ui-icon-size>
       </template>
       <template #txt>
@@ -29,11 +30,17 @@ export default {
     }
   },
   methods: {
-    toggle() { this.isChanged = !this.isChanged }
+    toggle() {
+      this.isChanged = !this.isChanged
+      this.passUp()
+    },
+    passUp() { this.$emit('update:size', this.txt) }
   },
   computed: {    
-    txt () { return this.isChanged ? this.prod.size.lg + 'mm' : this.prod.size.sm + 'mm' }
-  }
+    txt () { return this.isChanged ? this.prod.size.lg + 'mm' : this.prod.size.sm + 'mm' },
+    side () { return this.isChanged ? -1 : 1 }
+  },
+  mounted() { this.passUp() }
 }
 </script>
 

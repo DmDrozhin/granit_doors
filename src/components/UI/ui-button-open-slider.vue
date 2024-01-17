@@ -1,8 +1,11 @@
 <template>
-  <button class="ui-button-open-slider btn">
+  <button 
+    class="ui-button-open-slider btn"
+    ref="open"
+    @click="clicked"
+  >
     <p class="btn__txt">Посмотреть фото</p>
   </button>
-  
 </template>
 
 <script>
@@ -12,7 +15,12 @@ export default {
     return{
     }
   },
-  methods: { },
+  methods: {
+    clicked() {
+      this.$emit('clicked')
+      this.$refs.open.blur()
+    }
+  },
   computed: { }
 
 }

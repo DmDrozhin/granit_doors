@@ -15,8 +15,8 @@
 
         <div class="slider__close-wrap close">
           <button 
-            class="close__btn" 
-            @click="close"
+            class="close__btn"
+            @click="this.$store.dispatch('common/SET_MODAL', false)"
           ><ui-icon-close/>
           </button>
         </div>
@@ -28,7 +28,7 @@
         >
           <swiper-slide
             class="door-show__slide slide"
-            v-for="it in prod.arts"
+            v-for="it in prod.prod.arts"
             :key="it.id"
           >
             <div class="slide__content content">
@@ -36,7 +36,8 @@
               <img 
                 class="content__pic" 
                 :src="it.src1"
-                :alt="`Наружная сторона. ${prod.name} Арт.${it.art.slice(1)}`"
+                :alt="`Наружная сторона. ${prod.prod.name} Арт.${it.art.slice(1)}`"
+                @error="$event.target.src = altImg"
               >
             </div>
           </swiper-slide>
@@ -49,13 +50,14 @@
         >
           <swiper-slide
             class="door-thumbs__slide"
-            v-for="it in prod.arts"
+            v-for="it in prod.prod.arts"
             :key="it.id"
           >
             <img 
               class="door-thumbs__pic" 
               :src="it.src1"
-              :alt="`Миниатюра. Наружная сторона. ${prod.name} Арт.${it.art.slice(1)}`"
+              :alt="`Миниатюра. Наружная сторона. ${prod.prod.name} Арт.${it.art.slice(1)}`"
+              @error="$event.target.src = altImg"
             >
           </swiper-slide>
         </swiper-container>
@@ -66,25 +68,17 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
   name: 'comp-preview-slider',
-  props: {
-    doorId: { type: Number,  default: 0 },
-    unID: { type: String, default: '' },
-    prod: { type: Object, default: () => {} }
-  },
+  props: { prod: { type: Object, default: () => {} } },
   data() {
-    return{ }
+    return{
+      altImg: require('@/assets/images/door/placeholder.webp')
+    }
   },
-
   computed: { },
 
   methods: {
-    ...mapActions('common', ['SET_MODAL']),
-    close() { this.SET_MODAL({ idx: this.unID, isOn: false }) },
-
     setSlider() {
       const main = this.$refs.main
       const setts = {
@@ -224,7 +218,7 @@ $pic-h-lg: min(607px, 80vh);
       width: $btn-h;
       position: absolute;
       @media (max-height: 850px) { position: fixed; right: 20px; top: 20px; }
-      
+      z-index: 10;
     }
   }
 

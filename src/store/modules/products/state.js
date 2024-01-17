@@ -13,4 +13,5 @@ export default {
     sizes: []
   },
   settsSorter: '',
+  preview: { isOn: false, prod: '' }
 }

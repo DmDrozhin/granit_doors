@@ -5,7 +5,7 @@
       :class="{ 'btn-off': !isChanged }"
       type="button" 
       :name="setts.name"
-      :id="setts.val"
+      :id="setts.idx"
       @click="toggle()"
     >
     <div 

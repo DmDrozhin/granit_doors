@@ -30,12 +30,18 @@ export default {
     }
   },
   methods: {
-    toggle() { this.isChanged = !this.isChanged }
+    toggle() {
+      this.isChanged = !this.isChanged
+      this.passUp()
+    },
+    passUp() {this.$emit('update:side', this.txt) }
+    
   },
   computed: {
     txt () { return this.isChanged ? this.prod.side.L : this.prod.side.R },
     side () { return this.isChanged ? -1 : 1 }
-  }
+  },
+  mounted() { this.passUp() }
 }
 </script>
 

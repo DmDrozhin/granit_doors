@@ -16,21 +16,19 @@
               class="btn__size"
               :doorId="doorId"
               :prod="prod"
+              v-model:size="chosen.size"
             ></ui-button-door-size>
 
             <ui-button-opening
               class="btn__opening"
               :doorId="doorId"
               :prod="prod"
+              v-model:side="chosen.side"
             ></ui-button-opening>
 
           </div>
         </div>
         
-        <transition 
-          name="roll_out" 
-          appear
-        >
           <ul class="sec2__tech-list tech-list" v-show="isRolledOut">
             <li class="tech-list__item item">
               <span class="item__l">Основной замок:</span>
@@ -56,12 +54,16 @@
               <span class="item__l">Цвет покраски:</span>
               <span class="item__c"></span>
               <span class="item__r">{{ currSlide.currRal }}</span>
-              <!-- <span class="item__r" ref="ral">UUU</span> -->
+            </li>
+            <li class="tech-list__item item">
+              <span class="item__l">Тип двери:</span>
+              <span class="item__c"></span>
+              <span class="item__r">{{ prod.doorType }}</span>
             </li>
             <li class="tech-list__item item">
               <span class="item__l">Назначение двери:</span>
               <span class="item__c"></span>
-              <span class="item__r">{{ doorType }}</span>
+              <span class="item__r">{{ prod.purpose }}</span>
             </li>
             <li class="tech-list__item item">
               <span class="item__l">Наличие зеркала:</span>
@@ -69,32 +71,16 @@
               <span class="item__r" v-bool-to-string>{{ prod.mirr }}</span>
             </li>
           </ul>
-        </transition>
       </div>
 
       <div class="info__sec2 sec2">
-        <!-- <transition-group name="slide_up" appear> -->
-          <div 
-            class="info__prod-preview" 
-            v-if="isActive"
-            tabindex="0"
-            @keydown.esc.capture.stop="closePreview"
-          >
-            <comp-prod-preview
-              :doorId="doorId"
-              :unID="unID"
-              :prod="prod"
-            ></comp-prod-preview>
-          </div>
           <ui-button-open-slider
             class="sec2__ui-button" 
-            @click="openPreview"
-            @keydown.esc="closePreview"
+            @clicked="openPreview"
           ></ui-button-open-slider>
           <p class="sec2__desc">
             Lorem ipsum dolor sit amet consectetur. Fringilla justo et sit duis pretium. Amet morbi purus donec pharetra vulputate velit. Non mauris egestas congue nullam
           </p>
-        <!-- </transition-group> -->
       </div>
     </div>
 
@@ -103,7 +89,6 @@
 </template>
 
 <script>
-import compProdPreview from '@/components/comp-prod-preview.vue'
 import uiButtonOpening from '@/components/UI/ui-button-opening.vue'
 import uiButtonDoorSize from '@/components/UI/ui-button-door-size.vue'
 import uiButtonDetails from '@/components/UI/ui-button-details.vue'
@@ -112,46 +97,41 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'comp-prod-info',
-  components: { compProdPreview, uiButtonOpening, uiButtonDoorSize, uiButtonDetails, uiButtonOpenSlider },
+  components: { uiButtonOpening, uiButtonDoorSize, uiButtonDetails, uiButtonOpenSlider },
   props: {
     doorId: { type: Number, default: undefined },
-    prod: { type: Object, default: () => {} } 
+    prod: { type: Object, default: () => {} },
   },
   data() {
     return{
       isRolledOut: true,
       unID: '',
       currSlide: '',
-      isActive: false
+      chosen: { size: '', side: '' },
     }
   },
   watch: {
-    activity(v) { this.currSlide = v }
+    activity(v) { this.currSlide = v },
+    chosen(dt) { this.$emit('update:details', dt) }
   },
   methods: {
-    ...mapActions('common', ['SET_MODAL']),
+    ...mapActions('product', ['SET_PREVIEW']),
 
     openPreview() {
-      this.isActive = true
-      this.SET_MODAL({ idx: this.unID, isOn: true })
-    },
-    closePreview() {
-      this.isActive = false
-      this.SET_MODAL({ idx: this.unID, isOn: false }) 
+      this.SET_PREVIEW({ isOn: true, prod: this.prod })
     },
     toRollOut() { this.isRolledOut = !this.isRolledOut },
-
-    lg(ev) { console.log(ev)}
   },
   computed: {
     ...mapGetters('product', ['SETTS', 'SLIDE_INFO']),
-
-    doorType() { return this.SETTS.type[this.prod.type] },
     activity() { return this.SLIDE_INFO(this.doorId) }
   },
 
   created() { this.unID = Math.random().toString(16).slice (2) },
-  mounted() { this.currSlide = this.SLIDE_INFO(this.doorId) }
+  mounted() {
+    this.currSlide = this.SLIDE_INFO(this.doorId)
+    this.$emit('update:details', this.chosen)
+  }
 }
 </script>
 
@@ -229,25 +209,25 @@ export default {
     }
   }
 }
-.roll_out-enter-active {
-  animation : slide-in 0.3s ease-out forwards;
-  transition : opacity 0.3s;
-}
-.roll_out-leave-active {
-  animation : slide-out 0.3s ease-out forwards;
-  transition : opacity 0.3s;
-}
-.roll_out-enter-from,
-.roll_out-leave-to {
-  opacity: .3;
-}
+// .roll_out-enter-active {
+//   animation : slide-in 0.3s ease-out forwards;
+//   transition : opacity 0.3s;
+// }
+// .roll_out-leave-active {
+//   animation : slide-out 0.3s ease-out forwards;
+//   transition : opacity 0.3s;
+// }
+// .roll_out-enter-from,
+// .roll_out-leave-to {
+//   opacity: .3;
+// }
 
-@keyframes slide-in {
-  from { transform: translateY(20px); }
-  to { transform: translateY(0); }
-}
-@keyframes slide-out {
-  from { transform: translateY(0); }
-  to { transform: translateY(20px); }
-}
+// @keyframes slide-in {
+//   from { transform: translateY(20px); }
+//   to { transform: translateY(0); }
+// }
+// @keyframes slide-out {
+//   from { transform: translateY(0); }
+//   to { transform: translateY(20px); }
+// }
 </style>

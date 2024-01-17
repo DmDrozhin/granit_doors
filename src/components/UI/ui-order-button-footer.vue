@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-order-button-footer btn-ord-hd">
+  <button class="ui-order-button-footer btn-ord-hd" @click="this.$emit('clicked')">
     <ui-base-order-button
     :setts="baseSetts"
     >
@@ -13,7 +13,7 @@
         <p class="btn-ord-hd__txt" >{{ txt }}</p>
       </template>
     </ui-base-order-button>
-  </div>
+  </button>
 </template>
 
 <script>
