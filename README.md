@@ -23,7 +23,7 @@ The PerfectFixel layout is made from Figma layouts with a width of 1440px and 32
 - Currently, the application does not include adaptive versions other than 320 and 1440.
 
   # Applied tools:
-  SDK: Visaul Code
-  Framework: Vue 3 CLI (component API)
-  Libraries: Vuex, Vue router
-  Add ons: Swiper Element (WebComponent)
+  - SDK: Visaul Code
+  - Framework: Vue 3 CLI (component API)
+  - Libraries: Vuex, Vue router
+  - Add ons: Swiper Element (WebComponent)
