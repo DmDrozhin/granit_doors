@@ -1,3 +1,5 @@
+
+
 @font-face {
   font-family: 'Intro Demo';
   src: url('@/assets/fonts/IntroDemo/IntroDemo-BlackCAPS.eot?#iefix') format('embedded-opentype'),
@@ -73,10 +75,6 @@ body {
   font-size: 16px;
 }
 body { font-family: 'Futura PT 400', Helvetica, sans-serif; }
-menu { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', sans-serif; }
-header { font-family: 'FuturaPTHeavyOblique', 'Futura PT 400', 'Inter 700', sans-serif; }
-main { font-family: 'Futura PT 400', 'Futura PT 450', 'Futura PT 600', sans-serif; }
-footer { font-family: 'Intro Demo', 'Inter 500', 'Inter 700', 'Futura PT 400', sans-serif; }
 
 @mixin IntroDemo-32-21 {
   font-family: 'Intro Demo';

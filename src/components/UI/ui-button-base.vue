@@ -15,6 +15,7 @@
 // import { mapGetters } from 'vuex'
 export default {
   name: 'ui-button-base',
+  // buttons choosing door size and side opening L / R
   data() {
     return {}
   }
@@ -44,6 +45,6 @@ export default {
     @include media('min', 'sm') { margin-right: 5px; }
     @include media('min', 'lg') { margin-right: 10px; }
   }
-  &__txt { }
+  // &__txt { }
 }
 </style>

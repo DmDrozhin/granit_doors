@@ -53,7 +53,7 @@
               type="text" 
               placeholder="Ваше имя" 
               v-model="client.name"
-              pattern="^[a-zA-Z]+$"
+              pattern="^(?=.*[A-Za-z0-9А-ЯЄIа-яєi]).{3,60}$"
               required
             >
 
@@ -120,7 +120,7 @@ export default {
       const test1 = regex1.exec(this.client.tel)
       const regex2 = /^(?=.*[A-Za-z0-9А-ЯЄIа-яєi]).{3,60}$/
       const test2 = regex2.exec(this.client.name)
-      return test1 && test2 ? true : false 
+      return test1 && test2
     }
   }
 
@@ -274,6 +274,9 @@ export default {
       }
       &__tel:valid + .inputs__tel-format {
         display: none;
+      }
+      &__tel:valid, &__name:valid {
+        border-color: $green-75;
       }
     }
 

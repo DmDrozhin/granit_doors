@@ -27,11 +27,11 @@
 
 <script>
 import compModal from '@/components/comp-modal.vue'
-import compPreviewSlider from '@/components/comp-prod-preview-slider.vue'
 import headerSection from './header-section.vue'
 import mainSection from './main-section.vue'
 import footerSection from './footer-section.vue'
 
+import compPreviewSlider from '@/components/comp-prod-preview-slider.vue'
 import compPopCallback from '@/components/comp-pop-callback.vue'
 import compPopOrder from '../components/comp-pop-order.vue'
 
@@ -44,7 +44,7 @@ export default {
     }
   },
   computed: {
-    prev() { return this.$store.getters['product/PREVIEW'] } 
+    prev() { return this.$store.getters['product/PREVIEW'] },
   },
   mounted() {
     this.$store.dispatch('common/SET_VIEWPORT', window.innerWidth),

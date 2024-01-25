@@ -20,13 +20,14 @@
 html {
   height: 100%;
   width: 100%;
-  scrollbar-gutter: stable both-edges;
+  // scrollbar-gutter: stable both-edges;
 }
 
 body {
   height: inherit;
   width: inherit;
-  // mobile viewport bug fix */
+  // * mobile viewport bug fix * /
   height: -webkit-fill-available;
   scroll-behavior: smooth;
+  // scrollbar-gutter: stable both-edges;
 }

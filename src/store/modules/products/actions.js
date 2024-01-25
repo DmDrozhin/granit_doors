@@ -40,7 +40,7 @@ export default {
       })
     } else if (pl === 'По наличию') {
       SPs = EPs.map(pd => {
-        pd.arts = pd.arts.sort((a, b) => a.stock - b.stock)
+        pd.arts = pd.arts.sort((a, b) => b.stock - a.stock)
         return pd
       })
     } else if (pl === 'По популярности') {

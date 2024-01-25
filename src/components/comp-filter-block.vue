@@ -168,11 +168,11 @@ export default {
       if (arr.includes(dt.val) && !dt.isChecked) arr.splice(arr.indexOf(dt.val), 1)
     },
     resetSizes() {
+      if (!this.isAll) this.$refs.sizes.reset()
       this.door.sizes = []
-      this.$refs.sizes.reset()
     },
     resetAll() {
-      this.$refs.sizes.reset()
+      if (!this.isAll) this.$refs.sizes.reset()
       this.$refs.addOptions.reset()
       for(const it in this.door) {
         let vl = this.door[it]

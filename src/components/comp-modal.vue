@@ -47,29 +47,23 @@ export default {
   z-index: 10;
   top: 0;
   right: 0;
-  bottom: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  overflow: hidden;
   @include modal;
+  // border: 5px dotted rgb(217, 238, 27); // tech
+  overflow: hidden;
   
   &__slot {
-    overflow-y: auto;
-    width: 100%;
+    width: 100vw; // in vw to prevent left shift !
     height: 100%;
-    // border: 5px dotted rgb(217, 238, 27); // tech
-    // position: relative;
-    // z-index: 10;
     pointer-events: auto;
     user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
     display: grid;
-  justify-content: center;
-  align-items: center;
-    // @include fr-c-c;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 }
 .modal-enter-from,

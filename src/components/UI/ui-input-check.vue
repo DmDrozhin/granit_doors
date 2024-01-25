@@ -1,12 +1,12 @@
 <template>
     <li class="ui-input-check li-check">
       <input 
-        type="checkbox"
         class="li-check__inp" 
+        type="checkbox"
         :id="setts.val" 
         :value="setts.val"
         :name="setts.name"
-        @input="handle($event)"
+        @change="handle($event)"
         :checked="isChecked"
       >
       <div class="li-check__icon-wrap">
@@ -21,23 +21,20 @@ import uiIconCheck from '@/components/UI/svg-icons/ui-icon-check.vue'
 export default {
   name: 'ui-input-check',
   components: { uiIconCheck },
-  props: { setts: { type: Object, default: () => {} }, isChecked: { type: Boolean, default: false } },
-  data() {
-    return{
-
-    }
+  props: { 
+    setts: { type: Object, default: () => {} },
+    isChecked: { type: Boolean, required: true } 
   },
-  methods: {
-    
+  data() {
+    return{ }
+  },
+  computed: { },
+  methods: {  
     handle(ev) {
       // console.log(ev)
       this.$emit('handleCheck', { val: ev.target.value, isChecked: ev.target.checked })
     }
-  },
-  computed: {
-
   }
-
 }
 </script>
 
@@ -66,6 +63,10 @@ export default {
     border: 1px solid $green-dk;
     background-color: $green-dk;
   }
+  // &__inp:focus + &__icon-wrap {
+  //   border: 1px solid $green-dk;
+  //   background-color: $green-dk;
+  // }
   &__labe {
     flex: 1;
     @include FT400-16;

@@ -59,12 +59,11 @@
                 }"
               ></ui-comp-info>
             </a>
-
-            <div class="contacts__order-btn">
               <ui-order-button-footer
+                class="contacts__order-btn"
                 @clicked="this.$store.dispatch('common/SET_CALLBACK_POP', { isOn: true, client: '' })"
               ></ui-order-button-footer>
-            </div>
+            
           </div>
           <ul class="side-r__socials socials">
             <li class="socials__1">
