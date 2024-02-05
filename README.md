@@ -1,6 +1,6 @@
 # Магазин з прожаду вхідних дверей
 Даний додаток є клієнтською частиною магазину з продажу вхідних металевих дверей. 
-Виконана PerfectFixel верстка з макетів Figma шириною 1440px та 320px.
+Виконана PerfectPixel верстка з макетів Figma шириною 1440px та 320px.
 - За сценарієм, додаток отримує з бекенду дані – масив об’єктів з даними про товари, вказівник використаних абревіатур, дані продавця (в т.ч. посилання на соц. мережі та інше). 
 - Кожний товар – об’єкт масиву має вкладений масив – артиклі товару, які безпосередньо містять специфічні характеристики кожного артиклю які відрізняються від загальних базових. 
 - Перед використанням, дані товарів трансформуються в зручний для використання формат та зберігаються в namespaced Vuex модулі. Компонентам надаються мінімальні можливості для трансформації даних. Перед відображенням, дані проходять стартове сортування та фільтрацію по замовченню.
@@ -12,7 +12,7 @@
 
 # Shop for the sale of entrance doors
 This application is the client side of a store selling metal entrance doors. 
-The PerfectFixel layout is made from Figma layouts with a width of 1440px and 320px.
+The PerfectPixel layout is made from Figma layouts with a width of 1440px and 320px.
 - According to the scenario, the application receives data from the backend - an array of objects with product data, an index of used abbreviations, seller data (including links to social networks, etc.). 
 - Each product - an array object has a nested array - product items that directly contain the specific characteristics of each item that differ from the general basic ones. 
 - Before use, the product data is transformed into a usable format and stored in a namespaced Vuex module. Components are provided with minimal opportunities for data transformation. Before displaying, the data undergoes initial sorting and default filtering.
